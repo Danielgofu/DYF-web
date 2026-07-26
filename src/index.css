@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600&family=Inter:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  /* Colors - Industrial "The Precision Architect" Palette */
+  --color-surface: #131313;
+  --color-surface-low: #1c1b1b;
+  --color-surface-lowest: #0e0e0e;
+  --color-surface-high: #2a2a2a;
+  --color-surface-highest: #353535;
+  --color-primary-orange: #ffb77d;
+  --color-signal-orange: #f96304;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #c4c7c7;
+  --color-outline-variant: #444748;
+
+  /* Spacing and Radius */
+  --radius-none: 0px;
+
+  /* Animations */
+  --animate-scan: scan 6s linear infinite;
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body overflow-x-hidden;
+  }
+
+  /* Structural blueprint background effect */
+  .infrastructure-grid {
+    background-image: radial-gradient(circle, rgba(68, 71, 72, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .industrial-glow {
+    box-shadow: 0 0 50px 0 rgba(224, 122, 0, 0.08); /* Using signal-orange with low opacity */
+  }
+
+  /* Custom outline typography */
+  .text-outline-light {
+    -webkit-text-stroke: 1px #e5e2e1;
+    color: transparent;
+  }
+}
+
+@layer utilities {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+  }
+}
