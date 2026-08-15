@@ -53,7 +53,7 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-5xl">
+        <div className="relative z-10 w-full max-w-[1920px] mx-auto">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -70,17 +70,17 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="font-headline text-[clamp(1.5rem,6.5vw,9rem)] font-bold leading-[0.9] tracking-tighter mb-8 break-words overflow-visible"
+            className="font-headline font-bold leading-[0.85] tracking-tighter mb-8"
           >
-            DYF<br />
-            <span className="text-outline-light block sm:inline">TELECOMUNICACIONES</span>
+            <span className="block text-[clamp(4rem,15vw,12rem)]">DYF</span>
+            <span className="text-outline-light block text-[clamp(1.75rem,7.5vw,9rem)] whitespace-nowrap">TELECOMUNICACIONES</span>
           </motion.h1>
 
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="font-body text-lg md:text-xl font-light text-on-surface-variant max-w-xl mb-12 leading-relaxed"
+            className="font-body text-lg md:text-xl font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed"
           >
             Sistemas de infraestructura crítica y conectividad de alta fidelidad. 
             Desde 2008 liderando soluciones de telecomunicaciones homologadas en Getafe y toda la Comunidad de Madrid.
