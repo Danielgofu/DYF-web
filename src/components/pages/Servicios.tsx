@@ -17,10 +17,19 @@ import {
   ArrowRight 
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
 import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { usePageMeta } from "../../utils/seo";
 
-export const Servicios: React.FC<PageProps> = ({ setActivePage }) => {
+export const Servicios: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+
+  usePageMeta(
+    "Servicios Técnicos Especializados | DYF Telecomunicaciones",
+    "Servicios de antenas colectivas TDT/satélite, videoporteros digitales, electricidad comunitaria y seguridad CCTV en Madrid. Instaladores homologados Nº 10265."
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -132,7 +141,7 @@ export const Servicios: React.FC<PageProps> = ({ setActivePage }) => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio prioritario para comunidades bajo contrato, asegurando que el edificio nunca quede incomunicado.", label: "DISPONIBILIDAD TOTAL", status: "24/7", progress: 95 },
+            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio disponible para comunidades, empresas y particulares, asegurando una respuesta técnica inmediata ante cualquier avería crítica.", label: "DISPONIBILIDAD TOTAL", status: "24/7", progress: 95 },
             { title: "Contratos Preventivos", icon: <ClipboardList />, desc: "Revisiones periódicas para evitar averías costosas y garantizar el funcionamiento al 100% de todos los servicios.", label: "EFICIENCIA OPERATIVA", status: "ÓPTIMO", progress: 88 },
             { title: "Ahorro Energético", icon: <BarChart3 />, desc: "Asesoramiento para reducir la factura eléctrica comunitaria mediante temporizadores y sistemas LED eficientes.", label: "REDUCCIÓN COSTES", status: "HASTA 60%", progress: 60 }
           ].map((card, i) => (
@@ -252,8 +261,8 @@ export const Servicios: React.FC<PageProps> = ({ setActivePage }) => {
             </div>
             
             <button 
-              onClick={() => setActivePage("Contacto")}
-              className="bg-signal-orange p-10 flex flex-col justify-between group text-left transition-all active:scale-[0.98] hover:brightness-110"
+              onClick={() => navigate("/contacto")}
+              className="bg-signal-orange p-10 flex flex-col justify-between group text-left transition-all active:scale-[0.98] hover:brightness-110 cursor-pointer"
             >
               <span className="font-label text-[10px] uppercase tracking-widest text-surface font-bold">Especificación Técnica</span>
               <div className="flex justify-between items-end mt-12">
@@ -270,12 +279,12 @@ export const Servicios: React.FC<PageProps> = ({ setActivePage }) => {
         <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange font-bold block mb-4">Pilar 04</span>
         <h2 className="font-headline text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tighter mb-10">Seguridad & Redes Críticas</h2>
         <p className="font-body text-lg text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-20 text-center">
-          Desplegamos cableado estructurado certificado y sistemas de videovigilancia CCTV con acceso remoto. Infraestructuras diseñadas para una conectividad sin interrupciones y seguridad perimetral avanzada.
+          Desplegamos cableado estructurado certificado, sistemas de alarma y videovigilancia CCTV con acceso remoto. Infraestructuras diseñadas para una conectividad sin interrupciones y seguridad perimetral avanzada.
         </p>
         
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { icon: <ShieldCheck />, label: "CCTV IP", desc: "Cámaras de alta resolución con analítica de vídeo y detección de intrusión." },
+            { icon: <ShieldCheck />, label: "Sistemas de Alarma y CCTV IP", desc: "Detección inteligente de intrusión y cámaras de alta resolución con analítica de vídeo." },
             { icon: <Network />, label: "Redes Estructuradas", desc: "Cableado Cat6 y Cat7 certificado para flujos de datos masivos." },
             { icon: <Wifi />, label: "Optimización WiFi", desc: "Mapas de calor y despliegue de APs para cobertura total sin zonas muertas." },
             { icon: <Database />, label: "Sistemas Backup", desc: "Sistemas de alimentación ininterrumpida y almacenamiento redundante." }
@@ -316,8 +325,8 @@ export const Servicios: React.FC<PageProps> = ({ setActivePage }) => {
           </p>
             <div className="flex flex-wrap gap-8 items-center">
               <button 
-                onClick={() => setActivePage("Contacto")}
-                className="bg-signal-orange text-surface font-label font-bold px-12 py-6 text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-[0_20px_40px_rgba(242,125,38,0.3)] transition-all active:scale-[0.98]"
+                onClick={() => navigate("/contacto")}
+                className="bg-signal-orange text-surface font-label font-bold px-12 py-6 text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-[0_20px_40px_rgba(242,125,38,0.3)] transition-all active:scale-[0.98] cursor-pointer"
               >
                 Solicitar Presupuesto
               </button>

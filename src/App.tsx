@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Navigation } from "./components/layout/Navigation";
 import { Footer } from "./components/layout/Footer";
 import { Inicio } from "./components/pages/Inicio";
@@ -17,17 +18,14 @@ import { PoliticaPrivacidad } from "./components/pages/PoliticaPrivacidad";
 import { NotFoundView } from "./components/pages/NotFoundView";
 import { OfflineView } from "./components/pages/OfflineView";
 import { LoadingScreen } from "./components/layout/LoadingScreen";
-import { Page } from "./types";
 
 export default function App() {
-  const [activePage, setActivePage] = useState<Page>("Inicio");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isLoading, setIsLoading] = useState(document.readyState !== 'complete');
+  const location = useLocation();
 
   useEffect(() => {
     const handleLoad = () => {
-      // Pequeño retardo para asegurar que la animación de salida se vea fluida 
-      // pero solo si realmente hubo tiempo de carga
       setTimeout(() => setIsLoading(false), 500);
     };
 
@@ -54,44 +52,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (activePage === "Gracias") {
-      const timer = setTimeout(() => {
-        setActivePage("Inicio");
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-    // Scroll to top on page change
     window.scrollTo(0, 0);
-  }, [activePage]);
+  }, [location.pathname]);
 
   if (!isOnline) {
     return <OfflineView />;
   }
-
-  const renderPage = () => {
-    switch (activePage) {
-      case "Inicio":
-        return <Inicio setActivePage={setActivePage} />;
-      case "Equipo":
-        return <Equipo setActivePage={setActivePage} />;
-      case "Servicios":
-        return <Servicios setActivePage={setActivePage} />;
-      case "Contacto":
-        return <Contacto setActivePage={setActivePage} />;
-      case "Mantenimiento":
-        return <Mantenimiento setActivePage={setActivePage} />;
-      case "Gracias":
-        return <Gracias setActivePage={setActivePage} />;
-      case "AvisoLegal":
-        return <AvisoLegal setActivePage={setActivePage} />;
-      case "PoliticaPrivacidad":
-        return <PoliticaPrivacidad setActivePage={setActivePage} />;
-      case "NotFound":
-        return <NotFoundView setActivePage={setActivePage} />;
-      default:
-        return <NotFoundView setActivePage={setActivePage} />;
-    }
-  };
 
   return (
     <div className="infrastructure-grid min-h-screen selection:bg-signal-orange selection:text-white bg-surface text-on-surface font-body overflow-x-hidden">
@@ -102,11 +68,21 @@ export default function App() {
       >
         Saltar al contenido principal
       </a>
-      <Navigation activePage={activePage} setActivePage={setActivePage} />
+      <Navigation />
       <main id="main-content" tabIndex={-1} className="outline-none">
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/equipo" element={<Equipo />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/mantenimiento" element={<Mantenimiento />} />
+          <Route path="/gracias" element={<Gracias />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
+          <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
+          <Route path="*" element={<NotFoundView />} />
+        </Routes>
       </main>
-      <Footer setActivePage={setActivePage} />
+      <Footer />
     </div>
   );
 }

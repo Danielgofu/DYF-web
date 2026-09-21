@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { CheckCircle2, ArrowRight, Facebook, Share2 } from "lucide-react";
+import { CheckCircle2, ArrowRight, Facebook, Share2, Check } from "lucide-react";
 import { PageProps } from "../../types";
+import { usePageMeta } from "../../utils/seo";
 
-export const Gracias: React.FC<PageProps> = ({ setActivePage }) => {
+export const Gracias: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+
+  usePageMeta(
+    "Mensaje Recibido | DYF Telecomunicaciones",
+    "Gracias por contactar con DYF Telecomunicaciones. Hemos recibido su consulta y nuestro equipo técnico le responderá a la mayor brevedad."
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/");
+    }, 12000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "DYF Telecomunicaciones y Servicios",
+          text: "Instalación y mantenimiento de antenas, porteros y telecomunicaciones en Madrid.",
+          url: window.location.origin
+        });
+      } catch {
+        // Ignored if user dismissed share dialog
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(window.location.origin);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+      } catch {
+        // Fallback
+      }
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -13,13 +52,13 @@ export const Gracias: React.FC<PageProps> = ({ setActivePage }) => {
       {/* Decorative Industrial Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute top-10 left-10 text-[10px] font-label uppercase tracking-[0.4em] text-outline font-bold">Ref: TX-2026-SYS</div>
-        <div className="absolute bottom-10 right-10 text-[10px] font-label uppercase tracking-[0.4em] text-outline font-bold">Lat: 40.4168 / Long: -3.7038</div>
+        <div className="absolute bottom-10 right-10 text-[10px] font-label uppercase tracking-[0.4em] text-outline font-bold">Lat: 40.3061 / Long: -3.7341</div>
       </div>
 
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex items-center gap-4">
-        <img src="/DyfLogo.webp" alt="DYF Logo" className="h-10 w-auto opacity-50" />
+      <Link to="/" className="absolute top-12 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex items-center gap-4 hover:opacity-80 transition-opacity">
+        <img src="/DyfLogo.webp" alt="DYF Logo" className="h-10 w-auto opacity-70" />
         <span className="font-headline font-bold text-xl tracking-tighter text-on-surface uppercase font-black">DYF <span className="text-signal-orange">TELECOMUNICACIONES</span></span>
-      </div>
+      </Link>
 
       <main className="relative z-10 w-full max-w-2xl bg-surface-highest/60 backdrop-blur-3xl p-12 md:p-20 shadow-2xl border-l-2 border-signal-orange">
         <div className="flex flex-col items-start gap-12">
@@ -35,7 +74,7 @@ export const Gracias: React.FC<PageProps> = ({ setActivePage }) => {
               ¡Gracias por tu mensaje!
             </h1>
             <p className="font-body text-lg md:text-xl text-on-surface-variant font-light max-w-lg leading-relaxed">
-              Hemos recibido tu consulta correctamente. Nuestro equipo técnico revisará la información y se pondrá en contacto contigo a la brevedad posible.
+              Hemos recibido tu consulta correctamente. Nuestro equipo técnico revisará la información y se pondrá en contacto contigo en un plazo máximo de 24 horas laborables.
             </p>
           </div>
 
@@ -48,17 +87,37 @@ export const Gracias: React.FC<PageProps> = ({ setActivePage }) => {
 
           <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pt-6">
             <button 
-              onClick={() => setActivePage("Inicio")}
-              className="group relative px-8 py-4 bg-signal-orange text-surface font-headline font-bold text-sm tracking-widest uppercase flex items-center gap-3 transition-all hover:brightness-110 active:scale-95"
+              onClick={() => navigate("/")}
+              className="group relative px-8 py-4 bg-signal-orange text-surface font-headline font-bold text-sm tracking-widest uppercase flex items-center gap-3 transition-all hover:brightness-110 active:scale-95 cursor-pointer"
             >
               Volver al inicio
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
             </button>
             <div className="flex items-center gap-6">
               <span className="font-label text-[10px] uppercase tracking-[0.2em] text-outline font-bold">Síguenos:</span>
-              <div className="flex gap-4">
-                <a className="text-on-surface-variant hover:text-signal-orange transition-colors" href="#"><Facebook className="w-5 h-5" /></a>
-                <a className="text-on-surface-variant hover:text-signal-orange transition-colors" href="#"><Share2 className="w-5 h-5" /></a>
+              <div className="flex items-center gap-4">
+                <a 
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2" 
+                  href="https://www.facebook.com/DYFTelecomunicaciones/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Facebook DYF Telecomunicaciones"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <button 
+                  onClick={handleShare}
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2 cursor-pointer relative"
+                  aria-label="Compartir web"
+                  title="Compartir"
+                >
+                  {copied ? <Check className="w-5 h-5 text-green-400" /> : <Share2 className="w-5 h-5" />}
+                  {copied && (
+                    <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-black text-white px-2 py-0.5 rounded whitespace-nowrap">
+                      Copiado
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
           </div>

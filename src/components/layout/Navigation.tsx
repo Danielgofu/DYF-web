@@ -1,16 +1,25 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Instagram, Facebook } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Page, PageProps } from "../../types";
 
-const NAV_LINKS: Page[] = ["Inicio", "Equipo", "Servicios", "Contacto", "Mantenimiento"];
-
-interface NavigationProps extends PageProps {
-  activePage: string;
+interface NavItem {
+  label: string;
+  path: string;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePage }) => {
+const NAV_ITEMS: NavItem[] = [
+  { label: "Inicio", path: "/" },
+  { label: "Equipo", path: "/equipo" },
+  { label: "Servicios", path: "/servicios" },
+  { label: "Contacto", path: "/contacto" },
+  { label: "Mantenimiento", path: "/mantenimiento" },
+];
+
+export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (isMenuOpen) {
@@ -23,8 +32,8 @@ export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePag
     };
   }, [isMenuOpen]);
 
-  const handlePageChange = (page: Page) => {
-    setActivePage(page);
+  const handleNavigate = (path: string) => {
+    navigate(path);
     setIsMenuOpen(false);
   };
 
@@ -61,42 +70,45 @@ export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePag
       <nav aria-label="Navegación principal" className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
         <div className="flex justify-between items-center px-6 md:px-12 py-3 max-w-[1920px] mx-auto">
           <button 
-            onClick={() => handlePageChange("Inicio")} 
+            onClick={() => handleNavigate("/")} 
             aria-label="Ir a la página de inicio"
-            className="flex items-center justify-center hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+            className="flex items-center justify-center hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
           >
             <img src="/DyfLogo.webp" alt="Logotipo DYF TELECOMUNICACIONES" className="h-8 md:h-10 w-auto object-contain" />
           </button>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex gap-10 items-center font-headline tracking-tight">
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link}
-                onClick={() => handlePageChange(link)}
-                aria-current={activePage === link ? "page" : undefined}
-                className={`transition-all duration-300 pb-1 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:-translate-y-0.5 ${
-                  activePage === link 
-                    ? "text-signal-orange border-b-2 border-signal-orange" 
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                {link}
-              </button>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => handleNavigate(item.path)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`transition-all duration-300 pb-1 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:-translate-y-0.5 cursor-pointer ${
+                    isActive 
+                      ? "text-signal-orange border-b-2 border-signal-orange" 
+                      : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
             <button 
-              onClick={() => handlePageChange("Contacto")}
-              className="hidden lg:block bg-signal-orange text-surface px-6 py-2 md:px-8 md:py-3 font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-primary-orange transition-all active:scale-95"
+              onClick={() => handleNavigate("/contacto")}
+              className="hidden lg:block bg-signal-orange text-surface px-6 py-2 md:px-8 md:py-3 font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-primary-orange transition-all active:scale-95 cursor-pointer"
             >
-              Solicitar Presupuesto
+              Atención Inmediata
             </button>
 
             {/* Mobile Menu Toggle */}
             <button 
-              className="lg:hidden text-on-surface p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:bg-white/5 rounded-full transition-colors"
+              className="lg:hidden text-on-surface p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:bg-white/5 rounded-full transition-colors cursor-pointer"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={isMenuOpen}
@@ -121,28 +133,31 @@ export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePag
             aria-hidden={!isMenuOpen}
           >
             <div className="flex flex-col p-8 gap-8 font-headline">
-              {NAV_LINKS.map((link) => (
-                <motion.button
-                  key={link}
-                  variants={itemVariants}
-                  onClick={() => handlePageChange(link)}
-                  aria-current={activePage === link ? "page" : undefined}
-                  className={`text-3xl font-bold uppercase tracking-tighter text-left focus:outline-none focus-visible:text-signal-orange transition-all duration-300 hover:pl-6 group ${
-                    activePage === link ? "text-signal-orange" : "text-on-surface hover:text-signal-orange"
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className={`w-0 h-0.5 bg-signal-orange transition-all duration-300 group-hover:w-8 ${activePage === link ? 'w-8' : ''}`}></span>
-                    {link}
-                  </span>
-                </motion.button>
-              ))}
+              {NAV_ITEMS.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <motion.button
+                    key={item.path}
+                    variants={itemVariants}
+                    onClick={() => handleNavigate(item.path)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`text-3xl font-bold uppercase tracking-tighter text-left focus:outline-none focus-visible:text-signal-orange transition-all duration-300 hover:pl-6 group cursor-pointer ${
+                      isActive ? "text-signal-orange" : "text-on-surface hover:text-signal-orange"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className={`w-0 h-0.5 bg-signal-orange transition-all duration-300 group-hover:w-8 ${isActive ? 'w-8' : ''}`}></span>
+                      {item.label}
+                    </span>
+                  </motion.button>
+                );
+              })}
               <motion.button 
                 variants={itemVariants}
-                onClick={() => handlePageChange("Contacto")}
-                className="mt-4 bg-signal-orange text-surface px-8 py-5 font-bold uppercase tracking-widest text-sm w-full text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:bg-white hover:text-signal-orange transition-all active:scale-[0.98]"
+                onClick={() => handleNavigate("/contacto")}
+                className="mt-4 bg-signal-orange text-surface px-8 py-5 font-bold uppercase tracking-widest text-sm w-full text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:bg-white hover:text-signal-orange transition-all active:scale-[0.98] cursor-pointer"
               >
-                Solicitar Presupuesto
+                Atención Inmediata
               </motion.button>
 
               <motion.div 
@@ -177,12 +192,13 @@ export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePag
               variants={itemVariants}
               className="mt-auto p-8 text-outline-variant"
             >
-              <p className="text-[10px] uppercase tracking-[0.3em] font-black border-b border-outline-variant/10 pb-4 mb-4">
-                Conectividad Industrial
+              <p className="text-[10px] uppercase tracking-[0.3em] font-black border-b border-outline-variant/10 pb-4 mb-4 text-signal-orange">
+                Horario de Atención: Lunes a Viernes: 9:00 AM - 14:00 PM
               </p>
-              <p className="text-xs font-light leading-relaxed">
-                Diseñando la infraestructura para la era de las telecomunicaciones de alta demanda.
-              </p>
+              <div className="space-y-2 text-xs font-light leading-relaxed">
+                <p>Teléfonos: <a href="tel:+34916018494" className="text-white hover:text-signal-orange font-medium">916 01 84 94</a> / <a href="tel:+34918312061" className="text-white hover:text-signal-orange font-medium">918 31 20 61</a></p>
+                <p>Email: <a href="mailto:info@dyfservicios.com" className="text-white hover:text-signal-orange font-medium">info@dyfservicios.com</a></p>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -190,3 +206,4 @@ export const Navigation: React.FC<NavigationProps> = ({ activePage, setActivePag
     </>
   );
 };
+

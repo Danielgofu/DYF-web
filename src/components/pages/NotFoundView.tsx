@@ -1,10 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
 import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { usePageMeta } from "../../utils/seo";
 
-export const NotFoundView: React.FC<PageProps> = ({ setActivePage }) => {
+export const NotFoundView: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+
+  usePageMeta(
+    "Página no encontrada - 404 | DYF Telecomunicaciones",
+    "La página que está buscando no existe o ha sido trasladada. DYF Telecomunicaciones y Servicios."
+  );
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-surface overflow-hidden p-6">
       <NeuralNetworkBackground opacity={0.15} />
@@ -63,8 +72,8 @@ export const NotFoundView: React.FC<PageProps> = ({ setActivePage }) => {
           className="flex flex-col sm:flex-row gap-6 justify-center"
         >
           <button
-            onClick={() => setActivePage("Inicio")}
-            className="flex items-center justify-center gap-3 bg-signal-orange text-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-primary-orange transition-all active:scale-[0.98]"
+            onClick={() => navigate("/")}
+            className="flex items-center justify-center gap-3 bg-signal-orange text-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-primary-orange transition-all active:scale-[0.98] cursor-pointer"
           >
             <Home className="w-4 h-4" />
             Volver al Inicio
@@ -72,7 +81,7 @@ export const NotFoundView: React.FC<PageProps> = ({ setActivePage }) => {
           
           <button
             onClick={() => window.history.back()}
-            className="flex items-center justify-center gap-3 border border-outline-variant/30 text-on-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all"
+            className="flex items-center justify-center gap-3 border border-outline-variant/30 text-on-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             Regresar

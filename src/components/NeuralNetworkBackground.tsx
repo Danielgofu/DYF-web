@@ -14,6 +14,10 @@ export const NeuralNetworkBackground: React.FC<{ opacity?: number }> = ({ opacit
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 

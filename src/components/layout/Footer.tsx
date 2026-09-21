@@ -1,8 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
-import { PageProps } from "../../types";
 
-export const Footer: React.FC<PageProps> = ({ setActivePage }) => {
+const FOOTER_LINKS = [
+  { label: "Inicio", path: "/" },
+  { label: "Equipo", path: "/equipo" },
+  { label: "Contacto", path: "/contacto" },
+  { label: "Servicios", path: "/servicios" },
+  { label: "Mantenimiento", path: "/mantenimiento" },
+];
+
+export const Footer: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-surface-lowest w-full border-t border-outline-variant/10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-6 md:px-12 py-16 max-w-[1920px] mx-auto">
@@ -46,13 +56,13 @@ export const Footer: React.FC<PageProps> = ({ setActivePage }) => {
           <div className="flex flex-col gap-6">
             <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange font-bold">Enlaces</span>
             <nav aria-label="Enlaces rápidos" className="flex flex-col gap-3">
-              {["Inicio", "Equipo", "Contacto", "Servicios", "Mantenimiento"].map((page) => (
+              {FOOTER_LINKS.map((link) => (
                 <button 
-                  key={page}
-                  onClick={() => setActivePage(page as any)} 
-                  className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange"
+                  key={link.path}
+                  onClick={() => navigate(link.path)} 
+                  className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange cursor-pointer"
                 >
-                  {page}
+                  {link.label}
                 </button>
               ))}
             </nav>
@@ -80,14 +90,14 @@ export const Footer: React.FC<PageProps> = ({ setActivePage }) => {
             <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange font-bold">Legal</span>
             <nav aria-label="Información legal" className="flex flex-col gap-3">
               <button 
-                onClick={() => setActivePage("PoliticaPrivacidad")} 
-                className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange"
+                onClick={() => navigate("/politica-privacidad")} 
+                className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange cursor-pointer"
               >
                 Protocolo de Privacidad
               </button>
               <button 
-                onClick={() => setActivePage("AvisoLegal")} 
-                className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange"
+                onClick={() => navigate("/aviso-legal")} 
+                className="text-left text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition-colors focus:outline-none focus-visible:text-signal-orange cursor-pointer"
               >
                 Aviso Legal
               </button>

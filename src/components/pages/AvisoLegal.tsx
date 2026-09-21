@@ -1,9 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { PageProps } from "../../types";
+import { usePageMeta } from "../../utils/seo";
 
-export const AvisoLegal: React.FC<PageProps> = ({ setActivePage }) => {
+export const AvisoLegal: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+
+  usePageMeta(
+    "Aviso Legal | DYF Telecomunicaciones",
+    "Información legal, titularidad del portal y condiciones de uso de DYF Telecomunicaciones y Servicios, S.L."
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -59,7 +68,7 @@ export const AvisoLegal: React.FC<PageProps> = ({ setActivePage }) => {
                     {[
                       { label: "Razón Social", value: "DYF Telecomunicaciones y Servicios, S.L." },
                       { label: "Identificación Fiscal (CIF)", value: "B85223972" },
-                      { label: "Acreditación Oficial", value: "Empresa Homologada - Registro de Instaladores de Telecomunicación de España" },
+                      { label: "Acreditación Oficial", value: "Empresa Homologada - Registro de Instaladores de Telecomunicación de España (Nº 10265) - Miembro de AMIITEL" },
                       { label: "Sede Central", value: "C. Valdemorillo, 20, 28901 Getafe, Madrid" },
                       { label: "Infraestructura Digital", value: "info@dyfservicios.com" },
                       { label: "Contacto Directo", value: "916 01 84 94 / 918 31 20 61" }
@@ -154,8 +163,8 @@ export const AvisoLegal: React.FC<PageProps> = ({ setActivePage }) => {
             {/* Back Action */}
             <div className="pt-12 flex justify-center md:justify-start">
               <button 
-                onClick={() => setActivePage("Inicio")}
-                className="group flex items-center gap-4 bg-signal-orange text-surface font-headline font-bold uppercase tracking-tighter px-10 py-5 transition-all hover:pr-14 relative overflow-hidden active:scale-95"
+                onClick={() => navigate("/")}
+                className="group flex items-center gap-4 bg-signal-orange text-surface font-headline font-bold uppercase tracking-tighter px-10 py-5 transition-all hover:pr-14 relative overflow-hidden active:scale-95 cursor-pointer"
               >
                 <span className="relative z-10 uppercase font-black">Volver al inicio</span>
                 <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform" />

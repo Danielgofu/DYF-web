@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { 
   History, 
@@ -6,11 +7,20 @@ import {
   CheckCircle2, 
   Leaf, 
   Quote, 
-  ArrowRight 
+  ArrowRight,
+  UserCircle
 } from "lucide-react";
 import { PageProps } from "../../types";
+import { usePageMeta } from "../../utils/seo";
 
-export const Equipo: React.FC<PageProps> = ({ setActivePage }) => {
+export const Equipo: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+
+  usePageMeta(
+    "Equipo y Valores | DYF Telecomunicaciones",
+    "Conozca el equipo técnico y los valores de precisión que definen a DYF Telecomunicaciones. Excelencia operativa y compromiso en cada proyecto."
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -127,13 +137,8 @@ export const Equipo: React.FC<PageProps> = ({ setActivePage }) => {
                     "{testimonial.quote}"
                   </p>
                   <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 bg-surface-highest overflow-hidden">
-                      <img 
-                        alt={testimonial.name} 
-                        className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all" 
-                        src={testimonial.img}
-                        referrerPolicy="no-referrer"
-                      />
+                    <div className="w-16 h-16 bg-surface-highest border border-outline-variant/20 flex items-center justify-center text-signal-orange group-hover:text-white transition-colors">
+                      <UserCircle className="w-10 h-10 opacity-80" />
                     </div>
                     <div>
                       <h4 className="font-headline font-bold text-xl uppercase tracking-tight">{testimonial.name}</h4>
@@ -160,8 +165,8 @@ export const Equipo: React.FC<PageProps> = ({ setActivePage }) => {
                 Buscamos mentes inquietas y manos precisas. Conviértete en nuestro compañero de viaje en la construcción de la infraestructura del mañana.
               </p>
               <button 
-                onClick={() => setActivePage("Contacto")}
-                className="bg-signal-orange text-surface px-12 py-5 font-headline font-black text-xl uppercase tracking-tighter hover:bg-on-primary-container transition-all group inline-flex items-center gap-4 relative z-10"
+                onClick={() => navigate("/contacto")}
+                className="bg-signal-orange text-surface px-12 py-5 font-headline font-black text-xl uppercase tracking-tighter hover:bg-on-primary-container transition-all group inline-flex items-center gap-4 relative z-10 cursor-pointer"
               >
                 Únete al equipo
                 <ArrowRight className="group-hover:translate-x-2 transition-transform" />

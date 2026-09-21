@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { 
   Smartphone, 
@@ -12,8 +13,15 @@ import {
 } from "lucide-react";
 import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { usePageMeta } from "../../utils/seo";
 
-export const Contacto: React.FC<PageProps> = ({ setActivePage }) => {
+export const Contacto: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+  usePageMeta(
+    "Contacto Directo y Presupuestos | DYF Telecomunicaciones",
+    "Solicite presupuesto o auditoría técnica para su comunidad o empresa en Madrid. Atención telefónica 916 01 84 94 y respuesta en menos de 24h laborables."
+  );
+
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -84,7 +92,7 @@ export const Contacto: React.FC<PageProps> = ({ setActivePage }) => {
         });
 
         if (response.ok) {
-          setActivePage("Gracias");
+          navigate("/gracias");
           setFormData({
             full_name: "",
             email: "",
@@ -234,7 +242,7 @@ export const Contacto: React.FC<PageProps> = ({ setActivePage }) => {
                       <option className="bg-surface text-on-surface" value="comunidad">Mantenimiento Comunidad</option>
                       <option className="bg-surface text-on-surface" value="antenas">Antenas y TV (TDT/SAT)</option>
                       <option className="bg-surface text-on-surface" value="porteros">Porteros y Videoporteros</option>
-                      <option className="bg-surface text-on-surface" value="seguridad">CCTV y Seguridad</option>
+                      <option className="bg-surface text-on-surface" value="seguridad">Alarmas, CCTV y Seguridad</option>
                       <option className="bg-surface text-on-surface" value="redes">Redes e Informática</option>
                       <option className="bg-surface text-on-surface" value="electricidad">Electricidad e Iluminación LED</option>
                       <option className="bg-surface text-on-surface" value="presupuesto">Solicitud de Presupuesto</option>
@@ -350,7 +358,7 @@ export const Contacto: React.FC<PageProps> = ({ setActivePage }) => {
               <div className="space-y-6">
                 {[
                   { label: "Tiempo de Respuesta", text: "Todas las consultas son procesadas por un supervisor técnico en menos de 24 horas hábiles." },
-                  { label: "Soporte Técnico", text: "El soporte de emergencia para clientes de infraestructura existente está disponible 24/7 a través de la línea dedicada NOC." },
+                  { label: "Soporte Técnico", text: "El soporte de emergencia está disponible 24/7 para comunidades, empresas y particulares a través de la línea de guardia técnica." },
                   { label: "Consultoría", text: "Las revisiones iniciales de arquitectura de proyectos se proporcionan de forma gratuita para empresas industriales." }
                 ].map((protocol, i) => (
                   <div key={i} className="border-b last:border-0 border-outline-variant/20 pb-4 last:pb-0">

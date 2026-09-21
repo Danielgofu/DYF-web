@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
 import { 
   Antenna, 
@@ -13,10 +14,15 @@ import {
   MousePointerClick,
   Instagram,
   Facebook,
-  Plus
+  Plus,
+  FileCheck,
+  Award,
+  ShieldCheck,
+  Building2
 } from "lucide-react";
 import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { usePageMeta } from "../../utils/seo";
 
 const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -38,7 +44,42 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
   );
 };
 
-export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
+export const Inicio: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  usePageMeta(
+    "DYF Telecomunicaciones | Infraestructuras Críticas y Telecomunicaciones en Madrid",
+    "Líderes en instalación y mantenimiento de antenas colectivas, videoporteros, seguridad CCTV, redes y electricidad en Getafe y toda la Comunidad de Madrid."
+  );
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqItems = [
+    {
+      q: "¿Qué tipo de servicios ofrece DYF Telecomunicaciones?",
+      a: "Nos especializamos en telecomunicaciones (antenas TDT y satélite), instalación y reparación de porteros y videoporteros automáticos, mantenimiento eléctrico integral para comunidades y sistemas de seguridad, alarmas y CCTV."
+    },
+    {
+      q: "¿Ofrecen cobertura en toda la Comunidad de Madrid?",
+      a: "Sí, contamos con unidades móviles que prestan servicio en Madrid capital y en todos los municipios de la Comunidad de Madrid, con sede operativa en Getafe."
+    },
+    {
+      q: "¿Cómo funciona el servicio de mantenimiento para comunidades de propietarios?",
+      a: "Ofrecemos contratos personalizados que incluyen revisiones preventivas periódicas, atención prioritaria en averías, precios cerrados en mano de obra y servicio de guardia para urgencias técnicas."
+    },
+    {
+      q: "¿Cuánto se tarda en recibir un presupuesto o una visita técnica?",
+      a: "Atendemos las solicitudes en menos de 24 horas laborables. Para averías urgentes en comunidades con contrato activo, la intervención se realiza con carácter prioritario."
+    },
+    {
+      q: "¿Están homologados para emitir boletines oficiales y certificaciones?",
+      a: "Sí, somos empresa instaladora de telecomunicaciones homologada y certificada para la emisión de documentación técnica oficial según la normativa vigente."
+    }
+  ];
+
   return (
     <>
       <section className="relative min-h-screen flex items-center px-6 md:px-12 overflow-hidden pt-20">
@@ -62,7 +103,7 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
           >
             <span className="h-[2px] w-12 bg-signal-orange"></span>
             <span className="font-label uppercase tracking-[0.3em] text-[10px] md:text-xs text-signal-orange font-bold">
-              Precisión Industrial Garantizada
+              Sistemas de Telecomunicación Homologados
             </span>
           </motion.div>
 
@@ -82,8 +123,7 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
             transition={{ duration: 1, delay: 0.5 }}
             className="font-body text-lg md:text-xl font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed"
           >
-            Sistemas de infraestructura crítica y conectividad de alta fidelidad. 
-            Desde 2008 liderando soluciones de telecomunicaciones homologadas en Getafe y toda la Comunidad de Madrid.
+            Líderes en instalación, mantenimiento y optimización de redes críticas. Desde 2008 garantizando la continuidad operativa en la Comunidad de Madrid con estándares de ingeniería de máxima exigencia.
           </motion.p>
           
           <motion.div 
@@ -92,13 +132,22 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-8"
           >
-            <button 
-              onClick={() => setActivePage("Contacto")}
-              aria-label="Contactar para iniciar un proyecto"
-              className="bg-signal-orange text-surface px-10 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-primary-orange hover:shadow-[0_0_30px_rgba(242,125,38,0.2)] transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              Iniciar Proyecto <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="flex flex-wrap gap-4">
+              <button 
+                onClick={() => navigate("/contacto")}
+                aria-label="Solicitar auditoría técnica"
+                className="bg-signal-orange text-surface px-10 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-primary-orange hover:shadow-[0_0_30px_rgba(242,125,38,0.2)] transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
+              >
+                Solicitar Auditoría <ArrowRight className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => navigate("/servicios")}
+                aria-label="Conocer servicios de telecomunicaciones"
+                className="border border-outline-variant/30 text-white px-8 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:border-signal-orange hover:text-signal-orange transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
+              >
+                Conocer Servicios
+              </button>
+            </div>
             <div className="flex gap-6 items-center border-l sm:border-l-0 sm:pl-0 pl-6 border-outline-variant/30">
               <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold hidden sm:block">Seguir en:</span>
               <a 
@@ -128,7 +177,7 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
               <span className="font-label text-[10px] text-outline-variant uppercase tracking-widest">Estado Actual</span>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="font-headline font-bold text-white uppercase">Soporte Técnico 24H</span>
+                <span className="font-headline font-bold text-white uppercase">Respuesta NOC 24/7</span>
               </div>
             </div>
         </div>
@@ -144,8 +193,8 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[400px]">
           {/* Antennas */}
           <div 
-            onClick={() => setActivePage("Servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && setActivePage("Servicios")}
+            onClick={() => navigate("/servicios")}
+            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de antenas"
@@ -153,17 +202,17 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
           >
             <Antenna className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
             <div>
-              <h3 className="font-headline text-2xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">Antenas & TV</h3>
+              <h3 className="font-headline text-2xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">Antenas Colectivas & Parabólicas</h3>
               <p className="text-on-surface-variant text-sm font-light leading-relaxed">
-                Instalación técnica de sistemas TDT y Satélite. Optimizamos su señal para máxima resolución HD y 4K sin interferencias.
+                Optimización de recepción TDT y satélite para comunidades de propietarios y complejos residenciales. Máxima calidad de señal sin interferencias.
               </p>
             </div>
           </div>
 
           {/* Intercoms */}
           <div 
-            onClick={() => setActivePage("Servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && setActivePage("Servicios")}
+            onClick={() => navigate("/servicios")}
+            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de porteros automáticos"
@@ -178,12 +227,12 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
             <div className="relative z-10 p-10 h-full flex flex-col justify-between">
               <Smartphone className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12" />
               <div className="max-w-md">
-                <h3 className="font-headline text-2xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">Porteros Digitales</h3>
+                <h3 className="font-headline text-2xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">Porteros y Videoporteros Digitales</h3>
                 <p className="text-on-surface-variant text-sm font-light leading-relaxed mb-6">
-                  Sistemas de control con visión nocturna y alta definición. Integración estética y funcional en portales con marcas líderes.
+                  Instalación y modernización a sistemas IP y 2 hilos con visión nocturna y apertura remota para fincas.
                 </p>
                 <span className="font-label text-[10px] uppercase tracking-widest border-b border-signal-orange pb-1 text-signal-orange transition-all group-hover:tracking-[0.2em]">
-                  Especificaciones Técnicas Disponibles
+                  VER CATÁLOGO TÉCNICO
                 </span>
               </div>
             </div>
@@ -191,8 +240,8 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
 
           {/* CCTV */}
           <div 
-            onClick={() => setActivePage("Servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && setActivePage("Servicios")}
+            onClick={() => navigate("/servicios")}
+            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de CCTV y seguridad"
@@ -201,21 +250,21 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
             <div className="flex justify-between items-start">
               <Video className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110" />
               <span className="font-label text-[10px] bg-signal-orange text-surface px-3 py-1 font-extrabold uppercase tracking-widest transition-all group-hover:bg-white group-hover:text-signal-orange">
-                MONITOREO 24/7
+                MONITORIZACIÓN REMOTA VÍA APP
               </span>
             </div>
             <div>
-              <h3 className="font-headline text-3xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">CCTV & Seguridad</h3>
+              <h3 className="font-headline text-3xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">Seguridad CCTV, Alarmas & Redes de Datos</h3>
               <p className="text-on-surface-variant text-sm font-light leading-relaxed max-w-lg">
-                Redes de vigilancia de última generación integradas con analítica de IA para detección de anomalías y defensa perimetral.
+                Sistemas de alarma y videovigilancia CCTV de alta definición con grabación continua y cableado estructurado Cat6/Cat7.
               </p>
             </div>
           </div>
 
           {/* Networks */}
           <div 
-            onClick={() => setActivePage("Servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && setActivePage("Servicios")}
+            onClick={() => navigate("/servicios")}
+            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de instalaciones de red"
@@ -223,18 +272,84 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
           >
             <Network className="w-12 h-12" />
             <div>
-              <h3 className="font-headline text-2xl font-bold uppercase mb-4">Redes e Iluminación</h3>
+              <h3 className="font-headline text-2xl font-bold uppercase mb-4">Electricidad Comunitaria & LED</h3>
               <p className="text-surface/80 text-sm font-light leading-relaxed">
-                Cableado estructurado, optimización Wi-Fi y transición a iluminación LED para un consumo energético eficiente.
+                Iluminación de bajo consumo, detectores de presencia y mantenimiento integral de cuadros eléctricos.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Por Qué Elegir DYF Section */}
+      <section className="py-24 px-6 md:px-12 max-w-[1920px] mx-auto border-t border-outline-variant/10">
+        <div className="mb-16">
+          <span className="font-label text-xs uppercase tracking-widest text-signal-orange font-bold block mb-3">
+            DIFERENCIAL TÉCNICO
+          </span>
+          <h2 className="font-headline text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-4 text-white">
+            Rigor, Rapidez y Garantía en Cada Intervención
+          </h2>
+          <div className="h-1 w-24 bg-signal-orange mb-6"></div>
+          <p className="font-body text-base md:text-lg text-on-surface-variant font-light max-w-3xl leading-relaxed">
+            Combinamos equipamiento de medición de última generación con personal técnico altamente cualificado.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              num: "01",
+              title: "Presupuestos Transparentes",
+              desc: "Estudios técnicos detallados sin costes ocultos ni sorpresas de última hora.",
+              icon: <FileCheck className="w-8 h-8 text-signal-orange" />
+            },
+            {
+              num: "02",
+              title: "Técnicos Homologados",
+              desc: "Inscritos en el Registro Oficial de Instaladores de Telecomunicaciones con el Nº 10265 y miembros de la Asociación Madrileña de Instaladores e Integradores de Telecomunicación (AMIITEL).",
+              icon: <Award className="w-8 h-8 text-signal-orange" />
+            },
+            {
+              num: "03",
+              title: "Repuestos Originales",
+              desc: "Trabajamos únicamente con fabricantes líderes del sector para máxima durabilidad.",
+              icon: <ShieldCheck className="w-8 h-8 text-signal-orange" />
+            },
+            {
+              num: "04",
+              title: "Atención Prioritaria a Comunidades",
+              desc: "Contratos de mantenimiento preventivo adaptados a las necesidades reales de cada finca.",
+              icon: <Building2 className="w-8 h-8 text-signal-orange" />
+            }
+          ].map((item, idx) => (
+            <div 
+              key={idx}
+              className="bg-surface-low p-8 border border-outline-variant/10 hover:border-signal-orange/40 hover:bg-surface-high transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <div className="p-3 bg-signal-orange/10 border border-signal-orange/20">
+                    {item.icon}
+                  </div>
+                  <span className="font-mono text-xs text-outline-variant font-bold">
+                    {item.num}
+                  </span>
+                </div>
+                <h3 className="font-headline text-lg font-bold uppercase mb-3 text-white group-hover:text-signal-orange transition-colors">
+                  {item.title}
+                </h3>
+                <p className="font-body text-xs md:text-sm text-on-surface-variant font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Metrics Section */}
       <section className="bg-surface-lowest py-40 border-y border-outline-variant/10 relative overflow-hidden">
-        <NeuralNetworkBackground opacity={0.2} />
         {/* Background Accents */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-signal-orange/5 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-signal-orange/5 blur-[120px] rounded-full pointer-events-none"></div>
@@ -327,24 +442,20 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
       <section className="py-32 bg-surface-lowest px-6 md:px-12 border-y border-outline-variant/10">
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           <div className="lg:col-span-4">
-            <span className="font-label text-xs uppercase tracking-[0.4em] text-signal-orange font-black mb-6 block text-left">Asistencia Técnica</span>
-            <h2 className="font-headline text-4xl sm:text-5xl font-black uppercase tracking-tighter mb-6 leading-tight break-words text-left">CONOCIMIENTO<br />INDUSTRIAL</h2>
-            <p className="text-on-surface-variant font-light text-[10px] uppercase tracking-[0.3em] text-left">Protocolos y soluciones documentadas</p>
+            <span className="font-label text-xs uppercase tracking-[0.4em] text-signal-orange font-black mb-6 block text-left">RESOLUCIÓN DE DUDAS</span>
+            <h2 className="font-headline text-4xl sm:text-5xl font-black uppercase tracking-tighter mb-6 leading-tight break-words text-left">PREGUNTAS<br />FRECUENTES</h2>
+            <p className="text-on-surface-variant font-light text-[10px] uppercase tracking-[0.3em] text-left">Respuestas claras a las consultas más habituales sobre nuestros servicios e intervenciones.</p>
             <div className="h-1 w-20 bg-signal-orange mt-8 self-start"></div>
           </div>
           <div className="lg:col-span-8 space-y-4">
-            {[
-              { q: "¿Ofrecéis mantenimiento a comunidades de vecinos?", a: "Sí, es una de nuestras especialidades. Diseñamos planes integrales que cubren desde antenas y videoporteros hasta el sistema eléctrico común, con atención prioritaria de urgencias." },
-              { q: "¿Cuál es el tiempo de respuesta ante averías?", a: "Para clientes con contrato de mantenimiento, garantizamos una respuesta técnica rápida. Las reparaciones críticas de infraestructura suelen abordarse en las primeras 24-48 horas." },
-              { q: "¿Trabajáis con marcas oficiales?", a: "Absolutamente. Solo instalamos componentes de fabricantes líderes como Fermax, Golmar, Televes y Comelit, asegurando la máxima fiabilidad y disponibilidad de repuestos a largo plazo." },
-              { q: "¿Cómo solicito un presupuesto detallado?", a: "Puedes contactarnos vía formulario web, teléfono o correo electrónico. Realizamos una auditoría técnica inicial para asegurar que el presupuesto se ajusta a la realidad de tu instalación." }
-            ].map((item, i) => {
-              const [isFaqOpen, setIsFaqOpen] = useState(false);
+            {faqItems.map((item, i) => {
+              const isFaqOpen = openFaq === i;
               return (
                 <div key={i} className="group">
                   <button 
-                    onClick={() => setIsFaqOpen(!isFaqOpen)}
-                    className="w-full bg-surface-low p-8 flex justify-between items-center cursor-pointer hover:bg-surface-highest transition-all border-l-2 border-transparent hover:border-signal-orange text-left"
+                    onClick={() => toggleFaq(i)}
+                    className="w-full bg-surface-low p-8 flex justify-between items-center cursor-pointer hover:bg-surface-highest transition-all border-l-2 border-transparent hover:border-signal-orange text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+                    aria-expanded={isFaqOpen}
                   >
                     <span className="font-headline font-bold uppercase text-sm tracking-widest leading-relaxed pr-8">{item.q}</span>
                     <Plus className={`text-signal-orange shrink-0 transition-transform duration-300 ${isFaqOpen ? 'rotate-45' : ''}`} />
@@ -352,7 +463,7 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
                   <div 
                     className={`overflow-hidden transition-all duration-300 ${isFaqOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                   >
-                    <div className="p-8 bg-surface-highest/50 border-t border-outline-variant/10 text-sm text-on-surface-variant leading-relaxed">
+                    <div className="p-8 bg-surface-highest/50 border-t border-outline-variant/10 text-sm text-on-surface-variant leading-relaxed font-light">
                       {item.a}
                     </div>
                   </div>
@@ -389,8 +500,8 @@ export const Inicio: React.FC<PageProps> = ({ setActivePage }) => {
               <div>
                 <p className="text-white font-bold uppercase tracking-widest text-sm">Contacto Directo</p>
                 <button 
-                  onClick={() => setActivePage("Contacto")}
-                  className="text-on-surface-variant text-sm mt-1 hover:text-signal-orange transition-colors text-left"
+                  onClick={() => navigate("/contacto")}
+                  className="text-on-surface-variant text-sm mt-1 hover:text-signal-orange transition-colors text-left cursor-pointer"
                 >
                   info@dyfservicios.com
                 </button>
