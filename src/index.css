@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600&family=Inter:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Fonts */
-  --font-headline: "Space Grotesk", sans-serif;
-  --font-body: "Manrope", sans-serif;
-  --font-label: "Inter", sans-serif;
+  /* Fonts (autoalojadas vía @fontsource-variable, ver main.tsx) */
+  --font-headline: "Space Grotesk Variable", sans-serif;
+  --font-body: "Manrope Variable", sans-serif;
+  --font-label: "Inter Variable", sans-serif;
 
   /* Colors - Industrial "The Precision Architect" Palette */
   --color-surface: #131313;
@@ -17,6 +16,9 @@
   --color-signal-orange: #f96304;
   --color-on-surface: #e5e2e1;
   --color-on-surface-variant: #c4c7c7;
+  /* outline: texto secundario (≥5.4:1 sobre los fondos oscuros; sobre surface-highest usar on-surface-variant) */
+  --color-outline: #8e9192;
+  /* outline-variant: solo para bordes/separadores, no para texto (≈2:1) */
   --color-outline-variant: #444748;
 
   /* Spacing and Radius */

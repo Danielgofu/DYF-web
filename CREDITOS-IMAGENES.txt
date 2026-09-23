@@ -1,10 +1,15 @@
 Créditos de imágenes (public/images/)
 ======================================
 
-Todas las fotografías de esta carpeta tienen licencia CC0 (dominio público) o
-son obra de la Administración de EE. UU. (dominio público, "public domain
-mark"). NINGUNA exige atribución: se pueden usar, recortar y modificar sin
-mostrar autor ni enlace, sin ningún riesgo legal para la empresa.
+Documento interno: no se publica en la web (está fuera de public/).
+
+Todas las fotografías de public/images/ tienen licencia CC0 o son de dominio
+público. NINGUNA exige atribución y ninguna muestra personas identificables.
+Nota: la licencia cubre los derechos de autor; los derechos de marca y de
+imagen de personas son independientes, por eso se han evitado.
+
+La foto de public/Dyf-equipo.webp es la foto real de la plantilla: usarla
+requiere el consentimiento de las personas que aparecen (lo gestiona la empresa).
 
 hero-antena-tejado.webp
   Fuente: Wikimedia Commons — dominio público
@@ -27,9 +32,10 @@ servicios-cableado.webp
   https://www.rawpixel.com/image/6271725352
 
 contacto-sala-servidores.webp
-  Fuente: Flickr — 169th Communications Squadron (Guardia Nacional Aérea de EE. UU.)
-  Obra de la Administración Federal de EE. UU. — dominio público
-  https://www.flickr.com/photos/85045231@N04/54943478092
+  Fuente: rawpixel.com — CC0 (racks de red con paneles de parcheo, sin personas)
+  https://www.rawpixel.com/image/5912401/image-public-domain-black-technology
+  (Sustituye a una foto anterior de la Guardia Nacional Aérea de EE. UU. en la que
+  aparecía un militar identificable.)
 
 mantenimiento-cuadro.webp, mantenimiento-fachada.webp, mantenimiento-tecnico.webp,
 gracias-fibra.webp, privacidad-grid.webp

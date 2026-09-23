@@ -46,7 +46,7 @@ export const Contacto: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden relative border border-outline-variant/10">
               <img 
                 className="w-full h-full object-cover mix-blend-multiply grayscale brightness-50"
-                alt="Técnico revisando un panel de conexiones de red"
+                alt="Racks de red con paneles de parcheo y cableado estructurado"
                 src="/images/contacto-sala-servidores.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
@@ -96,7 +96,7 @@ export const Contacto: React.FC = () => {
                   <div className="flex items-center gap-4 sm:gap-6 p-6 sm:p-8 bg-surface-low border-l-0 group-hover:border-l-[6px] border-signal-orange transition-all duration-300">
                     <div className="text-signal-orange text-2xl sm:text-3xl">{method.icon}</div>
                     <div>
-                      <p className="font-label text-[10px] uppercase tracking-widest text-outline-variant mb-1">{method.label}</p>
+                      <p className="font-label text-[10px] uppercase tracking-widest text-outline mb-1">{method.label}</p>
                       <p className="font-headline text-lg sm:text-xl font-medium">{method.value}</p>
                     </div>
                   </div>
@@ -104,9 +104,9 @@ export const Contacto: React.FC = () => {
               ))}
 
               <div className="bg-surface-low p-8 border-l border-signal-orange/20">
-                <p className="font-label text-[10px] uppercase tracking-widest text-outline-variant mb-3 font-bold">Horario de Atención</p>
-                <p className="font-headline text-lg font-medium text-white">Lunes a Viernes</p>
-                <p className="font-label text-xs uppercase tracking-widest text-signal-orange mt-1">9:00 - 14:00 h</p>
+                <p className="font-label text-[10px] uppercase tracking-widest text-outline mb-3 font-bold">Horario de Atención</p>
+                <p className="font-headline text-lg font-medium text-white">{CONTACT.days}</p>
+                <p className="font-label text-xs uppercase tracking-widest text-signal-orange mt-1">{CONTACT.timeRange}</p>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -142,7 +142,7 @@ export const Contacto: React.FC = () => {
                   { label: "Consultoría", text: "Las revisiones iniciales de arquitectura de proyectos se proporcionan de forma gratuita para empresas industriales." }
                 ].map((protocol, i) => (
                   <div key={i} className="border-b last:border-0 border-outline-variant/20 pb-4 last:pb-0">
-                    <p className="font-label text-xs font-bold uppercase text-signal-orange mb-2">{protocol.label}</p>
+                    <p className="font-label text-xs font-bold uppercase text-primary-orange mb-2">{protocol.label}</p>
                     <p className="font-body text-sm font-light text-on-surface-variant">{protocol.text}</p>
                   </div>
                 ))}

@@ -1,3 +1,6 @@
+const DAYS = "Lunes a Viernes";
+const TIME_RANGE = "9:00 - 14:00 h";
+
 export const CONTACT = {
   phonePrimary: "916 01 84 94",
   phonePrimaryTel: "+34916018494",
@@ -6,7 +9,9 @@ export const CONTACT = {
   email: "info@dyfservicios.com",
   addressShort: "C. Valdemorillo, 20, 28901 Getafe",
   addressFull: "C. Valdemorillo, 20, 28901 Getafe, Madrid",
-  hours: "Lunes a Viernes: 9:00 - 14:00 h",
+  days: DAYS,
+  timeRange: TIME_RANGE,
+  hours: `${DAYS}: ${TIME_RANGE}`,
   mapsQuery: "https://www.google.com/maps/search/?api=1&query=DYF+Telecomunicaciones+C.+Valdemorillo+20+28901+Getafe",
 } as const;
 

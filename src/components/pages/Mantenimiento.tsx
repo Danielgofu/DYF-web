@@ -1,11 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import {
   Building2,
   BarChart3,
   CheckCircle2,
-  ArrowRight,
   Antenna,
   Video,
   Zap,
@@ -24,8 +23,6 @@ const QUICK_FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const Mantenimiento: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "Servicios de Mantenimiento | DYF Telecomunicaciones",
     "Mantenimiento preventivo y correctivo para comunidades de propietarios e instalaciones críticas en Madrid. Respuesta garantizada en 24h laborables."
@@ -39,7 +36,7 @@ export const Mantenimiento: React.FC = () => {
       className="pt-20 overflow-x-hidden min-h-screen"
     >
       {/* Hero Section */}
-      <section className="relative min-h-[800px] flex items-center overflow-hidden bg-surface-lowest blueprint-grid">
+      <section className="relative min-h-[800px] flex items-center overflow-hidden bg-surface-lowest">
         <div className="max-w-[1920px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 w-full">
           <div className="md:col-span-7 z-10 py-20">
             <div className="mb-6 flex items-center gap-4">
@@ -54,12 +51,12 @@ export const Mantenimiento: React.FC = () => {
               Garantizamos una <span className="text-white font-bold">Respuesta de Emergencia 24h</span> para sistemas urbanos de misión crítica.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => navigate("/contacto")}
-                className="bg-gradient-to-r from-primary-orange to-signal-orange text-surface px-10 py-5 font-headline font-black uppercase text-sm tracking-widest active:scale-95 transition-transform cursor-pointer"
+              <Link
+                to="/contacto"
+                className="inline-block text-center bg-gradient-to-r from-primary-orange to-signal-orange text-surface px-10 py-5 font-headline font-black uppercase text-sm tracking-widest active:scale-95 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Solicitar Asistencia
-              </button>
+              </Link>
             </div>
           </div>
           <div className="md:col-span-5 relative hidden md:block">
@@ -105,13 +102,12 @@ export const Mantenimiento: React.FC = () => {
                 { icon: <BarChart3 />, title: "Estudios Personalizados", desc: "Optimización de recursos y costes" },
                 { icon: <CheckCircle2 />, title: "Certificación Técnica", desc: "Cumplimiento de normativas vigentes" }
               ].map((item, i) => (
-                <div key={i} className="bg-surface-low p-8 flex gap-6 items-center hover:bg-surface-highest transition-colors group border-l-2 border-transparent hover:border-signal-orange cursor-pointer">
-                  <div className="text-signal-orange">{React.cloneElement(item.icon as React.ReactElement, { className: "w-8 h-8" })}</div>
+                <div key={i} className="bg-surface-low p-8 flex gap-6 items-center hover:bg-surface-highest transition-colors group border-l-2 border-transparent hover:border-signal-orange">
+                  <div className="text-signal-orange">{React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, { className: "w-8 h-8" })}</div>
                   <div>
-                    <h4 className="font-headline font-bold uppercase text-sm tracking-widest">{item.title}</h4>
+                    <h3 className="font-headline font-bold uppercase text-sm tracking-widest">{item.title}</h3>
                     <p className="text-xs text-on-surface-variant mt-1 font-light uppercase tracking-wider">{item.desc}</p>
                   </div>
-                  <ArrowRight className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-signal-orange" />
                 </div>
               ))}
             </div>
@@ -120,7 +116,7 @@ export const Mantenimiento: React.FC = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="bg-surface-lowest py-32 blueprint-grid px-6 md:px-12">
+      <section className="bg-surface-lowest py-32 px-6 md:px-12">
         <div className="max-w-[1920px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
@@ -140,7 +136,7 @@ export const Mantenimiento: React.FC = () => {
             ].map((card, i) => (
               <div key={i} className={`p-10 group transition-all duration-500 ${card.isEmergency ? 'bg-signal-orange' : 'bg-surface-low hover:bg-surface-highest'}`}>
                 <div className={`mb-8 block transition-transform group-hover:scale-110 ${card.isEmergency ? 'text-surface' : 'text-signal-orange'}`}>
-                  {React.cloneElement(card.icon as React.ReactElement, { className: "w-12 h-12" })}
+                  {React.cloneElement(card.icon as React.ReactElement<{ className?: string }>, { className: "w-12 h-12" })}
                 </div>
                 <h3 className={`font-headline text-2xl font-bold uppercase mb-4 ${card.isEmergency ? 'text-surface' : 'text-white'}`}>{card.title}</h3>
                 <p className={`text-sm font-light leading-relaxed mb-8 ${card.isEmergency ? 'text-surface' : 'text-on-surface-variant'}`}>{card.desc}</p>
@@ -152,9 +148,20 @@ export const Mantenimiento: React.FC = () => {
                   ))}
                 </ul>
                 {card.isEmergency && (
-                  <button className="bg-surface text-signal-orange w-full py-4 font-headline font-black uppercase text-xs tracking-widest mt-10 hover:shadow-xl transition-all">
-                    Llamar ahora: {CONTACT.phonePrimary} / {CONTACT.phoneSecondary}
-                  </button>
+                  <div className="mt-10 flex flex-col gap-2">
+                    {[
+                      { tel: CONTACT.phonePrimaryTel, label: CONTACT.phonePrimary },
+                      { tel: CONTACT.phoneSecondaryTel, label: CONTACT.phoneSecondary }
+                    ].map((phone) => (
+                      <a
+                        key={phone.tel}
+                        href={`tel:${phone.tel}`}
+                        className="block text-center bg-surface text-signal-orange w-full py-4 font-headline font-black uppercase text-xs tracking-widest hover:shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      >
+                        Llamar ahora: {phone.label}
+                      </a>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
@@ -167,7 +174,7 @@ export const Mantenimiento: React.FC = () => {
         <div className="absolute inset-x-0 top-0 h-full z-0 opacity-20 grayscale-100">
           <img 
             className="w-full h-full object-cover contrast-150"
-            alt="Técnico revisando planos técnicos en pantalla"
+            alt=""
             loading="lazy"
             decoding="async"
             src="/images/mantenimiento-tecnico.webp"
@@ -192,7 +199,7 @@ export const Mantenimiento: React.FC = () => {
                     {step.num}
                   </span>
                   <div>
-                    <h5 className="uppercase font-bold text-sm tracking-widest mb-2 text-white">{step.title}</h5>
+                    <h3 className="uppercase font-bold text-sm tracking-widest mb-2 text-white">{step.title}</h3>
                     <p className="text-xs text-on-surface-variant leading-relaxed max-w-sm">{step.text}</p>
                   </div>
                 </div>
@@ -200,7 +207,7 @@ export const Mantenimiento: React.FC = () => {
             </div>
           </div>
           <div className="bg-surface-highest/80 backdrop-blur-xl p-10 md:p-16 border-t-4 border-signal-orange">
-            <h4 className="font-headline font-black uppercase text-2xl mb-8">Solicitar Plan a Medida</h4>
+            <h3 className="font-headline font-black uppercase text-2xl mb-8">Solicitar Plan a Medida</h3>
             <PlanForm />
           </div>
         </div>

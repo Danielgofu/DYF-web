@@ -1,24 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
 
 export const NotFoundView: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "Página no encontrada - 404 | DYF Telecomunicaciones",
-    "La página que está buscando no existe o ha sido trasladada. DYF Telecomunicaciones y Servicios."
+    "La página que está buscando no existe o ha sido trasladada. DYF Telecomunicaciones y Servicios.",
+    { noindex: true }
   );
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-surface overflow-hidden p-6">
       <NeuralNetworkBackground opacity={0.15} />
-      
-      {/* Decorative background grid */}
-      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none"></div>
 
       <div className="relative z-10 max-w-2xl w-full text-center">
         <motion.div
@@ -70,17 +66,18 @@ export const NotFoundView: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="flex flex-col sm:flex-row gap-6 justify-center"
         >
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center justify-center gap-3 bg-signal-orange text-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-primary-orange transition-all active:scale-[0.98] cursor-pointer"
+          <Link
+            to="/"
+            className="flex items-center justify-center gap-3 bg-signal-orange text-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-primary-orange transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <Home className="w-4 h-4" />
             Volver al Inicio
-          </button>
-          
+          </Link>
+
           <button
+            type="button"
             onClick={() => window.history.back()}
-            className="flex items-center justify-center gap-3 border border-outline-variant/30 text-on-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all cursor-pointer"
+            className="flex items-center justify-center gap-3 border border-outline-variant/30 text-on-surface px-8 py-4 font-label font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
           >
             <ArrowLeft className="w-4 h-4" />
             Regresar
@@ -89,10 +86,10 @@ export const NotFoundView: React.FC = () => {
       </div>
 
       {/* Technical coordinate markings */}
-      <div className="absolute top-10 left-10 font-mono text-[10px] text-outline-variant uppercase tracking-widest">
+      <div className="absolute top-24 left-10 font-mono text-[10px] text-outline uppercase tracking-widest" aria-hidden="true">
         Pos: 40.3061° N / 3.7340° W
       </div>
-      <div className="absolute bottom-10 right-10 font-mono text-[10px] text-outline-variant uppercase tracking-widest">
+      <div className="absolute bottom-10 right-10 font-mono text-[10px] text-outline uppercase tracking-widest" aria-hidden="true">
         Status: Error_Packet_Loss
       </div>
     </div>

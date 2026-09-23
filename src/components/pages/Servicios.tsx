@@ -4,10 +4,8 @@ import {
   Radio, 
   Zap, 
   ClipboardList, 
-  FileCheck, 
   Eye, 
   Smartphone, 
-  ArrowDown, 
   ShieldCheck, 
   Network, 
   Wifi, 
@@ -17,14 +15,12 @@ import {
   ArrowRight 
 } from "lucide-react";
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { usePageMeta } from "../../utils/seo";
 
 export const Servicios: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "Servicios Técnicos Especializados | DYF Telecomunicaciones",
     "Servicios de antenas colectivas TDT/satélite, videoporteros digitales, electricidad comunitaria y seguridad CCTV en Madrid. Instaladores homologados Nº 10265."
@@ -99,11 +95,11 @@ export const Servicios: React.FC = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="bg-surface-highest p-8 border-l-2 border-signal-orange/30">
-                <h4 className="font-headline font-bold text-white mb-2">HD & 4K Ready</h4>
+                <h3 className="font-headline font-bold text-white mb-2">HD & 4K Ready</h3>
                 <p className="text-xs text-on-surface-variant font-body">Optimización de señal para máxima resolución sin interferencias.</p>
               </div>
               <div className="bg-surface-highest p-8 border-l-2 border-outline-variant/30">
-                <h4 className="font-headline font-bold text-white mb-2">Técnicos Certificados</h4>
+                <h3 className="font-headline font-bold text-white mb-2">Técnicos Certificados</h3>
                 <p className="text-xs text-on-surface-variant font-body">Personal cualificado con equipamiento de medición profesional.</p>
               </div>
             </div>
@@ -134,7 +130,7 @@ export const Servicios: React.FC = () => {
               Mantenimiento Integral<br />de Comunidades
             </h2>
           </div>
-          <p className="font-body text-xs text-outline-variant italic max-w-xs text-right">
+          <p className="font-body text-xs text-outline italic max-w-xs text-right">
             "La prevención es el único protocolo aceptable para sistemas críticos."
           </p>
         </div>
@@ -147,7 +143,7 @@ export const Servicios: React.FC = () => {
           ].map((card, i) => (
             <div key={i} className="bg-surface-highest p-10 border-t border-outline-variant/10 group hover:border-signal-orange transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
               <div className="text-signal-orange mb-8 opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
-                {React.cloneElement(card.icon as React.ReactElement, { className: "w-8 h-8" })}
+                {React.cloneElement(card.icon as React.ReactElement<{ className?: string }>, { className: "w-8 h-8" })}
               </div>
               <h3 className="font-headline text-2xl font-bold uppercase mb-4 transition-colors group-hover:text-signal-orange">{card.title}</h3>
               <p className="font-body text-sm text-on-surface-variant font-light leading-relaxed mb-10 min-h-[4.5rem]">
@@ -155,13 +151,14 @@ export const Servicios: React.FC = () => {
               </p>
               <div className="space-y-4">
                 <div className="flex justify-between items-center text-[10px] font-label uppercase tracking-widest">
-                  <span className="text-outline-variant">{card.label}</span>
-                  <span className="text-signal-orange font-bold">{card.status}</span>
+                  <span className="text-on-surface-variant">{card.label}</span>
+                  <span className="text-primary-orange font-bold">{card.status}</span>
                 </div>
                 <div className="h-0.5 w-full bg-surface-low overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: `${card.progress}%` }}
+                    viewport={{ once: true }}
                     className="h-full bg-signal-orange"
                   />
                 </div>
@@ -226,14 +223,14 @@ export const Servicios: React.FC = () => {
               <div className="flex gap-4 items-start">
                 <Eye className="w-5 h-5 text-signal-orange shrink-0" />
                 <div>
-                  <h5 className="font-headline text-xs font-bold uppercase text-white mb-1">Visión Nocturna</h5>
+                  <h3 className="font-headline text-xs font-bold uppercase text-white mb-1">Visión Nocturna</h3>
                   <p className="text-[10px] text-on-surface-variant font-body">Sensores infrarrojos para identificación clara en oscuridad total.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <Smartphone className="w-5 h-5 text-signal-orange shrink-0" />
                 <div>
-                  <h5 className="font-headline text-xs font-bold uppercase text-white mb-1">Control Mobile</h5>
+                  <h3 className="font-headline text-xs font-bold uppercase text-white mb-1">Control Mobile</h3>
                   <p className="text-[10px] text-on-surface-variant font-body">Reciba llamadas y abra la puerta directamente desde su dispositivo.</p>
                 </div>
               </div>
@@ -244,7 +241,7 @@ export const Servicios: React.FC = () => {
             <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative flex items-center justify-center">
               <VideoIntercomGraphic className="h-[85%] w-auto text-signal-orange opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-surface to-transparent">
-                <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant block">Socio de Alianza</span>
+                <span className="font-label text-[10px] uppercase tracking-widest text-outline block">Socio de Alianza</span>
                 <p className="font-headline text-sm font-bold text-white uppercase mt-1">GOLMAR SYSTEMS</p>
               </div>
             </div>
@@ -256,16 +253,17 @@ export const Servicios: React.FC = () => {
               <p className="font-body text-xs text-on-surface-variant leading-relaxed mb-6">Instalaciones rápidas sin necesidad de cableado estructural complejo. Ideal para renovaciones en fincas antiguas.</p>
             </div>
             
-            <button 
-              onClick={() => navigate("/contacto")}
-              className="bg-signal-orange p-10 flex flex-col justify-between group text-left transition-all active:scale-[0.98] hover:brightness-110 cursor-pointer"
+            <Link
+              to="/contacto"
+              aria-label="HD Audio, especificación técnica: solicitar información"
+              className="bg-signal-orange p-10 flex flex-col justify-between group text-left transition-all active:scale-[0.98] hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <span className="font-label text-[10px] uppercase tracking-widest text-surface font-bold">Especificación Técnica</span>
               <div className="flex justify-between items-end mt-12">
-                <h4 className="font-headline text-4xl font-bold text-surface">HD Audio</h4>
+                <span className="font-headline text-4xl font-bold text-surface">HD Audio</span>
                 <ArrowRight className="text-surface w-8 h-8 group-hover:translate-x-3 transition-transform" />
               </div>
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -287,9 +285,9 @@ export const Servicios: React.FC = () => {
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-6 group cursor-default">
               <div className="text-signal-orange mb-2 group-hover:scale-125 group-hover:rotate-6 transition-all duration-500">
-                {React.cloneElement(item.icon as React.ReactElement, { className: "w-10 h-10" })}
+                {React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, { className: "w-10 h-10" })}
               </div>
-              <h4 className="font-headline text-lg font-bold uppercase tracking-tight text-white transition-colors group-hover:text-signal-orange">{item.label}</h4>
+              <h3 className="font-headline text-lg font-bold uppercase tracking-tight text-white transition-colors group-hover:text-signal-orange">{item.label}</h3>
               <p className="text-[10px] text-on-surface-variant font-body uppercase tracking-widest leading-relaxed px-4 transition-opacity group-hover:opacity-100 opacity-60">{item.desc}</p>
             </div>
           ))}
@@ -298,7 +296,7 @@ export const Servicios: React.FC = () => {
         <div className="mt-32 aspect-[21/9] bg-surface-highest overflow-hidden relative">
           <img 
             className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
-            alt="Rack de red con cableado estructurado"
+            alt=""
             src="/images/servicios-cableado.webp"
             loading="lazy"
             decoding="async"
@@ -321,12 +319,12 @@ export const Servicios: React.FC = () => {
             Nuestros especialistas técnicos están listos para realizar una auditoría de sus sistemas actuales y proponer soluciones de alta eficiencia.
           </p>
             <div className="flex flex-wrap gap-8 items-center">
-              <button 
-                onClick={() => navigate("/contacto")}
-                className="bg-signal-orange text-surface font-label font-bold px-12 py-6 text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-[0_20px_40px_rgba(242,125,38,0.3)] transition-all active:scale-[0.98] cursor-pointer"
+              <Link
+                to="/contacto"
+                className="inline-block text-center bg-signal-orange text-surface font-label font-bold px-12 py-6 text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-[0_20px_40px_rgba(242,125,38,0.3)] transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Solicitar Presupuesto
-              </button>
+              </Link>
             </div>
         </div>
       </section>
@@ -340,7 +338,7 @@ export const Servicios: React.FC = () => {
           { label: "Cobertura", text: "Comunidad de Madrid" }
         ].map((stat, i) => (
           <div key={i} className="flex flex-col gap-1">
-            <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold">{stat.label}</span>
+            <span className="font-label text-[10px] uppercase tracking-widest text-outline font-bold">{stat.label}</span>
             <span className="font-headline text-sm font-bold text-white uppercase">{stat.text}</span>
           </div>
         ))}

@@ -3,8 +3,23 @@ import { useLocation } from "react-router-dom";
 
 const SITE_ORIGIN = "https://www.dyfservicios.com";
 
-export function usePageMeta(title: string, description: string) {
+export function usePageMeta(title: string, description: string, options: { noindex?: boolean } = {}) {
   const location = useLocation();
+  const { noindex = false } = options;
+
+  useEffect(() => {
+    let robots = document.querySelector('meta[name="robots"]');
+    if (noindex) {
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.setAttribute("name", "robots");
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute("content", "noindex");
+    } else if (robots) {
+      robots.remove();
+    }
+  }, [noindex]);
 
   useEffect(() => {
     document.title = title;

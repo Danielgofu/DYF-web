@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { 
   History, 
@@ -13,8 +13,6 @@ import {
 import { usePageMeta } from "../../utils/seo";
 
 export const Equipo: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "Equipo y Valores | DYF Telecomunicaciones",
     "Conozca el equipo técnico y los valores de precisión que definen a DYF Telecomunicaciones. Excelencia operativa y compromiso en cada proyecto."
@@ -46,9 +44,8 @@ export const Equipo: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden border border-outline-variant/10 relative group">
               <img 
                 className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700" 
-                alt="Miembro del equipo de ingeniería" 
+                alt="Equipo de DYF Telecomunicaciones frente a la oficina de Getafe" 
                 src="/Dyf-equipo.webp"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
               <div className="absolute bottom-8 left-8">
@@ -61,7 +58,8 @@ export const Equipo: React.FC = () => {
       </section>
 
       {/* Values Grid Section */}
-      <section className="bg-surface-lowest border-y border-outline-variant/10">
+      <section className="bg-surface-lowest border-y border-outline-variant/10" aria-labelledby="valores-title">
+        <h2 id="valores-title" className="sr-only">Nuestros valores</h2>
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-outline-variant/10">
           {/* Experience */}
           <div className="p-10 md:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -108,7 +106,7 @@ export const Equipo: React.FC = () => {
 
       {/* Testimonials Section */}
       <section className="py-32 bg-surface-lowest relative overflow-hidden px-6 md:px-12">
-        <div className="absolute top-0 right-0 p-12 opacity-5 font-headline font-black text-[15rem] leading-none select-none pointer-events-none">DYF</div>
+        <div className="absolute top-0 right-0 p-12 opacity-5 font-headline font-black text-[15rem] leading-none select-none pointer-events-none" aria-hidden="true">DYF</div>
         <div className="max-w-[1920px] mx-auto relative z-10">
           <div className="mb-20">
             <h2 className="font-headline text-5xl font-bold tracking-tighter mb-4">VOCES DEL EQUIPO</h2>
@@ -138,7 +136,7 @@ export const Equipo: React.FC = () => {
                       <UserCircle className="w-10 h-10 opacity-80" />
                     </div>
                     <div>
-                      <h4 className="font-headline font-bold text-xl uppercase tracking-tight">{testimonial.name}</h4>
+                      <h3 className="font-headline font-bold text-xl uppercase tracking-tight">{testimonial.name}</h3>
                       <p className="font-label text-xs uppercase tracking-widest text-signal-orange font-bold">{testimonial.role}</p>
                     </div>
                   </div>
@@ -161,13 +159,13 @@ export const Equipo: React.FC = () => {
               <p className="font-body text-xl text-on-surface-variant max-w-2xl mx-auto mb-12 font-light relative z-10">
                 Buscamos mentes inquietas y manos precisas. Conviértete en nuestro compañero de viaje en la construcción de la infraestructura del mañana.
               </p>
-              <button 
-                onClick={() => navigate("/contacto")}
-                className="bg-signal-orange text-surface px-12 py-5 font-headline font-black text-xl uppercase tracking-tighter hover:bg-on-primary-container transition-all group inline-flex items-center gap-4 relative z-10 cursor-pointer"
+              <Link
+                to="/contacto"
+                className="bg-signal-orange text-surface px-12 py-5 font-headline font-black text-xl uppercase tracking-tighter hover:bg-primary-orange transition-all group inline-flex items-center gap-4 relative z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Únete al equipo
                 <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -3,13 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense, lazy, useState, useEffect } from "react";
+import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import { Navigation } from "./components/layout/Navigation";
 import { Footer } from "./components/layout/Footer";
 import { OfflineView } from "./components/pages/OfflineView";
 import { LoadingScreen } from "./components/layout/LoadingScreen";
+import { RouteErrorBoundary } from "./components/RouteErrorBoundary";
 // Inicio ("/") se importa de forma estática (no lazy): es la ruta de entrada que
 // visita la inmensa mayoría de usuarios en su primera carga, así que su chunk
 // se necesita de inmediato de todos modos. Envolverla en React.lazy solo añade
@@ -58,17 +59,36 @@ export default function App() {
     };
   }, []);
 
+  const isFirstRoute = useRef(true);
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Tras navegar, lleva el foco al contenido principal para que teclado y
+    // lectores de pantalla empiecen en la página nueva (no en la primera carga).
+    if (isFirstRoute.current) {
+      isFirstRoute.current = false;
+      return;
+    }
+    document.getElementById("main-content")?.focus({ preventScroll: true });
   }, [location.pathname]);
 
-  if (!isOnline) {
-    return <OfflineView />;
-  }
+  const retryConnection = async () => {
+    try {
+      await fetch("/favicon.ico", { method: "HEAD", cache: "no-store" });
+      setIsOnline(true);
+    } catch {
+      setIsOnline(navigator.onLine);
+    }
+  };
 
+  // Sin conexión, la web NO se desmonta: el aviso se superpone y la app queda
+  // "inert" debajo, de modo que lo escrito en los formularios se conserva.
   return (
     <MotionConfig reducedMotion="user">
-      <div className="infrastructure-grid min-h-screen selection:bg-signal-orange selection:text-white bg-surface text-on-surface font-body overflow-x-hidden">
+      {!isOnline && <OfflineView onRetry={retryConnection} />}
+      <div
+        inert={!isOnline}
+        className="infrastructure-grid min-h-screen selection:bg-signal-orange selection:text-white bg-surface text-on-surface font-body overflow-x-hidden"
+      >
         <LoadingScreen isLoading={isLoading} />
         <a
           href="#main-content"
@@ -78,19 +98,21 @@ export default function App() {
         </a>
         <Navigation />
         <main id="main-content" tabIndex={-1} className="outline-none">
-          <Suspense fallback={null}>
-            <Routes>
-              <Route path="/" element={<Inicio />} />
-              <Route path="/equipo" element={<Equipo />} />
-              <Route path="/servicios" element={<Servicios />} />
-              <Route path="/contacto" element={<Contacto />} />
-              <Route path="/mantenimiento" element={<Mantenimiento />} />
-              <Route path="/gracias" element={<Gracias />} />
-              <Route path="/aviso-legal" element={<AvisoLegal />} />
-              <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
-              <Route path="*" element={<NotFoundView />} />
-            </Routes>
-          </Suspense>
+          <RouteErrorBoundary resetKey={location.pathname}>
+            <Suspense fallback={null}>
+              <Routes>
+                <Route path="/" element={<Inicio />} />
+                <Route path="/equipo" element={<Equipo />} />
+                <Route path="/servicios" element={<Servicios />} />
+                <Route path="/contacto" element={<Contacto />} />
+                <Route path="/mantenimiento" element={<Mantenimiento />} />
+                <Route path="/gracias" element={<Gracias />} />
+                <Route path="/aviso-legal" element={<AvisoLegal />} />
+                <Route path="/politica-privacidad" element={<PoliticaPrivacidad />} />
+                <Route path="*" element={<NotFoundView />} />
+              </Routes>
+            </Suspense>
+          </RouteErrorBoundary>
         </main>
         <Footer />
       </div>

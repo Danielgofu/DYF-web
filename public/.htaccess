@@ -27,9 +27,18 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 
-  # Cache-Control agresivo solo para los assets versionados que genera Vite (hash en el nombre de archivo)
-  <FilesMatch "^assets/.*\.(js|css|woff2?|ttf|svg|png|jpe?g|webp|ico)$">
+  # Cache-Control agresivo solo para los archivos versionados que genera Vite en /assets.
+  # <FilesMatch> compara SOLO el nombre del archivo (nunca la ruta "assets/"), así que se
+  # identifican por el hash de 8 caracteres que Vite añade: p. ej. "index-B49HrtL_.js".
+  # Solo js/css/woff2: las imágenes de /public no llevan hash y no deben cachearse como inmutables.
+  <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # index.html siempre se revalida: así, tras publicar una versión nueva, el navegador
+  # no sigue usando un index.html antiguo que apunta a archivos que ya no existen.
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
 

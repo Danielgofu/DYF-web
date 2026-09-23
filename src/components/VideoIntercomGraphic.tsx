@@ -5,14 +5,15 @@ import React from "react";
  * proyecto (sin ninguna dependencia de fotografías de terceros ni de productos
  * de ninguna marca), de forma que no exista ningún riesgo de derechos de imagen.
  */
-export const VideoIntercomGraphic: React.FC<{ className?: string }> = ({ className }) => (
+export const VideoIntercomGraphic: React.FC<{ className?: string; decorative?: boolean }> = ({ className, decorative = false }) => (
   <svg
     viewBox="0 0 300 460"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    role="img"
-    aria-label="Ilustración de un videoportero de pared"
+    {...(decorative
+      ? { "aria-hidden": true }
+      : { role: "img", "aria-label": "Ilustración de un videoportero de pared" })}
   >
     {/* Carcasa */}
     <rect x="30" y="20" width="240" height="420" rx="24" stroke="currentColor" strokeWidth="4" opacity="0.5" />

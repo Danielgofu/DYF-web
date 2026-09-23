@@ -169,7 +169,7 @@ export const PoliticaPrivacidad: React.FC = () => {
                 ].map((cookie, i) => (
                   <div key={i} className={`p-8 bg-surface-lowest border border-outline-variant/10 ${cookie.disabled ? 'opacity-40 grayscale' : ''}`}>
                     <div className="text-signal-orange mb-6">
-                    {React.cloneElement(cookie.icon as React.ReactElement, { className: "w-8 h-8" })}
+                    {React.cloneElement(cookie.icon as React.ReactElement<{ className?: string }>, { className: "w-8 h-8" })}
                     </div>
                     <h4 className="text-white font-bold text-xs uppercase mb-3 tracking-widest">{cookie.title}</h4>
                     <p className="text-[10px] text-on-surface-variant uppercase tracking-widest leading-relaxed">{cookie.desc}</p>

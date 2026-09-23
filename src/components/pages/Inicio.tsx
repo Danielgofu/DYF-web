@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
+import { Link } from "react-router-dom";
+import { motion, useMotionValue, useTransform, animate, useInView, useReducedMotion } from "motion/react";
 import {
   Antenna,
   Smartphone,
@@ -9,9 +9,6 @@ import {
   ArrowRight,
   MapPin,
   Mail,
-  BarChart3,
-  Shield,
-  MousePointerClick,
   Instagram,
   Facebook,
   FileCheck,
@@ -30,12 +27,16 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
   const rounded = useTransform(count, (latest) => Math.round(latest).toLocaleString("es-ES"));
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (isInView) {
-      animate(count, value, { duration: 2, ease: "easeOut" });
+    if (!isInView) return;
+    if (reduceMotion) {
+      count.set(value);
+      return;
     }
-  }, [isInView, value, count]);
+    animate(count, value, { duration: 2, ease: "easeOut" });
+  }, [isInView, value, count, reduceMotion]);
 
   return (
     <span ref={ref}>
@@ -70,8 +71,6 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const Inicio: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "DYF Telecomunicaciones | Infraestructuras Críticas y Telecomunicaciones en Madrid",
     "Líderes en instalación y mantenimiento de antenas colectivas, videoporteros, seguridad CCTV, redes y electricidad en Getafe y toda la Comunidad de Madrid."
@@ -80,15 +79,17 @@ export const Inicio: React.FC = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center px-6 md:px-12 overflow-hidden pt-20">
-        <NeuralNetworkBackground opacity={0.3} />
         <div className="absolute inset-0 z-0">
           <img
-            alt="Antena de telecomunicaciones instalada en la azotea de un edificio residencial"
+            alt=""
             className="w-full h-full object-cover grayscale brightness-[0.2] contrast-125"
             src="/images/hero-antena-tejado.webp"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent"></div>
         </div>
+        {/* Después de la imagen en el DOM: con el mismo z-0, antes quedaba tapado por ella. */}
+        <NeuralNetworkBackground opacity={0.3} />
 
         <div className="relative z-10 w-full max-w-[1920px] mx-auto">
           <motion.div 
@@ -129,29 +130,29 @@ export const Inicio: React.FC = () => {
             className="flex flex-col sm:flex-row items-start sm:items-center gap-8"
           >
             <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={() => navigate("/contacto")}
+              <Link
+                to="/contacto"
                 aria-label="Solicitar auditoría técnica"
-                className="bg-signal-orange text-surface px-10 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-primary-orange hover:shadow-[0_0_30px_rgba(242,125,38,0.2)] transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
+                className="bg-signal-orange text-surface px-10 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-primary-orange hover:shadow-[0_0_30px_rgba(242,125,38,0.2)] transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Solicitar Auditoría <ArrowRight className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={() => navigate("/servicios")}
+              </Link>
+              <Link
+                to="/servicios"
                 aria-label="Conocer servicios de telecomunicaciones"
-                className="border border-outline-variant/30 text-white px-8 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:border-signal-orange hover:text-signal-orange transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
+                className="border border-outline-variant/30 text-white px-8 py-5 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:border-signal-orange hover:text-signal-orange transition-all active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               >
                 Conocer Servicios
-              </button>
+              </Link>
             </div>
             <div className="flex gap-6 items-center border-l sm:border-l-0 sm:pl-0 pl-6 border-outline-variant/30">
-              <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold hidden sm:block">Seguir en:</span>
+              <span className="font-label text-[10px] uppercase tracking-widest text-outline font-bold hidden sm:block">Seguir en:</span>
               <a
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Visitar nuestro Instagram"
-                className="text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
+                aria-label="Instagram de DYF Telecomunicaciones (se abre en una pestaña nueva)"
+                className="inline-block text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -159,8 +160,8 @@ export const Inicio: React.FC = () => {
                 href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Visitar nuestro Facebook"
-                className="text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
+                aria-label="Facebook de DYF Telecomunicaciones (se abre en una pestaña nueva)"
+                className="inline-block text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -170,7 +171,7 @@ export const Inicio: React.FC = () => {
 
         <div className="absolute bottom-12 right-6 md:right-12 hidden lg:block">
             <div className="flex flex-col gap-2 items-end">
-              <span className="font-label text-[10px] text-outline-variant uppercase tracking-widest">Estado Actual</span>
+              <span className="font-label text-[10px] text-outline uppercase tracking-widest">Estado Actual</span>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                 <span className="font-headline font-bold text-white uppercase">Respuesta NOC 24/7</span>
@@ -188,13 +189,10 @@ export const Inicio: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[400px]">
           {/* Antennas */}
-          <div
-            onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
-            tabIndex={0}
-            role="button"
-            aria-label="Ver servicios de antenas"
-            className="md:col-span-4 bg-surface-low p-8 md:p-10 flex flex-col justify-between group cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
+          <Link
+            to="/servicios"
+            aria-label="Antenas Colectivas & Parabólicas: ver servicios"
+            className="md:col-span-4 bg-surface-low p-8 md:p-10 flex flex-col justify-between group hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
           >
             <Antenna className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
             <div>
@@ -203,18 +201,15 @@ export const Inicio: React.FC = () => {
                 Optimización de recepción TDT y satélite para comunidades de propietarios y complejos residenciales. Máxima calidad de señal sin interferencias.
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Intercoms */}
-          <div
-            onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
-            tabIndex={0}
-            role="button"
-            aria-label="Ver servicios de porteros automáticos"
-            className="md:col-span-8 relative group overflow-hidden bg-surface-low cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
+          <Link
+            to="/servicios"
+            aria-label="Porteros y Videoporteros Digitales: ver servicios"
+            className="md:col-span-8 relative group overflow-hidden bg-surface-low hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
           >
-            <VideoIntercomGraphic className="absolute -right-8 -bottom-10 h-[420px] w-auto text-white opacity-[0.07] group-hover:scale-110 group-hover:opacity-[0.14] transition-all duration-700 pointer-events-none" />
+            <VideoIntercomGraphic decorative className="absolute -right-8 -bottom-10 h-[420px] w-auto text-white opacity-[0.07] group-hover:scale-110 group-hover:opacity-[0.14] transition-all duration-700 pointer-events-none" />
             <div className="relative z-10 p-10 h-full flex flex-col justify-between">
               <Smartphone className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12" />
               <div className="max-w-md">
@@ -227,16 +222,13 @@ export const Inicio: React.FC = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* CCTV */}
-          <div
-            onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
-            tabIndex={0}
-            role="button"
-            aria-label="Ver servicios de CCTV y seguridad"
-            className="md:col-span-7 bg-surface-low p-8 md:p-10 flex flex-col justify-between group cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
+          <Link
+            to="/servicios"
+            aria-label="Seguridad CCTV, Alarmas & Redes de Datos: ver servicios"
+            className="md:col-span-7 bg-surface-low p-8 md:p-10 flex flex-col justify-between group hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
           >
             <div className="flex justify-between items-start">
               <Video className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110" />
@@ -250,16 +242,13 @@ export const Inicio: React.FC = () => {
                 Sistemas de alarma y videovigilancia CCTV de alta definición con grabación continua y cableado estructurado Cat6/Cat7.
               </p>
             </div>
-          </div>
+          </Link>
 
-          {/* Networks */}
-          <div
-            onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
-            tabIndex={0}
-            role="button"
-            aria-label="Ver servicios de instalaciones de red"
-            className="md:col-span-5 bg-signal-orange p-8 md:p-10 flex flex-col justify-between text-surface group cursor-pointer border border-transparent active:scale-[0.98] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[300px] md:min-h-0"
+          {/* Electricidad */}
+          <Link
+            to="/servicios"
+            aria-label="Electricidad Comunitaria & LED: ver servicios"
+            className="md:col-span-5 bg-signal-orange p-8 md:p-10 flex flex-col justify-between text-surface group border border-transparent active:scale-[0.98] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[300px] md:min-h-0"
           >
             <Network className="w-12 h-12" />
             <div>
@@ -268,7 +257,7 @@ export const Inicio: React.FC = () => {
                 Iluminación de bajo consumo, detectores de presencia y mantenimiento integral de cuadros eléctricos.
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 
@@ -323,7 +312,7 @@ export const Inicio: React.FC = () => {
                   <div className="p-3 bg-signal-orange/10 border border-signal-orange/20">
                     {item.icon}
                   </div>
-                  <span className="font-mono text-xs text-outline-variant font-bold">
+                  <span className="font-mono text-xs text-outline font-bold">
                     {item.num}
                   </span>
                 </div>
@@ -370,7 +359,7 @@ export const Inicio: React.FC = () => {
                 <div className={`h-1 w-8 bg-signal-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ${
                   i === 2 ? "sm:origin-center lg:origin-left" : "origin-left"
                 }`}></div>
-                <span className={`font-label text-xs md:text-sm uppercase tracking-[0.2em] text-outline-variant font-bold group-hover:text-on-surface transition-colors ${
+                <span className={`font-label text-xs md:text-sm uppercase tracking-[0.2em] text-outline font-bold group-hover:text-on-surface transition-colors ${
                   i === 2 ? "sm:text-center lg:text-left" : ""
                 }`}>
                   {stat.label}
@@ -416,11 +405,6 @@ export const Inicio: React.FC = () => {
                       src={partner.src}
                       loading="lazy"
                       decoding="async"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = `https://placehold.co/200x80/1c1b1b/f96304?text=${partner.name}`;
-                        (e.target as HTMLImageElement).className = "h-8 md:h-10 w-auto object-contain";
-                      }}
-                      referrerPolicy="no-referrer"
                     />
                     <div className="h-[2px] w-4 bg-signal-orange group-hover:w-12 transition-all duration-500"></div>
                   </div>
@@ -471,22 +455,22 @@ export const Inicio: React.FC = () => {
               <Mail className="text-signal-orange mt-1 shrink-0" />
               <div>
                 <p className="text-white font-bold uppercase tracking-widest text-sm">Contacto Directo</p>
-                <button
-                  onClick={() => navigate("/contacto")}
-                  className="text-on-surface-variant text-sm mt-1 hover:text-signal-orange transition-colors text-left cursor-pointer"
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="inline-block text-on-surface-variant text-sm mt-1 hover:text-signal-orange transition-colors"
                 >
                   {CONTACT.email}
-                </button>
+                </a>
               </div>
             </div>
 
             <div className="flex gap-6 pt-4 items-center">
-              <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold">Seguir en Redes:</span>
+              <span className="font-label text-[10px] uppercase tracking-widest text-outline font-bold">Seguir en Redes:</span>
               <a
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Visitar nuestro Instagram"
+                aria-label="Instagram de DYF Telecomunicaciones (se abre en una pestaña nueva)"
                 className="text-on-surface-variant hover:text-signal-orange transition-all"
               >
                 <Instagram className="w-5 h-5" />
@@ -495,7 +479,7 @@ export const Inicio: React.FC = () => {
                 href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Visitar nuestro Facebook"
+                aria-label="Facebook de DYF Telecomunicaciones (se abre en una pestaña nueva)"
                 className="text-on-surface-variant hover:text-signal-orange transition-all"
               >
                 <Facebook className="w-5 h-5" />

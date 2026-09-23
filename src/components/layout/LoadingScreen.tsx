@@ -5,45 +5,36 @@ interface LoadingScreenProps {
   isLoading: boolean;
 }
 
+const STATUS_UPDATES = [
+  { p: 10, s: "AUTENTICANDO PROTOCOLOS..." },
+  { p: 30, s: "ESTABLECIENDO CONEXIÓN SEGURA..." },
+  { p: 50, s: "VERIFICANDO INFRAESTRUCTURA..." },
+  { p: 75, s: "SINCRONIZANDO NODOS DE RED..." },
+  { p: 90, s: "OPTIMIZANDO INTERFAZ..." },
+];
+
+const statusFor = (progress: number) =>
+  STATUS_UPDATES.find((u) => progress < u.p)?.s ?? "SISTEMA LISTO";
+
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
   const [progress, setProgress] = useState(0);
-  const [status, setStatus] = useState("INICIALIZANDO SISTEMAS...");
 
   useEffect(() => {
     if (!isLoading) {
       setProgress(100);
-      setStatus("SISTEMA LISTO");
       return;
     }
 
-    // Progreso simulado rápido para dar feedback visual mientras carga realmente
+    // Progreso simulado para dar feedback visual mientras carga realmente;
+    // se queda en el 90% hasta que App indica que ha terminado.
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 90) return prev; // Se queda al 90% hasta que App diga que terminó
-        const diff = Math.random() * 20;
-        return Math.min(prev + diff, 90);
-      });
+      setProgress((prev) => (prev >= 90 ? prev : Math.min(prev + Math.random() * 20, 90)));
     }, 150);
 
-    const statusUpdates = [
-      { p: 10, s: "AUTENTICANDO PROTOCOLOS..." },
-      { p: 30, s: "ESTABLECIENDO CONEXIÓN SEGURA..." },
-      { p: 50, s: "VERIFICANDO INFRAESTRUCTURA..." },
-      { p: 75, s: "SINCRONIZANDO NODOS DE RED..." },
-      { p: 90, s: "OPTIMIZANDO INTERFAZ..." },
-    ];
+    return () => clearInterval(interval);
+  }, [isLoading]);
 
-    const statusInterval = setInterval(() => {
-      const currentStatus = statusUpdates.find(u => progress < u.p);
-      if (currentStatus) setStatus(currentStatus.s);
-      else setStatus("SISTEMA LISTO");
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(statusInterval);
-    };
-  }, [isLoading, progress]);
+  const status = statusFor(progress);
 
   return (
     <AnimatePresence>
@@ -51,8 +42,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
         <motion.div
           id="loading-screen"
           role="status"
-          aria-live="polite"
-          aria-label={`Cargando, ${Math.round(progress)}%`}
+          aria-label="Cargando la web"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -65,7 +55,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,102,0,0.05)_0%,transparent_70%)]"></div>
           </div>
 
-          <div className="relative z-10 flex flex-col items-center max-w-md w-full">
+          <div className="relative z-10 flex flex-col items-center max-w-md w-full" aria-hidden="true">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
