@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { PageProps } from "../../types";
 import { usePageMeta } from "../../utils/seo";
+import { CONTACT } from "../../utils/contact";
 
-export const AvisoLegal: React.FC<PageProps> = () => {
+export const AvisoLegal: React.FC = () => {
   const navigate = useNavigate();
 
   usePageMeta(
@@ -69,9 +69,9 @@ export const AvisoLegal: React.FC<PageProps> = () => {
                       { label: "Razón Social", value: "DYF Telecomunicaciones y Servicios, S.L." },
                       { label: "Identificación Fiscal (CIF)", value: "B85223972" },
                       { label: "Acreditación Oficial", value: "Empresa Homologada - Registro de Instaladores de Telecomunicación de España (Nº 10265) - Miembro de AMIITEL" },
-                      { label: "Sede Central", value: "C. Valdemorillo, 20, 28901 Getafe, Madrid" },
-                      { label: "Infraestructura Digital", value: "info@dyfservicios.com" },
-                      { label: "Contacto Directo", value: "916 01 84 94 / 918 31 20 61" }
+                      { label: "Sede Central", value: CONTACT.addressFull },
+                      { label: "Infraestructura Digital", value: CONTACT.email },
+                      { label: "Contacto Directo", value: `${CONTACT.phonePrimary} / ${CONTACT.phoneSecondary}` }
                     ].map((item, i) => (
                       <div key={i} className="space-y-1">
                         <p className="font-label text-[10px] uppercase text-outline-variant tracking-widest font-bold">{item.label}</p>

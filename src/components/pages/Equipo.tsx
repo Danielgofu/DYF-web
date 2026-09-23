@@ -10,10 +10,9 @@ import {
   ArrowRight,
   UserCircle
 } from "lucide-react";
-import { PageProps } from "../../types";
 import { usePageMeta } from "../../utils/seo";
 
-export const Equipo: React.FC<PageProps> = () => {
+export const Equipo: React.FC = () => {
   const navigate = useNavigate();
 
   usePageMeta(
@@ -48,7 +47,7 @@ export const Equipo: React.FC<PageProps> = () => {
               <img 
                 className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700" 
                 alt="Miembro del equipo de ingeniería" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnE95sJgNqKsh38RPlW0t06K456K7N4I8_V9L6y-0XN5I2E-S8N4I8_V9L6y-0XN5I2E-S8N4I8_V9L6y-0XN5I2E-S8N4I8_V9L6y-0XN5I2E-S8N4I8_V9L6y-0XN5I2E-S8N4I8_V9L6y-0XN5I2"
+                src="/Dyf-equipo.webp"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>

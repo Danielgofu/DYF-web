@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
+import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
 const FOOTER_LINKS = [
   { label: "Inicio", path: "/" },
@@ -25,9 +26,9 @@ export const Footer: React.FC = () => {
           </div>
           
           <div className="flex gap-6">
-            <a 
-              href="https://www.instagram.com/dyftelecomunicaciones" 
-              target="_blank" 
+            <a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               aria-label="Seguir a DYF Telecomunicaciones en Instagram"
@@ -35,9 +36,9 @@ export const Footer: React.FC = () => {
             >
               <Instagram className="w-5 h-5" />
             </a>
-            <a 
-              href="https://www.facebook.com/DYFTelecomunicaciones/" 
-              target="_blank" 
+            <a
+              href={SOCIAL_LINKS.facebook}
+              target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               aria-label="Seguir a DYF Telecomunicaciones en Facebook"
@@ -73,14 +74,14 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col gap-3">
               <div className="text-[10px] uppercase tracking-widest text-gray-500 leading-relaxed space-y-4">
                 <p>
-                  Tfno1: 916 01 84 94<br />
-                  Tfno2: 918 31 20 61<br />
-                  Email: info@dyfservicios.com<br />
-                  C. Valdemorillo, 20, 28901 Getafe
+                  Tfno1: {CONTACT.phonePrimary}<br />
+                  Tfno2: {CONTACT.phoneSecondary}<br />
+                  Email: {CONTACT.email}<br />
+                  {CONTACT.addressShort}
                 </p>
                 <div>
                   <span className="text-signal-orange/60 font-bold block mb-1">Horario de Oficina</span>
-                  Lunes a Viernes: 9:00 AM - 14:00 PM
+                  {CONTACT.hours}
                 </div>
               </div>
             </div>

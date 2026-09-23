@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Instagram, Facebook } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
 interface NavItem {
   label: string;
@@ -166,18 +167,18 @@ export const Navigation: React.FC = () => {
               >
                 <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-black">Redes:</span>
                 <div className="flex gap-6">
-                  <a 
-                    href="https://www.instagram.com/dyftelecomunicaciones" 
-                    target="_blank" 
+                  <a
+                    href={SOCIAL_LINKS.instagram}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-on-surface hover:text-signal-orange transition-colors"
                     title="Visitar nuestro Instagram"
                   >
                     <Instagram className="w-6 h-6" />
                   </a>
-                  <a 
-                    href="https://www.facebook.com/DYFTelecomunicaciones/" 
-                    target="_blank" 
+                  <a
+                    href={SOCIAL_LINKS.facebook}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-on-surface hover:text-signal-orange transition-colors"
                     title="Visitar nuestro Facebook"
@@ -193,11 +194,11 @@ export const Navigation: React.FC = () => {
               className="mt-auto p-8 text-outline-variant"
             >
               <p className="text-[10px] uppercase tracking-[0.3em] font-black border-b border-outline-variant/10 pb-4 mb-4 text-signal-orange">
-                Horario de Atención: Lunes a Viernes: 9:00 AM - 14:00 PM
+                Horario de Atención: {CONTACT.hours}
               </p>
               <div className="space-y-2 text-xs font-light leading-relaxed">
-                <p>Teléfonos: <a href="tel:+34916018494" className="text-white hover:text-signal-orange font-medium">916 01 84 94</a> / <a href="tel:+34918312061" className="text-white hover:text-signal-orange font-medium">918 31 20 61</a></p>
-                <p>Email: <a href="mailto:info@dyfservicios.com" className="text-white hover:text-signal-orange font-medium">info@dyfservicios.com</a></p>
+                <p>Teléfonos: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.phonePrimary}</a> / <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.phoneSecondary}</a></p>
+                <p>Email: <a href={`mailto:${CONTACT.email}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.email}</a></p>
               </div>
             </motion.div>
           </motion.div>

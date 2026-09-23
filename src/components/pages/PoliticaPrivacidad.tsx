@@ -11,10 +11,10 @@ import {
   MousePointerClick, 
   ArrowRight 
 } from "lucide-react";
-import { PageProps } from "../../types";
 import { usePageMeta } from "../../utils/seo";
+import { CONTACT } from "../../utils/contact";
 
-export const PoliticaPrivacidad: React.FC<PageProps> = () => {
+export const PoliticaPrivacidad: React.FC = () => {
   const navigate = useNavigate();
 
   usePageMeta(
@@ -73,7 +73,7 @@ export const PoliticaPrivacidad: React.FC<PageProps> = () => {
               </div>
               <div>
                 <div className="font-label text-[10px] uppercase text-outline-variant tracking-widest font-bold mb-2">Contacto DPO</div>
-                <a className="font-headline text-lg font-bold text-signal-orange hover:underline transition-all" href="mailto:info@dyfservicios.com">info@dyfservicios.com</a>
+                <a className="font-headline text-lg font-bold text-signal-orange hover:underline transition-all" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
               </div>
               <div className="pt-8 border-t border-outline-variant/20 mt-8">
                 <ShieldAlert className="w-12 h-12 text-signal-orange/30" />
@@ -149,7 +149,7 @@ export const PoliticaPrivacidad: React.FC<PageProps> = () => {
               <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-surface mb-6">Ejercicio de Derechos</h2>
               <p className="text-surface font-medium mb-10 leading-relaxed">Para ejercer cualquiera de sus derechos ARCO, envíe una comunicación formal adjuntando copia de su documento de identidad.</p>
             </div>
-            <a className="bg-surface text-signal-orange px-8 py-5 font-headline font-black uppercase tracking-widest text-center hover:bg-surface-highest transition-all" href="mailto:info@dyfservicios.com">
+            <a className="bg-surface text-signal-orange px-8 py-5 font-headline font-black uppercase tracking-widest text-center hover:bg-surface-highest transition-all" href={`mailto:${CONTACT.email}`}>
               Solicitar Gestión de Datos
             </a>
           </section>

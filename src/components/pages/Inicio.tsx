@@ -20,9 +20,9 @@ import {
   ShieldCheck,
   Building2
 } from "lucide-react";
-import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
+import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
 const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -44,7 +44,7 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
   );
 };
 
-export const Inicio: React.FC<PageProps> = () => {
+export const Inicio: React.FC = () => {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -150,18 +150,18 @@ export const Inicio: React.FC<PageProps> = () => {
             </div>
             <div className="flex gap-6 items-center border-l sm:border-l-0 sm:pl-0 pl-6 border-outline-variant/30">
               <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold hidden sm:block">Seguir en:</span>
-              <a 
-                href="https://www.instagram.com/dyftelecomunicaciones" 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
                 rel="noopener noreferrer"
                 title="Visitar nuestro Instagram"
                 className="text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.facebook.com/DYFTelecomunicaciones/" 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
                 rel="noopener noreferrer"
                 title="Visitar nuestro Facebook"
                 className="text-on-surface-variant hover:text-signal-orange transition-all hover:scale-110"
@@ -192,9 +192,9 @@ export const Inicio: React.FC<PageProps> = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[400px]">
           {/* Antennas */}
-          <div 
+          <div
             onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de antenas"
@@ -210,18 +210,20 @@ export const Inicio: React.FC<PageProps> = () => {
           </div>
 
           {/* Intercoms */}
-          <div 
+          <div
             onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de porteros automáticos"
             className="md:col-span-8 relative group overflow-hidden bg-surface-low cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
           >
             <img 
-              alt="Intercoms" 
-              className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 group-hover:opacity-20 transition-all duration-700" 
+              alt="Intercoms"
+              className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 group-hover:opacity-20 transition-all duration-700"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4nh4pe-aeZO21Ayl32FvR5r4ojEVOfZRmicbdzReusWxsm8byousb52Yo3b0XLvGjrEmqxE2Xas1AzsOXmYhnLaWojW6pQGyyG5ABseA3jvfuvSXHRORfpr6XOAVcJf28xeBN_lS130TOmlG02aR0y_TKyCo2zGD9cQ-YElVcBVF205hvyXLrzOP_AtXJ48R0IYgHKSfZxqg34NOw5SxzSPH5GGFvsrfpQajgTq28ospKTedvQVyC9X20VfcBLFbI2Ck8IpUOrec"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
             />
             <div className="relative z-10 p-10 h-full flex flex-col justify-between">
@@ -239,9 +241,9 @@ export const Inicio: React.FC<PageProps> = () => {
           </div>
 
           {/* CCTV */}
-          <div 
+          <div
             onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de CCTV y seguridad"
@@ -262,9 +264,9 @@ export const Inicio: React.FC<PageProps> = () => {
           </div>
 
           {/* Networks */}
-          <div 
+          <div
             onClick={() => navigate("/servicios")}
-            onKeyDown={(e) => e.key === 'Enter' && navigate("/servicios")}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate("/servicios"))}
             tabIndex={0}
             role="button"
             aria-label="Ver servicios de instalaciones de red"
@@ -420,9 +422,11 @@ export const Inicio: React.FC<PageProps> = () => {
                   
                   <div className="relative z-10 text-center flex flex-col items-center gap-2">
                     <img 
-                      alt={`Logo ${partner.name}`} 
-                      className="h-10 md:h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500" 
+                      alt={`Logo ${partner.name}`}
+                      className="h-10 md:h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500"
                       src={partner.src}
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = `https://placehold.co/200x80/1c1b1b/f96304?text=${partner.name}`;
                         (e.target as HTMLImageElement).className = "h-8 md:h-10 w-auto object-contain";
@@ -483,8 +487,8 @@ export const Inicio: React.FC<PageProps> = () => {
             CORAZÓN DE GETAFE
           </h2>
           <div className="space-y-8 font-body">
-            <a 
-              href="https://www.google.com/maps/search/?api=1&query=DYF+Telecomunicaciones+C.+Valdemorillo+20+28901+Getafe"
+            <a
+              href={CONTACT.mapsQuery}
               target="_blank"
               rel="noopener noreferrer"
               className="flex gap-6 items-start group/loc block"
@@ -492,36 +496,36 @@ export const Inicio: React.FC<PageProps> = () => {
               <MapPin className="text-signal-orange mt-1 shrink-0 group-hover/loc:scale-110 transition-transform" />
               <div>
                 <p className="text-white font-bold uppercase tracking-widest text-sm group-hover/loc:text-signal-orange transition-colors">Zona Logística Industrial</p>
-                <p className="text-on-surface-variant text-sm mt-1">C. Valdemorillo, 20, 28901 Getafe</p>
+                <p className="text-on-surface-variant text-sm mt-1">{CONTACT.addressShort}</p>
               </div>
             </a>
             <div className="flex gap-6 items-start">
               <Mail className="text-signal-orange mt-1 shrink-0" />
               <div>
                 <p className="text-white font-bold uppercase tracking-widest text-sm">Contacto Directo</p>
-                <button 
+                <button
                   onClick={() => navigate("/contacto")}
                   className="text-on-surface-variant text-sm mt-1 hover:text-signal-orange transition-colors text-left cursor-pointer"
                 >
-                  info@dyfservicios.com
+                  {CONTACT.email}
                 </button>
               </div>
             </div>
-            
+
             <div className="flex gap-6 pt-4 items-center">
               <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant font-bold">Seguir en Redes:</span>
-              <a 
-                href="https://www.instagram.com/dyftelecomunicaciones" 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
                 rel="noopener noreferrer"
                 title="Visitar nuestro Instagram"
                 className="text-on-surface-variant hover:text-signal-orange transition-all"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.facebook.com/DYFTelecomunicaciones/" 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
                 rel="noopener noreferrer"
                 title="Visitar nuestro Facebook"
                 className="text-on-surface-variant hover:text-signal-orange transition-all"

@@ -13,10 +13,10 @@ import {
   Plus,
   AlertCircle
 } from "lucide-react";
-import { PageProps } from "../../types";
 import { usePageMeta } from "../../utils/seo";
+import { CONTACT } from "../../utils/contact";
 
-export const Mantenimiento: React.FC<PageProps> = () => {
+export const Mantenimiento: React.FC = () => {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -68,7 +68,7 @@ export const Mantenimiento: React.FC<PageProps> = () => {
       if (response.ok) {
         navigate("/gracias");
       } else {
-        setSubmitError("Hubo un problema al tramitar su solicitud. Por favor, llame directamente al 916 01 84 94.");
+        setSubmitError(`Hubo un problema al tramitar su solicitud. Por favor, llame directamente al ${CONTACT.phonePrimary}.`);
       }
     } catch {
       setSubmitError("Error de conexión. Por favor, compruebe su conexión o contáctenos telefónicamente.");
@@ -128,9 +128,11 @@ export const Mantenimiento: React.FC<PageProps> = () => {
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="relative group">
             <img 
-              className="w-full aspect-[4/5] object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-75" 
-              alt="Modern building facade" 
+              className="w-full aspect-[4/5] object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-75"
+              alt="Modern building facade"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzS2x156bdLZK4HucWboMLO6h7D7yN-0MlTpWcKkjPfIdA7-536Y6YmsOlvyqRm4hjIWxwWUGn3LKX1szNHnS0GjHWtERVjRUG11CELtB8YOhMfA01E5JXFB5iTYnJQJEn3G0Px_PSyOmIp0w4yVDEfIxlzD3Jb87lAI8SxUPKQn4vSh0tO7vdJqJ-EvS25s7POOlpP-KizHcTgBN6Y8OPu2NIKqbIsfqpfbyfAg0QB4ixlrwB0X8IrryOZz9Z-kzN3LDBiTRaIPvs"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-[20px] border-surface/50 pointer-events-none"></div>
@@ -199,7 +201,7 @@ export const Mantenimiento: React.FC<PageProps> = () => {
                 </ul>
                 {card.isEmergency && (
                   <button className="bg-surface text-signal-orange w-full py-4 font-headline font-black uppercase text-xs tracking-widest mt-10 hover:shadow-xl transition-all">
-                    Llamar ahora: 916 01 84 94 / 918 31 20 61
+                    Llamar ahora: {CONTACT.phonePrimary} / {CONTACT.phoneSecondary}
                   </button>
                 )}
               </div>
@@ -212,8 +214,10 @@ export const Mantenimiento: React.FC<PageProps> = () => {
       <section className="relative py-32 overflow-hidden px-6 md:px-12">
         <div className="absolute inset-x-0 top-0 h-full z-0 opacity-20 grayscale-100">
           <img 
-            className="w-full h-full object-cover contrast-150" 
-            alt="Technical blueprints" 
+            className="w-full h-full object-cover contrast-150"
+            alt="Technical blueprints"
+            loading="lazy"
+            decoding="async"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU96wSZ7fhx-Jt3uHuJgqxrcIvRnYnN9jZd2IZNpIMB7oUTJoFQo4O4QfSmVEf1yFxSP4JbeYkSGOJcqeILsAM7iwKMXnsFqeMoa09Qa7TuYlsioYtXGpsBgjzF3BLp2l6cS6w_Ot35R6VvZjuKS4HBbXZf6j-k6LvPv5MGsItlUBbCg64FzJ-2CwaAGdkoIgIKK1n3yCMZxrTu5MEI8f0uigKcf0LzSaEZnv10rZhasiM_g6dC4p8cAv9O_6JCv_ReGGU1CgzJ6Pd"
             referrerPolicy="no-referrer"
           />
@@ -248,20 +252,22 @@ export const Mantenimiento: React.FC<PageProps> = () => {
             <h4 className="font-headline font-black uppercase text-2xl mb-8">Solicitar Plan a Medida</h4>
             <form className="space-y-6" onSubmit={handleSubmitPlan}>
               <div>
-                <label className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Concepto (Comunidad / Empresa)</label>
-                <input 
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white" 
-                  type="text" 
-                  placeholder="Ej: Edificio Central Getafe" 
+                <label htmlFor="plan_concept" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Concepto (Comunidad / Empresa)</label>
+                <input
+                  id="plan_concept"
+                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
+                  type="text"
+                  placeholder="Ej: Edificio Central Getafe"
                   value={concept}
                   onChange={(e) => setConcept(e.target.value)}
                   required
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Tipo de Servicio Requerido</label>
-                <select 
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 appearance-none text-white cursor-pointer" 
+                <label htmlFor="plan_service_type" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Tipo de Servicio Requerido</label>
+                <select
+                  id="plan_service_type"
+                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 appearance-none text-white cursor-pointer"
                   value={serviceType}
                   onChange={(e) => setServiceType(e.target.value)}
                 >
@@ -273,11 +279,12 @@ export const Mantenimiento: React.FC<PageProps> = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Teléfono o Email de Contacto</label>
-                <input 
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white" 
-                  type="text" 
-                  placeholder="Ej: 600 000 000 o admin@finca.com" 
+                <label htmlFor="plan_contact_info" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Teléfono o Email de Contacto</label>
+                <input
+                  id="plan_contact_info"
+                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
+                  type="text"
+                  placeholder="Ej: 600 000 000 o admin@finca.com"
                   value={contactInfo}
                   onChange={(e) => setContactInfo(e.target.value)}
                   required
@@ -285,7 +292,7 @@ export const Mantenimiento: React.FC<PageProps> = () => {
               </div>
 
               {submitError && (
-                <div className="p-3 bg-red-500/10 border-l-2 border-red-500 text-red-400 text-xs flex items-center gap-2">
+                <div role="alert" className="p-3 bg-red-500/10 border-l-2 border-red-500 text-red-400 text-xs flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{submitError}</span>
                 </div>
@@ -314,7 +321,7 @@ export const Mantenimiento: React.FC<PageProps> = () => {
           <div className="lg:col-span-8 space-y-4">
             {[
               { q: "¿Puedo personalizar los servicios contratados?", a: "Sí, puedes elegir los servicios que realmente necesita tu comunidad y adaptarlos a tus necesidades." },
-              { q: "¿Cómo solicito presupuesto?", a: "Puedes solicitar presupuesto a través del formulario de contacto o llamando al 916 01 84 94." },
+              { q: "¿Cómo solicito presupuesto?", a: `Puedes solicitar presupuesto a través del formulario de contacto o llamando al ${CONTACT.phonePrimary}.` },
               { q: "¿En cuánto tiempo atendéis un aviso?", a: "Atendemos avisos en 24 horas laborables, los 365 días del año, para que tu comunidad nunca se quede sin servicio." }
             ].map((item, i) => {
               const isOpen = openFaq === i;

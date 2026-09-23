@@ -11,11 +11,11 @@ import {
   Facebook,
   AlertCircle
 } from "lucide-react";
-import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
+import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
-export const Contacto: React.FC<PageProps> = () => {
+export const Contacto: React.FC = () => {
   const navigate = useNavigate();
   usePageMeta(
     "Contacto Directo y Presupuestos | DYF Telecomunicaciones",
@@ -181,62 +181,71 @@ export const Contacto: React.FC<PageProps> = () => {
               <form className="space-y-10" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                   <div className="relative group">
-                    <input 
-                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0" 
-                      id="full_name" 
-                      placeholder="Nombre Completo" 
-                      type="text" 
+                    <input
+                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+                      id="full_name"
+                      placeholder="Nombre Completo"
+                      type="text"
                       value={formData.full_name}
                       onChange={handleChange}
+                      aria-invalid={!!errors.full_name}
+                      aria-describedby={errors.full_name ? "full_name-error" : undefined}
                     />
                     <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-signal-orange" htmlFor="full_name">Nombre Completo</label>
                     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
                     {errors.full_name && (
-                      <p className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
+                      <p id="full_name-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.full_name}
                       </p>
                     )}
                   </div>
                   <div className="relative group">
-                    <input 
-                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0" 
-                      id="email" 
-                      placeholder="Correo Electrónico" 
-                      type="email" 
+                    <input
+                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+                      id="email"
+                      placeholder="Correo Electrónico"
+                      type="email"
                       value={formData.email}
                       onChange={handleChange}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                     />
                     <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-signal-orange" htmlFor="email">Correo Electrónico</label>
                     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
                     {errors.email && (
-                      <p className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
+                      <p id="email-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.email}
                       </p>
                     )}
                   </div>
                   <div className="relative group">
-                    <input 
-                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0" 
-                      id="phone" 
-                      placeholder="Número de Teléfono" 
-                      type="tel" 
+                    <input
+                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+                      id="phone"
+                      placeholder="Número de Teléfono"
+                      type="tel"
                       value={formData.phone}
                       onChange={handleChange}
+                      aria-invalid={!!errors.phone}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
                     />
                     <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-signal-orange" htmlFor="phone">Teléfono (Opcional)</label>
                     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
                     {errors.phone && (
-                      <p className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
+                      <p id="phone-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.phone}
                       </p>
                     )}
                   </div>
                   <div className="relative group">
-                    <select 
-                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface appearance-none focus:ring-0 cursor-pointer" 
-                      id="reason" 
+                    <label className="absolute left-0 -top-4 text-xs font-label uppercase tracking-widest text-signal-orange" htmlFor="reason">Motivo de Consulta</label>
+                    <select
+                      className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface appearance-none focus:ring-0 cursor-pointer"
+                      id="reason"
                       value={formData.reason}
                       onChange={handleChange}
+                      aria-invalid={!!errors.reason}
+                      aria-describedby={errors.reason ? "reason-error" : undefined}
                     >
                       <option className="bg-surface text-on-surface-variant" value="">Motivo de Consulta</option>
                       <option className="bg-surface text-on-surface" value="comunidad">Mantenimiento Comunidad</option>
@@ -253,26 +262,28 @@ export const Contacto: React.FC<PageProps> = () => {
                       <ArrowRight className="w-4 h-4 rotate-90" />
                     </div>
                     {errors.reason && (
-                      <p className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
+                      <p id="reason-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.reason}
                       </p>
                     )}
                   </div>
                 </div>
-                
+
                 <div className="relative group pt-4">
-                  <textarea 
-                    className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer resize-none focus:ring-0 min-h-[120px]" 
-                    id="message" 
-                    placeholder="Su Mensaje" 
+                  <textarea
+                    className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer resize-none focus:ring-0 min-h-[120px]"
+                    id="message"
+                    placeholder="Su Mensaje"
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
                   ></textarea>
                   <label className="absolute left-0 top-4 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-7 peer-focus:-top-1 peer-focus:text-xs peer-focus:text-signal-orange" htmlFor="message">Detalles de su Consulta</label>
                   <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
                   {errors.message && (
-                    <p className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
+                    <p id="message-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-500 font-label uppercase tracking-widest flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {errors.message}
                     </p>
                   )}
@@ -302,9 +313,9 @@ export const Contacto: React.FC<PageProps> = () => {
                 Conectividad Directa
               </h3>
               {[
-                { icon: <Smartphone />, label: "Teléfono", value: "916 01 84 94 / 918 31 20 61", link: "tel:+34916018494" },
-                { icon: <Mail />, label: "Correo Digital", value: "info@dyfservicios.com", link: "mailto:info@dyfservicios.com" },
-                { icon: <MapPin />, label: "Oficina Física", value: "C. VALDEMORILLO, 20, 28901 GETAFE", link: "https://www.google.com/maps/search/?api=1&query=DYF+Telecomunicaciones+C.+Valdemorillo+20+28901+Getafe" }
+                { icon: <Smartphone />, label: "Teléfono", value: `${CONTACT.phonePrimary} / ${CONTACT.phoneSecondary}`, link: `tel:${CONTACT.phonePrimaryTel}` },
+                { icon: <Mail />, label: "Correo Digital", value: CONTACT.email, link: `mailto:${CONTACT.email}` },
+                { icon: <MapPin />, label: "Oficina Física", value: CONTACT.addressShort.toUpperCase(), link: CONTACT.mapsQuery }
               ].map((method, i) => (
                 <a 
                   key={i} 
@@ -326,13 +337,13 @@ export const Contacto: React.FC<PageProps> = () => {
               <div className="bg-surface-low p-8 border-l border-signal-orange/20">
                 <p className="font-label text-[10px] uppercase tracking-widest text-outline-variant mb-3 font-bold">Horario de Atención</p>
                 <p className="font-headline text-lg font-medium text-white">Lunes a Viernes</p>
-                <p className="font-label text-xs uppercase tracking-widest text-signal-orange mt-1">9:00 AM - 14:00 PM</p>
+                <p className="font-label text-xs uppercase tracking-widest text-signal-orange mt-1">9:00 - 14:00 h</p>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                <a 
-                  href="https://www.instagram.com/dyftelecomunicaciones" 
-                  target="_blank" 
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Seguir a DYF Telecomunicaciones en Instagram"
                   className="bg-surface-low p-6 flex items-center justify-center gap-3 border border-outline-variant/10 hover:border-signal-orange text-on-surface-variant hover:text-signal-orange hover:-translate-y-1 hover:shadow-xl transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
@@ -340,9 +351,9 @@ export const Contacto: React.FC<PageProps> = () => {
                   <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" />
                   <span className="font-label text-xs uppercase tracking-widest font-bold">Instagram</span>
                 </a>
-                <a 
-                  href="https://www.facebook.com/DYFTelecomunicaciones/" 
-                  target="_blank" 
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Seguir a DYF Telecomunicaciones en Facebook"
                   className="bg-surface-low p-6 flex items-center justify-center gap-3 border border-outline-variant/10 hover:border-signal-orange text-on-surface-variant hover:text-signal-orange hover:-translate-y-1 hover:shadow-xl transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"

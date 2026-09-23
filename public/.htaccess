@@ -1,0 +1,37 @@
+# DYF Telecomunicaciones — configuración para hosting compartido Apache (Nominalia)
+# Este archivo se copia tal cual a /dist en cada build de Vite (public/ -> dist/).
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Forzar HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2. Forzar dominio con "www" (coincide con el resto de la configuración: sitemap.xml, robots.txt, og:url)
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 3. Enrutado de React Router: si el archivo o directorio solicitado no existe físicamente,
+  #    servir siempre index.html para que React Router gestione la ruta en el cliente.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Cabeceras de seguridad (equivalentes a vercel.json)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # Cache-Control agresivo solo para los assets versionados que genera Vite (hash en el nombre de archivo)
+  <FilesMatch "^assets/.*\.(js|css|woff2?|ttf|svg|png|jpe?g|webp|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# No indexar el listado de directorios
+Options -Indexes

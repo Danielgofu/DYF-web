@@ -18,11 +18,10 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
 
-export const Servicios: React.FC<PageProps> = () => {
+export const Servicios: React.FC = () => {
   const navigate = useNavigate();
 
   usePageMeta(
@@ -79,9 +78,11 @@ export const Servicios: React.FC<PageProps> = () => {
           <div className="relative order-2 lg:order-1">
             <div className="aspect-square bg-surface-highest overflow-hidden">
               <img 
-                className="w-full h-full object-cover grayscale contrast-125" 
-                alt="Antena Parabólica" 
+                className="w-full h-full object-cover grayscale contrast-125"
+                alt="Antena Parabólica"
                 src="https://picsum.photos/seed/satellite/800/800"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -198,9 +199,11 @@ export const Servicios: React.FC<PageProps> = () => {
           </div>
           <div className="bg-surface-highest aspect-video overflow-hidden border border-outline-variant/10 relative group">
             <img 
-              src="https://picsum.photos/seed/electrical/1200/800" 
-              alt="Electricidad Industrial" 
+              src="https://picsum.photos/seed/electrical/1200/800"
+              alt="Electricidad Industrial"
               className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -242,9 +245,11 @@ export const Servicios: React.FC<PageProps> = () => {
           <div className="lg:col-span-4 relative group">
             <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative">
               <img 
-                className="w-full h-full object-cover grayscale brightness-75" 
-                alt="Intercom device" 
+                className="w-full h-full object-cover grayscale brightness-75"
+                alt="Intercom device"
                 src="https://picsum.photos/seed/intercom/600/800"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-surface to-transparent">
@@ -301,9 +306,11 @@ export const Servicios: React.FC<PageProps> = () => {
 
         <div className="mt-32 aspect-[21/9] bg-surface-highest overflow-hidden relative">
           <img 
-            className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen" 
-            alt="Networking cables" 
+            className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
+            alt="Networking cables"
             src="https://picsum.photos/seed/cables/1800/600"
+            loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface opacity-80"></div>

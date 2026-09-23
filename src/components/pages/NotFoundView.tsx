@@ -2,11 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
-import { PageProps } from "../../types";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
 
-export const NotFoundView: React.FC<PageProps> = () => {
+export const NotFoundView: React.FC = () => {
   const navigate = useNavigate();
 
   usePageMeta(

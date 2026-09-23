@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { CheckCircle2, ArrowRight, Facebook, Share2, Check } from "lucide-react";
-import { PageProps } from "../../types";
 import { usePageMeta } from "../../utils/seo";
+import { SOCIAL_LINKS } from "../../utils/contact";
 
-export const Gracias: React.FC<PageProps> = () => {
+export const Gracias: React.FC = () => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
 
@@ -98,7 +98,7 @@ export const Gracias: React.FC<PageProps> = () => {
               <div className="flex items-center gap-4">
                 <a 
                   className="text-on-surface-variant hover:text-signal-orange transition-colors p-2" 
-                  href="https://www.facebook.com/DYFTelecomunicaciones/" 
+                  href={SOCIAL_LINKS.facebook}
                   target="_blank" 
                   rel="noopener noreferrer"
                   aria-label="Facebook DYF Telecomunicaciones"

@@ -50,6 +50,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
       {isLoading && (
         <motion.div
           id="loading-screen"
+          role="status"
+          aria-live="polite"
+          aria-label={`Cargando, ${Math.round(progress)}%`}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
