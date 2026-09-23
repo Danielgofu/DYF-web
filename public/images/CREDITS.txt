@@ -1,56 +1,46 @@
 Créditos de imágenes (public/images/)
 ======================================
 
-Las siguientes fotografías proceden de Wikimedia Commons y tienen licencia
-Creative Commons que EXIGE ATRIBUCIÓN VISIBLE (CC BY / CC BY-SA). Legalmente
-hay que mostrar autor + licencia en algún lugar accesible de la web (por
-ejemplo un enlace "Créditos" en el footer, o una página /creditos).
-Las imágenes no listadas aquí (hero-antena-tejado.webp y las generadas
-previamente para Contacto/Mantenimiento/Gracias/Política de Privacidad) no
-requieren atribución (dominio público o no proceden de Commons).
-
-videoportero.webp
-  Original: "Campanelli citofoni 1.jpg"
-  Autor: no especificado en la página de origen
-  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
-  Fuente: https://commons.wikimedia.org/wiki/File:Campanelli_citofoni_1.jpg
-
-servicios-torre.webp
-  Original: "2024 BTS w Szalejowie Górnym (1).jpg"
-  Autor: Jacek Halicki
-  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
-  Fuente: https://commons.wikimedia.org/wiki/File:2024_BTS_w_Szalejowie_G%C3%B3rnym_(1).jpg
-
-servicios-parabolicas.webp
-  Original: "Satellite dishes (3168212588).jpg"
-  Autor: Paul Keller
-  Licencia: CC BY 2.0 — https://creativecommons.org/licenses/by/2.0
-  Fuente: https://commons.wikimedia.org/wiki/File:Satellite_dishes_(3168212588).jpg
-
-servicios-cuadro-electrico.webp
-  Original: "ModernConsumerUnitHager.JPG"
-  Autor: no especificado en la página de origen
-  Licencia: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0
-  Fuente: https://commons.wikimedia.org/wiki/File:ModernConsumerUnitHager.JPG
-
-servicios-portero.webp
-  Original: "Comelit doorbells at De Groenling, Oude Pekela (2019) 01.jpg"
-  Autor: Donald Trung Quoc Don
-  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
-  Fuente: https://commons.wikimedia.org/wiki/File:Comelit_doorbells_at_De_Groenling,_Oude_Pekela_(2019)_01.jpg
-
-servicios-cableado.webp
-  Original: "Computer rack with switches and cables.jpg"
-  Autor: Yann
-  Licencia: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0
-  Fuente: https://commons.wikimedia.org/wiki/File:Computer_rack_with_switches_and_cables.jpg
+Todas las fotografías de esta carpeta tienen licencia CC0 (dominio público) o
+son obra de la Administración de EE. UU. (dominio público, "public domain
+mark"). NINGUNA exige atribución: se pueden usar, recortar y modificar sin
+mostrar autor ni enlace, sin ningún riesgo legal para la empresa.
 
 hero-antena-tejado.webp
-  Original: "Base transceiver station on the top of a skyscraper in Tomaszów Mazowiecki, Poland.jpg"
-  Licencia: Dominio público — sin atribución obligatoria
-  Fuente: https://commons.wikimedia.org/wiki/File:Base_transceiver_station_on_the_top_of_a_skyscraper_in_Tomasz%C3%B3w_Mazowiecki,_Poland.jpg
+  Fuente: Wikimedia Commons — dominio público
+  https://commons.wikimedia.org/wiki/File:Base_transceiver_station_on_the_top_of_a_skyscraper_in_Tomasz%C3%B3w_Mazowiecki,_Poland.jpg
 
-Nota: todas las imágenes fueron recortadas/redimensionadas y convertidas a
-WebP para optimizar el rendimiento; la licencia CC BY-SA permite estas
-adaptaciones siempre que se mantenga la atribución y, si se redistribuye
-el archivo modificado por separado, la misma licencia.
+servicios-torre.webp
+  Fuente: rawpixel.com — CC0
+  https://www.rawpixel.com/image/6031294/photo-image-public-domain-technology-free
+
+servicios-parabolicas.webp
+  Fuente: Wikimedia Commons — CC0
+  https://commons.wikimedia.org/wiki/File:Satelitska_antena_se_obo%C4%8Dno_smje%C5%A1ta_na_krov_ku%C4%87e_2014-07-11_10-45.jpg
+
+servicios-cuadro-electrico.webp
+  Fuente: rawpixel.com — CC0
+  https://www.rawpixel.com/image/5904900/photo-image-public-domain-line-free
+
+servicios-cableado.webp
+  Fuente: rawpixel.com — CC0 (fotografía original: NERSC data center)
+  https://www.rawpixel.com/image/6271725352
+
+contacto-sala-servidores.webp
+  Fuente: Flickr — 169th Communications Squadron (Guardia Nacional Aérea de EE. UU.)
+  Obra de la Administración Federal de EE. UU. — dominio público
+  https://www.flickr.com/photos/85045231@N04/54943478092
+
+mantenimiento-cuadro.webp, mantenimiento-fachada.webp, mantenimiento-tecnico.webp,
+gracias-fibra.webp, privacidad-grid.webp
+  Imágenes generadas previamente para este proyecto (no proceden de bancos con
+  licencia de terceros; sin restricciones de atribución).
+
+Portero/videoportero (Inicio.tsx bento "Porteros y Videoporteros Digitales" y
+Servicios.tsx tarjeta "Socio de Alianza — GOLMAR SYSTEMS")
+  No se usa foto. Es una ilustración vectorial propia (src/components/VideoIntercomGraphic.tsx),
+  dibujada específicamente para este proyecto. No representa ningún producto real
+  de Golmar ni de ninguna otra marca: es un diseño genérico, así que no existe
+  ningún riesgo de derechos de imagen o de marca. Si en algún momento consigues
+  una foto oficial de un producto Golmar con permiso expreso de la marca, se
+  puede sustituir esta ilustración por esa foto.

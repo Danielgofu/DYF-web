@@ -152,7 +152,7 @@ export const Contacto: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden relative border border-outline-variant/10">
               <img 
                 className="w-full h-full object-cover mix-blend-multiply grayscale brightness-50"
-                alt="Sala de servidores con rack de red y cableado"
+                alt="Técnico revisando un panel de conexiones de red"
                 src="/images/contacto-sala-servidores.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>

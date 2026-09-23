@@ -21,6 +21,7 @@ import {
   Building2
 } from "lucide-react";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
@@ -217,13 +218,7 @@ export const Inicio: React.FC = () => {
             aria-label="Ver servicios de porteros automáticos"
             className="md:col-span-8 relative group overflow-hidden bg-surface-low cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
           >
-            <img
-              alt="Videoportero digital con cámara instalado en la entrada de un edificio"
-              className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 group-hover:opacity-20 transition-all duration-700"
-              src="/images/videoportero.webp"
-              loading="lazy"
-              decoding="async"
-            />
+            <VideoIntercomGraphic className="absolute -right-8 -bottom-10 h-[420px] w-auto text-white opacity-[0.07] group-hover:scale-110 group-hover:opacity-[0.14] transition-all duration-700 pointer-events-none" />
             <div className="relative z-10 p-10 h-full flex flex-col justify-between">
               <Smartphone className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12" />
               <div className="max-w-md">

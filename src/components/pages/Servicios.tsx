@@ -19,6 +19,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
+import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { usePageMeta } from "../../utils/seo";
 
 export const Servicios: React.FC = () => {
@@ -78,7 +79,7 @@ export const Servicios: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden">
               <img 
                 className="w-full h-full object-cover grayscale contrast-125"
-                alt="Antenas parabólicas colectivas instaladas en un tejado"
+                alt="Antena parabólica instalada en el tejado de una vivienda"
                 src="/images/servicios-parabolicas.webp"
                 loading="lazy"
                 decoding="async"
@@ -198,7 +199,7 @@ export const Servicios: React.FC = () => {
           <div className="bg-surface-highest aspect-video overflow-hidden border border-outline-variant/10 relative group">
             <img 
               src="/images/servicios-cuadro-electrico.webp"
-              alt="Cuadro eléctrico moderno con interruptores diferenciales"
+              alt="Terminales y cableado organizados en un cuadro eléctrico"
               className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700"
               loading="lazy"
               decoding="async"
@@ -240,14 +241,8 @@ export const Servicios: React.FC = () => {
           </div>
           
           <div className="lg:col-span-4 relative group">
-            <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative">
-              <img 
-                className="w-full h-full object-cover grayscale brightness-75"
-                alt="Portero automático instalado en la fachada de un edificio"
-                src="/images/servicios-portero.webp"
-                loading="lazy"
-                decoding="async"
-              />
+            <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative flex items-center justify-center">
+              <VideoIntercomGraphic className="h-[85%] w-auto text-signal-orange opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-surface to-transparent">
                 <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant block">Socio de Alianza</span>
                 <p className="font-headline text-sm font-bold text-white uppercase mt-1">GOLMAR SYSTEMS</p>
