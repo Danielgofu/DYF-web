@@ -1,81 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import { 
-  Building2, 
-  BarChart3, 
-  CheckCircle2, 
-  ArrowRight, 
-  Antenna, 
-  Video, 
-  Zap, 
-  Siren, 
-  Plus,
-  AlertCircle
+import {
+  Building2,
+  BarChart3,
+  CheckCircle2,
+  ArrowRight,
+  Antenna,
+  Video,
+  Zap,
+  Siren
 } from "lucide-react";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT } from "../../utils/contact";
+import { FaqAccordion, FaqItem } from "../FaqAccordion";
+import { PlanForm } from "../forms/PlanForm";
+
+// Datos estáticos: viven fuera del componente para no recrearse en cada render.
+const QUICK_FAQ_ITEMS: FaqItem[] = [
+  { q: "¿Puedo personalizar los servicios contratados?", a: "Sí, puedes elegir los servicios que realmente necesita tu comunidad y adaptarlos a tus necesidades." },
+  { q: "¿Cómo solicito presupuesto?", a: `Puedes solicitar presupuesto a través del formulario de contacto o llamando al ${CONTACT.phonePrimary}.` },
+  { q: "¿En cuánto tiempo atendéis un aviso?", a: "Atendemos avisos en 24 horas laborables, los 365 días del año, para que tu comunidad nunca se quede sin servicio." }
+];
 
 export const Mantenimiento: React.FC = () => {
   const navigate = useNavigate();
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   usePageMeta(
     "Servicios de Mantenimiento | DYF Telecomunicaciones",
     "Mantenimiento preventivo y correctivo para comunidades de propietarios e instalaciones críticas en Madrid. Respuesta garantizada en 24h laborables."
   );
-
-  const [concept, setConcept] = useState("");
-  const [serviceType, setServiceType] = useState("Mantenimiento Integral");
-  const [contactInfo, setContactInfo] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const handleSubmitPlan = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!concept.trim()) {
-      setSubmitError("Por favor, especifique el nombre de la comunidad o empresa.");
-      return;
-    }
-    if (!contactInfo.trim()) {
-      setSubmitError("Por favor, indique un teléfono o correo electrónico de contacto.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/danielgofu8@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          _subject: `Solicitud de Plan a Medida: ${concept} - ${serviceType}`,
-          concepto_o_comunidad: concept,
-          tipo_de_servicio: serviceType,
-          datos_contacto: contactInfo,
-          _template: "table"
-        })
-      });
-
-      if (response.ok) {
-        navigate("/gracias");
-      } else {
-        setSubmitError(`Hubo un problema al tramitar su solicitud. Por favor, llame directamente al ${CONTACT.phonePrimary}.`);
-      }
-    } catch {
-      setSubmitError("Error de conexión. Por favor, compruebe su conexión o contáctenos telefónicamente.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <motion.div
@@ -247,62 +201,7 @@ export const Mantenimiento: React.FC = () => {
           </div>
           <div className="bg-surface-highest/80 backdrop-blur-xl p-10 md:p-16 border-t-4 border-signal-orange">
             <h4 className="font-headline font-black uppercase text-2xl mb-8">Solicitar Plan a Medida</h4>
-            <form className="space-y-6" onSubmit={handleSubmitPlan}>
-              <div>
-                <label htmlFor="plan_concept" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Concepto (Comunidad / Empresa)</label>
-                <input
-                  id="plan_concept"
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
-                  type="text"
-                  placeholder="Ej: Edificio Central Getafe"
-                  value={concept}
-                  onChange={(e) => setConcept(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="plan_service_type" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Tipo de Servicio Requerido</label>
-                <select
-                  id="plan_service_type"
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 appearance-none text-white cursor-pointer"
-                  value={serviceType}
-                  onChange={(e) => setServiceType(e.target.value)}
-                >
-                  <option value="Mantenimiento Integral">Mantenimiento Integral</option>
-                  <option value="Antenas y Datos">Antenas y Datos</option>
-                  <option value="Porteros y Videoporteros">Porteros y Videoporteros</option>
-                  <option value="Electricidad y LED">Electricidad y LED</option>
-                  <option value="Seguridad CCTV">Seguridad CCTV</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="plan_contact_info" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Teléfono o Email de Contacto</label>
-                <input
-                  id="plan_contact_info"
-                  className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
-                  type="text"
-                  placeholder="Ej: 600 000 000 o admin@finca.com"
-                  value={contactInfo}
-                  onChange={(e) => setContactInfo(e.target.value)}
-                  required
-                />
-              </div>
-
-              {submitError && (
-                <div role="alert" className="p-3 bg-red-500/10 border-l-2 border-red-500 text-red-400 text-xs flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{submitError}</span>
-                </div>
-              )}
-
-              <button 
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-signal-orange text-surface py-5 font-headline font-black uppercase tracking-[0.2em] text-xs hover:brightness-110 transition-all mt-6 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              >
-                {isSubmitting ? "Enviando solicitud..." : "Enviar solicitud técnica"}
-              </button>
-            </form>
+            <PlanForm />
           </div>
         </div>
       </section>
@@ -315,33 +214,8 @@ export const Mantenimiento: React.FC = () => {
             <p className="text-on-surface-variant font-light text-sm uppercase tracking-[0.3em]">Centro de información para consultas técnicas</p>
             <div className="h-1 w-20 bg-signal-orange mt-8"></div>
           </div>
-          <div className="lg:col-span-8 space-y-4">
-            {[
-              { q: "¿Puedo personalizar los servicios contratados?", a: "Sí, puedes elegir los servicios que realmente necesita tu comunidad y adaptarlos a tus necesidades." },
-              { q: "¿Cómo solicito presupuesto?", a: `Puedes solicitar presupuesto a través del formulario de contacto o llamando al ${CONTACT.phonePrimary}.` },
-              { q: "¿En cuánto tiempo atendéis un aviso?", a: "Atendemos avisos en 24 horas laborables, los 365 días del año, para que tu comunidad nunca se quede sin servicio." }
-            ].map((item, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <div key={i} className="group">
-                  <button 
-                    onClick={() => toggleFaq(i)}
-                    className="w-full bg-surface-low p-8 flex justify-between items-center cursor-pointer hover:bg-surface-highest transition-all border-l-2 border-transparent hover:border-signal-orange text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="font-headline font-bold uppercase text-sm tracking-widest">{item.q}</span>
-                    <Plus className={`text-signal-orange transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
-                  </button>
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <div className="p-8 bg-surface-highest/50 border-t border-outline-variant/10 text-sm text-on-surface-variant leading-relaxed font-light">
-                      {item.a}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="lg:col-span-8">
+            <FaqAccordion items={QUICK_FAQ_ITEMS} />
           </div>
         </div>
       </section>

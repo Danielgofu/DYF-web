@@ -12,7 +12,8 @@ export const NeuralNetworkBackground: React.FC<{ opacity?: number }> = ({ opacit
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = canvas?.parentElement;
+    if (!canvas || !container) return;
 
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
@@ -21,14 +22,21 @@ export const NeuralNetworkBackground: React.FC<{ opacity?: number }> = ({ opacit
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId: number | null = null;
     let particles: Particle[] = [];
     const particleCount = 60;
     const connectionDistance = 150;
 
+    // El canvas se dibuja al tamaño de su contenedor real (la sección que lo
+    // envuelve), no al de la ventana: antes se usaba window.innerWidth/innerHeight,
+    // así que en secciones más cortas que la ventana (p. ej. la cabecera de
+    // Contacto o Servicios) el navegador rasterizaba un lienzo mucho más grande
+    // de lo que se llega a ver, y además lo mostraba deformado/escalado dentro
+    // de una caja CSS más pequeña.
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const { width, height } = container.getBoundingClientRect();
+      canvas.width = width;
+      canvas.height = height;
       init();
     };
 
@@ -77,13 +85,36 @@ export const NeuralNetworkBackground: React.FC<{ opacity?: number }> = ({ opacit
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    window.addEventListener('resize', resize);
+    const stop = () => {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    const start = () => {
+      if (animationFrameId === null) {
+        draw();
+      }
+    };
+
+    // Pausa el bucle de animación (60 partículas => hasta ~1770 cálculos de
+    // distancia por frame) en cuanto el canvas sale del viewport, en vez de
+    // seguir ejecutándolo para siempre en segundo plano al hacer scroll.
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(canvas);
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
     resize();
-    draw();
 
     return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      stop();
     };
   }, [opacity]);
 

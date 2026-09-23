@@ -1,20 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
-import { 
-  Antenna, 
-  Smartphone, 
-  Video, 
-  Network, 
-  ArrowRight, 
-  MapPin, 
+import {
+  Antenna,
+  Smartphone,
+  Video,
+  Network,
+  ArrowRight,
+  MapPin,
   Mail,
   BarChart3,
   Shield,
   MousePointerClick,
   Instagram,
   Facebook,
-  Plus,
   FileCheck,
   Award,
   ShieldCheck,
@@ -22,6 +21,7 @@ import {
 } from "lucide-react";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
+import { FaqAccordion, FaqItem } from "../FaqAccordion";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
@@ -45,41 +45,37 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
   );
 };
 
+// Datos estáticos: viven fuera del componente para no recrearse en cada render.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    q: "¿Qué tipo de servicios ofrece DYF Telecomunicaciones?",
+    a: "Nos especializamos en telecomunicaciones (antenas TDT y satélite), instalación y reparación de porteros y videoporteros automáticos, mantenimiento eléctrico integral para comunidades y sistemas de seguridad, alarmas y CCTV."
+  },
+  {
+    q: "¿Ofrecen cobertura en toda la Comunidad de Madrid?",
+    a: "Sí, contamos con unidades móviles que prestan servicio en Madrid capital y en todos los municipios de la Comunidad de Madrid, con sede operativa en Getafe."
+  },
+  {
+    q: "¿Cómo funciona el servicio de mantenimiento para comunidades de propietarios?",
+    a: "Ofrecemos contratos personalizados que incluyen revisiones preventivas periódicas, atención prioritaria en averías, precios cerrados en mano de obra y servicio de guardia para urgencias técnicas."
+  },
+  {
+    q: "¿Cuánto se tarda en recibir un presupuesto o una visita técnica?",
+    a: "Atendemos las solicitudes en menos de 24 horas laborables. Para averías urgentes en comunidades con contrato activo, la intervención se realiza con carácter prioritario."
+  },
+  {
+    q: "¿Están homologados para emitir boletines oficiales y certificaciones?",
+    a: "Sí, somos empresa instaladora de telecomunicaciones homologada y certificada para la emisión de documentación técnica oficial según la normativa vigente."
+  }
+];
+
 export const Inicio: React.FC = () => {
   const navigate = useNavigate();
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   usePageMeta(
     "DYF Telecomunicaciones | Infraestructuras Críticas y Telecomunicaciones en Madrid",
     "Líderes en instalación y mantenimiento de antenas colectivas, videoporteros, seguridad CCTV, redes y electricidad en Getafe y toda la Comunidad de Madrid."
   );
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const faqItems = [
-    {
-      q: "¿Qué tipo de servicios ofrece DYF Telecomunicaciones?",
-      a: "Nos especializamos en telecomunicaciones (antenas TDT y satélite), instalación y reparación de porteros y videoporteros automáticos, mantenimiento eléctrico integral para comunidades y sistemas de seguridad, alarmas y CCTV."
-    },
-    {
-      q: "¿Ofrecen cobertura en toda la Comunidad de Madrid?",
-      a: "Sí, contamos con unidades móviles que prestan servicio en Madrid capital y en todos los municipios de la Comunidad de Madrid, con sede operativa en Getafe."
-    },
-    {
-      q: "¿Cómo funciona el servicio de mantenimiento para comunidades de propietarios?",
-      a: "Ofrecemos contratos personalizados que incluyen revisiones preventivas periódicas, atención prioritaria en averías, precios cerrados en mano de obra y servicio de guardia para urgencias técnicas."
-    },
-    {
-      q: "¿Cuánto se tarda en recibir un presupuesto o una visita técnica?",
-      a: "Atendemos las solicitudes en menos de 24 horas laborables. Para averías urgentes en comunidades con contrato activo, la intervención se realiza con carácter prioritario."
-    },
-    {
-      q: "¿Están homologados para emitir boletines oficiales y certificaciones?",
-      a: "Sí, somos empresa instaladora de telecomunicaciones homologada y certificada para la emisión de documentación técnica oficial según la normativa vigente."
-    }
-  ];
 
   return (
     <>
@@ -444,29 +440,8 @@ export const Inicio: React.FC = () => {
             <p className="text-on-surface-variant font-light text-[10px] uppercase tracking-[0.3em] text-left">Respuestas claras a las consultas más habituales sobre nuestros servicios e intervenciones.</p>
             <div className="h-1 w-20 bg-signal-orange mt-8 self-start"></div>
           </div>
-          <div className="lg:col-span-8 space-y-4">
-            {faqItems.map((item, i) => {
-              const isFaqOpen = openFaq === i;
-              return (
-                <div key={i} className="group">
-                  <button 
-                    onClick={() => toggleFaq(i)}
-                    className="w-full bg-surface-low p-8 flex justify-between items-center cursor-pointer hover:bg-surface-highest transition-all border-l-2 border-transparent hover:border-signal-orange text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
-                    aria-expanded={isFaqOpen}
-                  >
-                    <span className="font-headline font-bold uppercase text-sm tracking-widest leading-relaxed pr-8">{item.q}</span>
-                    <Plus className={`text-signal-orange shrink-0 transition-transform duration-300 ${isFaqOpen ? 'rotate-45' : ''}`} />
-                  </button>
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ${isFaqOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <div className="p-8 bg-surface-highest/50 border-t border-outline-variant/10 text-sm text-on-surface-variant leading-relaxed font-light">
-                      {item.a}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="lg:col-span-8">
+            <FaqAccordion items={FAQ_ITEMS} />
           </div>
         </div>
       </section>

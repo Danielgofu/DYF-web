@@ -10,8 +10,13 @@ import { Navigation } from "./components/layout/Navigation";
 import { Footer } from "./components/layout/Footer";
 import { OfflineView } from "./components/pages/OfflineView";
 import { LoadingScreen } from "./components/layout/LoadingScreen";
+// Inicio ("/") se importa de forma estática (no lazy): es la ruta de entrada que
+// visita la inmensa mayoría de usuarios en su primera carga, así que su chunk
+// se necesita de inmediato de todos modos. Envolverla en React.lazy solo añade
+// un salto de red extra (esperar el bundle principal -> pedir Inicio-*.js ->
+// recién entonces poder pintar) antes del primer contenido visible.
+import { Inicio } from "./components/pages/Inicio";
 
-const Inicio = lazy(() => import("./components/pages/Inicio").then((m) => ({ default: m.Inicio })));
 const Equipo = lazy(() => import("./components/pages/Equipo").then((m) => ({ default: m.Equipo })));
 const Servicios = lazy(() => import("./components/pages/Servicios").then((m) => ({ default: m.Servicios })));
 const Contacto = lazy(() => import("./components/pages/Contacto").then((m) => ({ default: m.Contacto })));
