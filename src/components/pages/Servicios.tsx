@@ -55,10 +55,9 @@ export const Servicios: React.FC = () => {
           <div className="lg:w-1/2 relative group">
             <div className="aspect-video bg-surface-highest overflow-hidden border border-outline-variant/10">
               <img 
-                className="w-full h-full object-cover grayscale brightness-50" 
-                alt="Torres de ingeniería" 
-                src="https://picsum.photos/seed/telecom-towers/1200/800"
-                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover grayscale brightness-50"
+                alt="Torre de telecomunicaciones en campo abierto"
+                src="/images/servicios-torre.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
               <div className="absolute bottom-6 right-6 p-6 bg-surface-low border border-outline-variant/20 max-w-xs">
@@ -79,11 +78,10 @@ export const Servicios: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden">
               <img 
                 className="w-full h-full object-cover grayscale contrast-125"
-                alt="Antena Parabólica"
-                src="https://picsum.photos/seed/satellite/800/800"
+                alt="Antenas parabólicas colectivas instaladas en un tejado"
+                src="/images/servicios-parabolicas.webp"
                 loading="lazy"
                 decoding="async"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div className="absolute top-0 right-0 p-6 bg-signal-orange translate-x-1/4 -translate-y-1/4 hidden md:block">
@@ -199,12 +197,11 @@ export const Servicios: React.FC = () => {
           </div>
           <div className="bg-surface-highest aspect-video overflow-hidden border border-outline-variant/10 relative group">
             <img 
-              src="https://picsum.photos/seed/electrical/1200/800"
-              alt="Electricidad Industrial"
+              src="/images/servicios-cuadro-electrico.webp"
+              alt="Cuadro eléctrico moderno con interruptores diferenciales"
               className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700"
               loading="lazy"
               decoding="async"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 flex items-center justify-center">
                <Zap className="w-16 h-16 text-signal-orange opacity-20 group-hover:opacity-100 transition-all duration-500" />
@@ -246,11 +243,10 @@ export const Servicios: React.FC = () => {
             <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative">
               <img 
                 className="w-full h-full object-cover grayscale brightness-75"
-                alt="Intercom device"
-                src="https://picsum.photos/seed/intercom/600/800"
+                alt="Portero automático instalado en la fachada de un edificio"
+                src="/images/servicios-portero.webp"
                 loading="lazy"
                 decoding="async"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-surface to-transparent">
                 <span className="font-label text-[10px] uppercase tracking-widest text-outline-variant block">Socio de Alianza</span>
@@ -307,11 +303,10 @@ export const Servicios: React.FC = () => {
         <div className="mt-32 aspect-[21/9] bg-surface-highest overflow-hidden relative">
           <img 
             className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
-            alt="Networking cables"
-            src="https://picsum.photos/seed/cables/1800/600"
+            alt="Rack de red con cableado estructurado"
+            src="/images/servicios-cableado.webp"
             loading="lazy"
             decoding="async"
-            referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface opacity-80"></div>
         </div>

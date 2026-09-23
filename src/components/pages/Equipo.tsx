@@ -117,16 +117,14 @@ export const Equipo: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
               {
-                quote: "En Dyf no solo instalamos fibra; diseñamos los sistemas circulatorios de la era digital. Cada proyecto es un desafío de ingeniería que abordamos con precisión absoluta.",
-                name: "Alba García",
-                role: "Ingeniera de Telecomunicaciones",
-                img: "https://picsum.photos/seed/alba/200/200"
+                quote: "Llevo muchos años en esto y lo que más me importa es dejar el trabajo bien hecho: un cuadro eléctrico limpio, sin cables sueltos ni chapuzas. Si algo no queda como debe, no nos vamos hasta arreglarlo.",
+                name: "Daniel",
+                role: "Jefe de Electricidad"
               },
               {
-                quote: "La cultura aquí se basa en la excelencia. Ser parte de la infraestructura crítica del país requiere una responsabilidad que solo un equipo de élite puede gestionar.",
-                name: "Carlos Ruiz",
-                role: "Director de Operaciones",
-                img: "https://picsum.photos/seed/carlos/200/200"
+                quote: "Cada día hablo con presidentes de comunidades y vecinos que necesitan una solución ya. Lo que más valoro es poder decirles que el técnico está de camino y que, en DYF, cumplimos lo que prometemos.",
+                name: "Ana",
+                role: "Administración"
               }
             ].map((testimonial, i) => (
               <div key={i} className="bg-surface-low p-12 relative border border-outline-variant/10 group">

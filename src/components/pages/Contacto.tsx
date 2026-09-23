@@ -151,10 +151,9 @@ export const Contacto: React.FC = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="aspect-square bg-surface-highest overflow-hidden relative border border-outline-variant/10">
               <img 
-                className="w-full h-full object-cover mix-blend-multiply grayscale brightness-50" 
-                alt="Sala de servidores de alta tecnología" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHSkBBUaqmgQKAlLJaDf_AGwyG_AtxjNMerGDtr3H4QPzlmCe_PWK9_wnUlOAl1z20kGWZnMSgFfmj02XxbzKUEEKTHWhafQMZ4sUColxrCGUf_7Uu2Wput7Ihyrvy6XsIJ_rDPcGl_pflS_pk_rhrpYqAQPfhD2ZQMWYFcAtPCjR1MFxBEMGOoSLWm_Mtc5izEAXcp7gPi_h8LDqyFPTXjAgO_8Mv5oGKD_M0VtDu77WM8xh99YXKsPpnRNnuA6fYG55u_VEYHitK"
-                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover mix-blend-multiply grayscale brightness-50"
+                alt="Sala de servidores con rack de red y cableado"
+                src="/images/contacto-sala-servidores.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
               <div className="absolute bottom-8 left-8 flex items-center gap-4">

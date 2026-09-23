@@ -111,10 +111,9 @@ export const Mantenimiento: React.FC = () => {
           <div className="md:col-span-5 relative hidden md:block">
             <div className="absolute inset-0 bg-surface-highest opacity-5"></div>
             <img 
-              className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20" 
-              alt="Industrial panel" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGLZ_94NBbWWvq8WY8WhsClS8w8kbpESF-UQkoM7wjO_vWKfIaWefaOZmilTny-CmkQho2Aa5ZdGfD_Ljx8zn4h3Jg6bqv7z_h1DCYcVVgjYeyPtXrwZZ3NJahb-vdM5fZnfVpvi59fvyHP6SG8oLNAhDD-OKTuMum_e4414wlUnNgaWLP8st4wyNACTm4ptHjV5CPcUT0uVWS9X9n3jUnRFBUxqc6MyurU4fZ5uKNdoDitysAsXIO52IJ7TToHPU8crn3DspOBlHl"
-              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20"
+              alt="Cuadro eléctrico industrial con cableado"
+              src="/images/mantenimiento-cuadro.webp"
             />
             <div className="absolute bottom-10 right-10 bg-signal-orange text-surface p-6 font-headline font-black text-4xl uppercase leading-none shadow-2xl">
               24/7<br /><span className="text-sm font-bold tracking-widest">Disponible</span>
@@ -129,11 +128,10 @@ export const Mantenimiento: React.FC = () => {
           <div className="relative group">
             <img 
               className="w-full aspect-[4/5] object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-75"
-              alt="Modern building facade"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzS2x156bdLZK4HucWboMLO6h7D7yN-0MlTpWcKkjPfIdA7-536Y6YmsOlvyqRm4hjIWxwWUGn3LKX1szNHnS0GjHWtERVjRUG11CELtB8YOhMfA01E5JXFB5iTYnJQJEn3G0Px_PSyOmIp0w4yVDEfIxlzD3Jb87lAI8SxUPKQn4vSh0tO7vdJqJ-EvS25s7POOlpP-KizHcTgBN6Y8OPu2NIKqbIsfqpfbyfAg0QB4ixlrwB0X8IrryOZz9Z-kzN3LDBiTRaIPvs"
+              alt="Fachada de un edificio de viviendas"
+              src="/images/mantenimiento-fachada.webp"
               loading="lazy"
               decoding="async"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-[20px] border-surface/50 pointer-events-none"></div>
           </div>
@@ -215,11 +213,10 @@ export const Mantenimiento: React.FC = () => {
         <div className="absolute inset-x-0 top-0 h-full z-0 opacity-20 grayscale-100">
           <img 
             className="w-full h-full object-cover contrast-150"
-            alt="Technical blueprints"
+            alt="Técnico revisando planos técnicos en pantalla"
             loading="lazy"
             decoding="async"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU96wSZ7fhx-Jt3uHuJgqxrcIvRnYnN9jZd2IZNpIMB7oUTJoFQo4O4QfSmVEf1yFxSP4JbeYkSGOJcqeILsAM7iwKMXnsFqeMoa09Qa7TuYlsioYtXGpsBgjzF3BLp2l6cS6w_Ot35R6VvZjuKS4HBbXZf6j-k6LvPv5MGsItlUBbCg64FzJ-2CwaAGdkoIgIKK1n3yCMZxrTu5MEI8f0uigKcf0LzSaEZnv10rZhasiM_g6dC4p8cAv9O_6JCv_ReGGU1CgzJ6Pd"
-            referrerPolicy="no-referrer"
+            src="/images/mantenimiento-tecnico.webp"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface opacity-90"></div>
         </div>

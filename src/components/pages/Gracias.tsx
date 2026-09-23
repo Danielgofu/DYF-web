@@ -126,10 +126,9 @@ export const Gracias: React.FC = () => {
 
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-10">
         <img 
-          alt="Industrial hardware" 
-          className="w-full h-full object-cover grayscale" 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8Yfd4juu0zJIZtN6QxW0o8v-NKLbUgakXQyVd1T7cHLEiEjauaetAjBuJyghJviD_JJIcy7LBlbIG7Pb3WMpHtH4nzjSLHulXB-IcjyjJcJqvtMQIZkGxPIbRh8HRgIl1tMktZWsHyklfBlpbw9NdDTU2sH3tAAe37Ne-YN3jWJO6UaBDIhubldIz51Z95A8FiLv_qW4taOxPUX039YKisIXK5Sh-Tcmk8sTdpJAtpp-l4dH0kjsj8BzuRmj7DY_mft8p6qOz74i"
-          referrerPolicy="no-referrer"
+          alt="Fibra óptica sobre un plano técnico"
+          className="w-full h-full object-cover grayscale"
+          src="/images/gracias-fibra.webp"
         />
       </div>
     </motion.div>

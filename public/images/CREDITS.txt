@@ -1,0 +1,56 @@
+Créditos de imágenes (public/images/)
+======================================
+
+Las siguientes fotografías proceden de Wikimedia Commons y tienen licencia
+Creative Commons que EXIGE ATRIBUCIÓN VISIBLE (CC BY / CC BY-SA). Legalmente
+hay que mostrar autor + licencia en algún lugar accesible de la web (por
+ejemplo un enlace "Créditos" en el footer, o una página /creditos).
+Las imágenes no listadas aquí (hero-antena-tejado.webp y las generadas
+previamente para Contacto/Mantenimiento/Gracias/Política de Privacidad) no
+requieren atribución (dominio público o no proceden de Commons).
+
+videoportero.webp
+  Original: "Campanelli citofoni 1.jpg"
+  Autor: no especificado en la página de origen
+  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
+  Fuente: https://commons.wikimedia.org/wiki/File:Campanelli_citofoni_1.jpg
+
+servicios-torre.webp
+  Original: "2024 BTS w Szalejowie Górnym (1).jpg"
+  Autor: Jacek Halicki
+  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
+  Fuente: https://commons.wikimedia.org/wiki/File:2024_BTS_w_Szalejowie_G%C3%B3rnym_(1).jpg
+
+servicios-parabolicas.webp
+  Original: "Satellite dishes (3168212588).jpg"
+  Autor: Paul Keller
+  Licencia: CC BY 2.0 — https://creativecommons.org/licenses/by/2.0
+  Fuente: https://commons.wikimedia.org/wiki/File:Satellite_dishes_(3168212588).jpg
+
+servicios-cuadro-electrico.webp
+  Original: "ModernConsumerUnitHager.JPG"
+  Autor: no especificado en la página de origen
+  Licencia: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0
+  Fuente: https://commons.wikimedia.org/wiki/File:ModernConsumerUnitHager.JPG
+
+servicios-portero.webp
+  Original: "Comelit doorbells at De Groenling, Oude Pekela (2019) 01.jpg"
+  Autor: Donald Trung Quoc Don
+  Licencia: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0
+  Fuente: https://commons.wikimedia.org/wiki/File:Comelit_doorbells_at_De_Groenling,_Oude_Pekela_(2019)_01.jpg
+
+servicios-cableado.webp
+  Original: "Computer rack with switches and cables.jpg"
+  Autor: Yann
+  Licencia: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0
+  Fuente: https://commons.wikimedia.org/wiki/File:Computer_rack_with_switches_and_cables.jpg
+
+hero-antena-tejado.webp
+  Original: "Base transceiver station on the top of a skyscraper in Tomaszów Mazowiecki, Poland.jpg"
+  Licencia: Dominio público — sin atribución obligatoria
+  Fuente: https://commons.wikimedia.org/wiki/File:Base_transceiver_station_on_the_top_of_a_skyscraper_in_Tomasz%C3%B3w_Mazowiecki,_Poland.jpg
+
+Nota: todas las imágenes fueron recortadas/redimensionadas y convertidas a
+WebP para optimizar el rendimiento; la licencia CC BY-SA permite estas
+adaptaciones siempre que se mantenga la atribución y, si se redistribuye
+el archivo modificado por separado, la misma licencia.

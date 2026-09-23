@@ -183,10 +183,11 @@ export const PoliticaPrivacidad: React.FC = () => {
         {/* Visual Anchor: Blueprint Image */}
         <div className="mt-20 relative h-[500px] w-full overflow-hidden border border-outline-variant/10">
           <img 
-            alt="Infrastructure grid" 
-            className="w-full h-full object-cover grayscale contrast-125 brightness-[0.3]" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6LYAlN9TPO-BJCtVs_IXCpkgS83mMRo_QQ6h2e9o_gx9wGp9gHkqWYn_YnaXSO4krEustYtv8Pwbv01j6Mo6yz7X3U1AnWftZ_xCKoJizSNKM5US442jxeNrvsYO-J-kc_hcykjAnzRlgmHQ-W6OFpVjfld4VZQxAafwtW5WBJZLyUwHfcBrufAGiA1jLoLFm1__03wd66MYv6tgVw6Cv7eQeTPJHzswYJQQsItq_PFmoO4fJcHj7D2Q-B3IQfA4-XkMieO9pGm_L"
-            referrerPolicy="no-referrer"
+            alt="Visualización abstracta de una red de datos"
+            className="w-full h-full object-cover grayscale contrast-125 brightness-[0.3]"
+            src="/images/privacidad-grid.webp"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
           <div className="absolute bottom-12 left-12">

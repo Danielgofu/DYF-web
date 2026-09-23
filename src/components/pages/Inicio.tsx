@@ -85,11 +85,10 @@ export const Inicio: React.FC = () => {
       <section className="relative min-h-screen flex items-center px-6 md:px-12 overflow-hidden pt-20">
         <NeuralNetworkBackground opacity={0.3} />
         <div className="absolute inset-0 z-0">
-          <img 
-            alt="Telecom Infrastructure" 
-            className="w-full h-full object-cover grayscale brightness-[0.2] contrast-125" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMlzM9c4iDprBOngXMTJ_CL_BGDxyHaXNu0nSWkQjzRnnVc1jXusoAwnVuyUdDyssSIogZ4hEwthl1HwkSOJlqVO52_3c7QJLyMQ4EKOK4tyBJWi6gCpHS_W8vKJ5cqcdtfITZrDq6Mnqqwbr0pYfmoJ8WvwEsVgvGbjHv7aLfdI3rAQTK9D5ccU3UPw_skoE8qHiF623HzcFvZsiFuj_-vzM9VowgsuGI9CsiVYsNYtj6Fs9nMoV1x0-FTX0rAFHThVkcJL5QQjqj"
-            referrerPolicy="no-referrer"
+          <img
+            alt="Antena de telecomunicaciones instalada en la azotea de un edificio residencial"
+            className="w-full h-full object-cover grayscale brightness-[0.2] contrast-125"
+            src="/images/hero-antena-tejado.webp"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent"></div>
         </div>
@@ -218,13 +217,12 @@ export const Inicio: React.FC = () => {
             aria-label="Ver servicios de porteros automáticos"
             className="md:col-span-8 relative group overflow-hidden bg-surface-low cursor-pointer hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
           >
-            <img 
-              alt="Intercoms"
+            <img
+              alt="Videoportero digital con cámara instalado en la entrada de un edificio"
               className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 group-hover:opacity-20 transition-all duration-700"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4nh4pe-aeZO21Ayl32FvR5r4ojEVOfZRmicbdzReusWxsm8byousb52Yo3b0XLvGjrEmqxE2Xas1AzsOXmYhnLaWojW6pQGyyG5ABseA3jvfuvSXHRORfpr6XOAVcJf28xeBN_lS130TOmlG02aR0y_TKyCo2zGD9cQ-YElVcBVF205hvyXLrzOP_AtXJ48R0IYgHKSfZxqg34NOw5SxzSPH5GGFvsrfpQajgTq28ospKTedvQVyC9X20VfcBLFbI2Ck8IpUOrec"
+              src="/images/videoportero.webp"
               loading="lazy"
               decoding="async"
-              referrerPolicy="no-referrer"
             />
             <div className="relative z-10 p-10 h-full flex flex-col justify-between">
               <Smartphone className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12" />
