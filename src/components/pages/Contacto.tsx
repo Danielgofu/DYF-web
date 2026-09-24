@@ -55,7 +55,7 @@ export const Contacto: React.FC = () => {
                 <div className="p-4 bg-signal-orange text-surface">
                   <Smartphone className="w-8 h-8" />
                 </div>
-                <div className="text-white font-headline text-xl font-bold uppercase tracking-tight">CERTIFICADO<br />ISO 9001</div>
+                <div className="text-white font-headline text-xl font-bold uppercase tracking-tight">EMPRESA<br />HOMOLOGADA</div>
               </div>
             </div>
           </div>

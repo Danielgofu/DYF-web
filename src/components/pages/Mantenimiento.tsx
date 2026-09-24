@@ -59,7 +59,7 @@ export const Mantenimiento: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5 relative hidden md:block">
+          <div className="md:col-span-5 relative hidden md:block md:max-h-[640px] self-center">
             <div className="absolute inset-0 bg-surface-highest opacity-5"></div>
             <img 
               className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20"
