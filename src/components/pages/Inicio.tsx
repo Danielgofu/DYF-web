@@ -175,7 +175,7 @@ export const Inicio: React.FC = () => {
               <span className="font-label text-[10px] text-outline uppercase tracking-widest">Estado Actual</span>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="font-headline font-bold text-white uppercase">Respuesta NOC 24/7</span>
+                <span className="font-headline font-bold text-white uppercase">Respuesta en 24h Laborables</span>
               </div>
             </div>
         </div>
@@ -374,7 +374,7 @@ export const Inicio: React.FC = () => {
             <div className="flex items-center gap-6">
               <div className="flex flex-col">
                 <span className="font-label text-[10px] uppercase tracking-[0.4em] text-signal-orange font-black">Infraestructura Crítica</span>
-                <span className="text-white font-headline font-bold text-2xl uppercase mt-1">Socios Tecnológicos de Confianza</span>
+                <span className="text-white font-headline font-bold text-2xl uppercase mt-1">Trabajamos con las Marcas Líderes del Sector</span>
               </div>
               <div className="flex-grow h-[1px] bg-outline-variant/20 hidden md:block"></div>
             </div>

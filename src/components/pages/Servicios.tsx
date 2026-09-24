@@ -137,7 +137,7 @@ export const Servicios: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio disponible para comunidades, empresas y particulares, asegurando una respuesta técnica inmediata ante cualquier avería crítica.", label: "DISPONIBILIDAD TOTAL", status: "24/7", progress: 95 },
+            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio disponible para comunidades, empresas y particulares, con atención dentro de 24 horas laborables ante cualquier avería.", label: "24H LABORABLES", status: "24H", progress: 95 },
             { title: "Contratos Preventivos", icon: <ClipboardList />, desc: "Revisiones periódicas para evitar averías costosas y garantizar el funcionamiento al 100% de todos los servicios.", label: "EFICIENCIA OPERATIVA", status: "ÓPTIMO", progress: 88 },
             { title: "Ahorro Energético", icon: <BarChart3 />, desc: "Asesoramiento para reducir la factura eléctrica comunitaria mediante temporizadores y sistemas LED eficientes.", label: "REDUCCIÓN COSTES", status: "HASTA 60%", progress: 60 }
           ].map((card, i) => (
@@ -241,7 +241,7 @@ export const Servicios: React.FC = () => {
             <div className="aspect-[4/5] bg-surface-highest overflow-hidden border border-outline-variant/10 relative flex items-center justify-center">
               <VideoIntercomGraphic className="h-[85%] w-auto text-signal-orange opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-surface to-transparent">
-                <span className="font-label text-[10px] uppercase tracking-widest text-outline block">Socio de Alianza</span>
+                <span className="font-label text-[10px] uppercase tracking-widest text-outline block">Distribuidor Oficial</span>
                 <p className="font-headline text-sm font-bold text-white uppercase mt-1">GOLMAR SYSTEMS</p>
               </div>
             </div>

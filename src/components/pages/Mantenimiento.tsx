@@ -67,7 +67,7 @@ export const Mantenimiento: React.FC = () => {
               src="/images/mantenimiento-cuadro.webp"
             />
             <div className="absolute bottom-10 right-10 bg-signal-orange text-surface p-6 font-headline font-black text-4xl uppercase leading-none shadow-2xl">
-              24/7<br /><span className="text-sm font-bold tracking-widest">Disponible</span>
+              24h<br /><span className="text-sm font-bold tracking-widest">Laborables</span>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export const Mantenimiento: React.FC = () => {
           <div className="flex flex-col justify-center">
             <div className="mb-4 inline-flex items-center gap-2 text-signal-orange">
               <Building2 className="w-5 h-5" />
-              <span className="font-label text-[10px] uppercase tracking-widest font-bold">Partner Oficial</span>
+              <span className="font-label text-[10px] uppercase tracking-widest font-bold">Atención Especializada</span>
             </div>
             <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-tight">
               Expertise en <br />Comunidades de Vecinos
@@ -124,7 +124,7 @@ export const Mantenimiento: React.FC = () => {
               <p className="text-on-surface-variant font-light uppercase text-[10px] sm:text-xs tracking-[0.3em]">Portfolio de Soluciones Técnicas e Infraestructura</p>
             </div>
             <div className="font-label text-signal-orange text-sm font-bold border-b-2 border-signal-orange pb-2 uppercase tracking-widest">
-              TODOS LOS SERVICIOS CUBIERTOS 24/7
+              TODOS LOS SERVICIOS, RESPUESTA EN 24H LABORABLES
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-outline-variant/10 divide-y sm:divide-y-0 sm:divide-x divide-outline-variant/10">
@@ -132,7 +132,7 @@ export const Mantenimiento: React.FC = () => {
               { icon: <Antenna />, title: "Antenas", desc: "Sistemas individuales y colectivos (TDT/SAT). Optimización de señal y cableado estructurado.", features: ["Sintonización Digital", "Filtros 5G/6G"] },
               { icon: <Video />, title: "Porteros", desc: "Video porteros inteligentes y sistemas de control de acceso. Reparación de placas y telefonillos.", features: ["Control Móvil", "Visión Nocturna"] },
               { icon: <Zap />, title: "Electricidad", desc: "Mantenimiento preventivo de cuadros eléctricos, iluminación LED y eficiencia energética.", features: ["Boletines", "Cuadros IGA"] },
-              { icon: <Siren />, title: "Urgencias", desc: "Respuesta inmediata para averías críticas para particulares, empresas y comunidades. Técnicos de guardia los 365 días del año.", features: ["Respuesta < 4h", "Protocolo Crítico"], isEmergency: true }
+              { icon: <Siren />, title: "Urgencias", desc: "Atención para averías críticas de particulares, empresas y comunidades, en un plazo de 24 horas laborables.", features: ["24h Laborables", "Atención Prioritaria"], isEmergency: true }
             ].map((card, i) => (
               <div key={i} className={`p-10 group transition-all duration-500 ${card.isEmergency ? 'bg-signal-orange' : 'bg-surface-low hover:bg-surface-highest'}`}>
                 <div className={`mb-8 block transition-transform group-hover:scale-110 ${card.isEmergency ? 'text-surface' : 'text-signal-orange'}`}>

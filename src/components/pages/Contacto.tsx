@@ -139,7 +139,7 @@ export const Contacto: React.FC = () => {
               <div className="space-y-6">
                 {[
                   { label: "Tiempo de Respuesta", text: "Todas las consultas son procesadas por un supervisor técnico en menos de 24 horas hábiles." },
-                  { label: "Soporte Técnico", text: "El soporte de emergencia está disponible 24/7 para comunidades, empresas y particulares a través de la línea de guardia técnica." },
+                  { label: "Soporte Técnico", text: "Las consultas de comunidades, empresas y particulares se atienden en un plazo de 24 horas laborables." },
                   { label: "Consultoría", text: "Las revisiones iniciales de arquitectura de proyectos se proporcionan de forma gratuita para empresas industriales." }
                 ].map((protocol, i) => (
                   <div key={i} className="border-b last:border-0 border-outline-variant/20 pb-4 last:pb-0">
