@@ -152,7 +152,7 @@ export const Navigation: React.FC = () => {
               to="/contacto"
               className="hidden lg:block text-center bg-signal-orange text-surface px-6 py-2 md:px-8 md:py-3 font-bold uppercase tracking-widest text-[10px] md:text-xs hover:bg-primary-orange transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              Atención Inmediata
+              Contacto Directo
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -211,7 +211,7 @@ export const Navigation: React.FC = () => {
                   to="/contacto"
                   className="block mt-4 bg-signal-orange text-surface px-8 py-5 font-bold uppercase tracking-widest text-sm w-full text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white hover:bg-white hover:text-signal-orange transition-all active:scale-[0.98]"
                 >
-                  Atención Inmediata
+                  Contacto Directo
                 </Link>
               </motion.div>
 

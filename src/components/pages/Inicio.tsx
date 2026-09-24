@@ -59,7 +59,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "¿Cómo funciona el servicio de mantenimiento para comunidades de propietarios?",
-    a: "Ofrecemos contratos personalizados que incluyen revisiones preventivas periódicas, atención prioritaria en averías, precios cerrados en mano de obra y servicio de guardia para urgencias técnicas."
+    a: "Ofrecemos contratos personalizados que incluyen revisiones preventivas periódicas, atención prioritaria en averías, precios cerrados en mano de obra y atención prioritaria en averías técnicas."
   },
   {
     q: "¿Cuánto se tarda en recibir un presupuesto o una visita técnica?",

@@ -137,7 +137,7 @@ export const Servicios: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio disponible para comunidades, empresas y particulares, con atención dentro de 24 horas laborables ante cualquier avería.", label: "24H LABORABLES", status: "24H", progress: 95 },
+            { title: "Atención de Urgencias", icon: <Zap />, desc: "Servicio disponible para comunidades, empresas y particulares, con atención dentro de 24 horas laborables ante cualquier avería.", label: "24H LABORABLES", status: "PRIORITARIA", progress: 95 },
             { title: "Contratos Preventivos", icon: <ClipboardList />, desc: "Revisiones periódicas para evitar averías costosas y garantizar el funcionamiento al 100% de todos los servicios.", label: "EFICIENCIA OPERATIVA", status: "ÓPTIMO", progress: 88 },
             { title: "Ahorro Energético", icon: <BarChart3 />, desc: "Asesoramiento para reducir la factura eléctrica comunitaria mediante temporizadores y sistemas LED eficientes.", label: "REDUCCIÓN COSTES", status: "HASTA 60%", progress: 60 }
           ].map((card, i) => (

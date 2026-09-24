@@ -19,7 +19,7 @@ import { PlanForm } from "../forms/PlanForm";
 const QUICK_FAQ_ITEMS: FaqItem[] = [
   { q: "¿Puedo personalizar los servicios contratados?", a: "Sí, puedes elegir los servicios que realmente necesita tu comunidad y adaptarlos a tus necesidades." },
   { q: "¿Cómo solicito presupuesto?", a: `Puedes solicitar presupuesto a través del formulario de contacto o llamando al ${CONTACT.phonePrimary}.` },
-  { q: "¿En cuánto tiempo atendéis un aviso?", a: "Atendemos avisos en 24 horas laborables, los 365 días del año, para que tu comunidad nunca se quede sin servicio." }
+  { q: "¿En cuánto tiempo atendéis un aviso?", a: "Atendemos avisos en 24 horas laborables, para que tu comunidad nunca se quede sin servicio." }
 ];
 
 export const Mantenimiento: React.FC = () => {
@@ -48,7 +48,7 @@ export const Mantenimiento: React.FC = () => {
             </h1>
             <p className="max-w-xl text-lg font-light text-on-surface-variant mb-12 border-l-2 border-outline-variant/30 pl-8">
               Ingeniería de precisión para antenas, porteros automáticos e infraestructura eléctrica. 
-              Garantizamos una <span className="text-white font-bold">Respuesta de Emergencia 24h</span> para sistemas urbanos de misión crítica.
+              Ofrecemos atención prioritaria para sistemas urbanos de misión crítica, dentro de nuestro plazo estándar de 24 horas laborables.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
