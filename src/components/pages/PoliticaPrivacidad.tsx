@@ -144,15 +144,15 @@ export const PoliticaPrivacidad: React.FC = () => {
             <p className="text-on-surface-variant mb-10 font-light text-lg">No cedemos sus datos a terceros salvo obligación legal. Para prestar el servicio intervienen los siguientes proveedores:</p>
             <ul className="space-y-6">
               {[
-                { name: "FormSubmit (formsubmit.co), en Estados Unidos.", desc: "Es el servicio que recibe el formulario y lo reenvía a nuestro correo. [Identificar la entidad titular y sus condiciones.] Implica una transferencia internacional de datos (ver punto 5)." },
+                { name: "FormSubmit (formsubmit.co), en Estados Unidos.", desc: "Es el servicio que recibe el formulario y lo reenvía a nuestro correo. Implica una transferencia internacional de datos (ver punto 5)." },
                 { name: "Google Ireland Ltd. / Google LLC, por Google Maps.", desc: "La web incluye un mapa de Google Maps para mostrar nuestra ubicación (solo se carga si usted lo activa). Al cargarse, Google recibe al menos su dirección IP y puede instalar sus propias cookies. Google actúa como responsable independiente según su política de privacidad (policies.google.com/privacy). Google LLC está adherida al Marco de Privacidad de Datos UE-EE.UU." },
                 { name: "Nominalia, en España.", desc: "Aloja la web y los registros del servidor, como encargado del tratamiento." },
-                { name: "[Proveedor del buzón de correo al que llegan los formularios].", desc: "Pendiente hasta que decidáis el email de destino. Si es Google Workspace, Microsoft 365 u otro servicio, añadirlo aquí y revisar si hay transferencia internacional." }
+                { name: "", desc: "El correo de los formularios se recibe en una cuenta de correo de DYF Telecomunicaciones y Servicios, S.L." }
               ].map((item) => (
-                <li key={item.name} className="flex items-start gap-4">
+                <li key={item.desc} className="flex items-start gap-4">
                   <span className="text-signal-orange font-black mt-0.5" aria-hidden="true">/</span>
                   <span className="text-on-surface-variant text-sm font-light leading-relaxed">
-                    <span className="text-white font-medium">{item.name}</span> {item.desc}
+                    {item.name && <><span className="text-white font-medium">{item.name}</span> </>}{item.desc}
                   </span>
                 </li>
               ))}
@@ -163,7 +163,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           <section className="md:col-span-5 bg-surface-container-highest p-8 md:p-12 border border-outline-variant/10">
             <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-signal-orange mb-8">05. Transferencias internacionales</h2>
             <div className="space-y-6 text-on-surface-variant leading-relaxed font-light text-sm">
-              <p>Los datos de los formularios pasan por los servidores de FormSubmit en Estados Unidos. [El revisor debe confirmar la garantía aplicable. Si FormSubmit no está adherido al Marco de Privacidad de Datos UE-EE.UU. ni ofrece cláusulas contractuales tipo, la base disponible sería el art. 49.1.b del RGPD (transferencia necesaria para medidas precontractuales pedidas por el interesado), informando expresamente de la ausencia de garantías adecuadas. También se puede valorar cambiar a un proveedor de formularios con servidores en la UE.]</p>
+              <p>Los datos de los formularios pasan por los servidores de FormSubmit en Estados Unidos. No se ha podido confirmar que FormSubmit esté adherido al Marco de Privacidad de Datos UE-EE. UU. ni que ofrezca cláusulas contractuales tipo. Por ello, esta transferencia se realiza al amparo del artículo 49.1.b del RGPD, al ser necesaria para atender la solicitud realizada voluntariamente por el propio interesado a través del formulario, informándole expresamente de que no existe garantía adecuada confirmada respecto a dicho destinatario.</p>
               <p>En el caso de Google, la transferencia se ampara en el Marco de Privacidad de Datos UE-EE.UU.</p>
             </div>
           </section>
@@ -175,8 +175,7 @@ export const PoliticaPrivacidad: React.FC = () => {
               {[
                 { label: "Consultas sin relación comercial", value: "El tiempo necesario para responder y, como máximo, 12 meses desde la última comunicación. Después se suprimen." },
                 { label: "Presupuestos y contratos", value: "Mientras dure la relación y, después, durante los plazos legales de prescripción. Son 5 años para acciones personales (art. 1964 del Código Civil) y 6 años para la documentación mercantil y contable (art. 30 del Código de Comercio)." },
-                { label: "Registros del servidor", value: "[Según el proveedor de alojamiento; normalmente entre 30 y 90 días]." },
-                { label: "Copia de FormSubmit", value: "[Confirmar si la guarda y durante cuánto tiempo]." }
+                { label: "Registros del servidor", value: "El tiempo que determine la configuración técnica del proveedor de alojamiento." }
               ].map((item) => (
                 <div key={item.label} className="bg-surface-lowest p-6 border-l-2 border-signal-orange transition-colors hover:bg-surface-highest/20">
                   <div className="font-label text-[10px] uppercase text-outline mb-2 font-bold tracking-widest">{item.label}</div>
@@ -239,7 +238,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           {/* 09. Seguridad / 10. Cambios */}
           <section className="md:col-span-6 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
             <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-signal-orange mb-8">09. Seguridad</h2>
-            <p className="text-on-surface-variant font-light text-lg leading-relaxed">Aplicamos medidas técnicas y organizativas adecuadas. Entre ellas, el cifrado HTTPS de las comunicaciones [cuando se active en el alojamiento definitivo].</p>
+            <p className="text-on-surface-variant font-light text-lg leading-relaxed">Aplicamos medidas técnicas y organizativas adecuadas, entre ellas el cifrado HTTPS de las comunicaciones.</p>
           </section>
 
           <section className="md:col-span-6 bg-surface-container-highest p-8 md:p-12 border border-outline-variant/10">
