@@ -43,7 +43,7 @@ export const Equipo: React.FC = () => {
           <div className="lg:w-1/2 relative">
             <div className="aspect-square bg-surface-highest overflow-hidden border border-outline-variant/10 relative group">
               <img 
-                className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700" 
+                className="w-full h-full object-cover brightness-75" 
                 alt="Equipo de DYF Telecomunicaciones frente a la oficina de Getafe" 
                 src="/Dyf-equipo.webp"
               />

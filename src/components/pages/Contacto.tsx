@@ -46,7 +46,7 @@ export const Contacto: React.FC = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="aspect-square bg-surface-highest overflow-hidden relative border border-outline-variant/10">
               <img 
-                className="w-full h-full object-cover mix-blend-multiply grayscale brightness-50"
+                className="w-full h-full object-cover grayscale brightness-75"
                 alt="Racks de red con paneles de parcheo y cableado estructurado"
                 src="/images/contacto-sala-servidores.webp"
               />

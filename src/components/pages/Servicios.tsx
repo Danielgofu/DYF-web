@@ -50,14 +50,14 @@ export const Servicios: React.FC = () => {
             </p>
           </div>
           <div className="lg:w-1/2 relative group">
-            <div className="aspect-video bg-surface-highest overflow-hidden border border-outline-variant/10">
+            <div className="aspect-[4/3] sm:aspect-video bg-surface-highest overflow-hidden border border-outline-variant/10">
               <img 
                 className="w-full h-full object-cover grayscale brightness-50"
                 alt="Torre de telecomunicaciones en campo abierto"
                 src="/images/servicios-torre.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
-              <div className="absolute bottom-6 right-6 p-6 bg-surface-low border border-outline-variant/20 max-w-xs">
+              <div className="absolute bottom-6 right-6 p-4 sm:p-6 bg-surface-low border border-outline-variant/20 max-w-xs">
                 <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange block mb-2">Estado del Sistema</span>
                 <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                   Infraestructura Crítica: Operativa al 100%. Latencia Reducida: Protocolos de Seguridad Activa.

@@ -231,7 +231,7 @@ export const Inicio: React.FC = () => {
             aria-label="Seguridad CCTV, Alarmas & Redes de Datos: ver servicios"
             className="md:col-span-7 bg-surface-low p-8 md:p-10 flex flex-col justify-between group hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
           >
-            <div className="flex justify-between items-start">
+            <div className="flex justify-between items-center">
               <Video className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110" />
               <span className="font-label text-[10px] bg-signal-orange text-surface px-3 py-1 font-extrabold uppercase tracking-widest transition-all group-hover:bg-white group-hover:text-signal-orange">
                 MONITORIZACIÓN REMOTA VÍA APP
