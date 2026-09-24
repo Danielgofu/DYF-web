@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, AlertCircle } from "lucide-react";
 import { CONTACT } from "../../utils/contact";
+import { PrivacyNotice } from "./PrivacyNotice";
 import { EMAIL_PATTERN, isSubmissionAccepted, isValidPhone } from "../../utils/formsubmit";
 
 const MESSAGE_MAX = 500;
@@ -272,6 +273,8 @@ export const ContactForm: React.FC = () => {
         {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
         <ArrowRight className="group-hover:translate-x-3 transition-transform" />
       </button>
+
+      <PrivacyNotice />
     </form>
   );
 };

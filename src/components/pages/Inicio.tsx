@@ -21,6 +21,7 @@ import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { FaqAccordion, FaqItem } from "../FaqAccordion";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
+import { MapEmbed } from "../MapEmbed";
 
 const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -505,18 +506,7 @@ export const Inicio: React.FC = () => {
           <div className="absolute -bottom-2 right-24 px-3 bg-surface text-[8px] font-mono text-signal-orange uppercase tracking-[0.3em] z-20">Ubicación</div>
 
           <div className="h-[400px] md:h-[600px] bg-surface-lowest relative overflow-hidden border border-outline-variant/5 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-            <div className="absolute inset-0 opacity-100">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.1746381066987!2d-3.7340568999999992!3d40.306140600000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4221d0f89b595d%3A0x38115b4a292ef153!2sDYF%20Telecomunicaciones%20y%20Servicios%20S.L.!5e1!3m2!1ses!2ses!4v1776515835259!5m2!1ses!2ses" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación DYF Telecomunicaciones"
-              ></iframe>
-            </div>
+            <MapEmbed src={CONTACT.mapsEmbed} title="Ubicación DYF Telecomunicaciones" />
             
             {/* Scan Line Overlay */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-signal-orange/5 to-transparent h-[10%] w-full animate-scan z-20 opacity-30"></div>

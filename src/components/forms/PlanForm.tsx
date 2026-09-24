@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertCircle } from "lucide-react";
 import { CONTACT } from "../../utils/contact";
+import { PrivacyNotice } from "./PrivacyNotice";
 import { EMAIL_PATTERN, isSubmissionAccepted, isValidPhone } from "../../utils/formsubmit";
 
 /**
@@ -166,6 +167,8 @@ export const PlanForm: React.FC = () => {
       >
         {isSubmitting ? "Enviando solicitud..." : "Enviar solicitud técnica"}
       </button>
+
+      <PrivacyNotice />
     </form>
   );
 };

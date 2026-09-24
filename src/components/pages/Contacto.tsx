@@ -11,6 +11,7 @@ import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { ContactForm } from "../forms/ContactForm";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
+import { MapEmbed } from "../MapEmbed";
 
 export const Contacto: React.FC = () => {
   usePageMeta(
@@ -153,18 +154,7 @@ export const Contacto: React.FC = () => {
       </section>
 
       <section className="w-full h-[500px] relative overflow-hidden bg-surface-lowest border-y border-outline-variant/10">
-        <div className="absolute inset-0 opacity-100">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.1746381066987!2d-3.7340568999999992!3d40.306140600000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4221d0f89b595d%3A0x38115b4a292ef153!2sDYF%20Telecomunicaciones%20y%20Servicios%20S.L.!5e1!3m2!1ses!2ses!4v1776515835259!5m2!1ses!2ses" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen={true} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Oficinas DYF Telecomunicaciones"
-          ></iframe>
-        </div>
+        <MapEmbed src={CONTACT.mapsEmbed} title="Oficinas DYF Telecomunicaciones" />
         <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-surface to-transparent pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
       </section>
