@@ -59,12 +59,12 @@ export const Mantenimiento: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5 relative hidden md:block md:max-h-[640px] self-center">
+          <div className="md:col-span-5 relative hidden md:block">
             <div className="absolute inset-0 bg-surface-highest opacity-5"></div>
             <img 
               className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20"
               alt="Cuadro eléctrico industrial con cableado"
-              src="/images/mantenimiento-cuadro.webp"
+              src="/images/mantenimiento-cuadro-electrico-v2.webp"
             />
             <div className="absolute bottom-10 right-10 bg-signal-orange text-surface p-6 font-headline font-black text-4xl uppercase leading-none shadow-2xl">
               24h<br /><span className="text-sm font-bold tracking-widest">Laborables</span>

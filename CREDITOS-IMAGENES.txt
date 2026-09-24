@@ -37,10 +37,17 @@ contacto-sala-servidores.webp
   (Sustituye a una foto anterior de la Guardia Nacional Aérea de EE. UU. en la que
   aparecía un militar identificable.)
 
-mantenimiento-cuadro.webp, mantenimiento-fachada.webp, mantenimiento-tecnico.webp,
-gracias-fibra.webp, privacidad-grid.webp
+mantenimiento-fachada.webp, mantenimiento-tecnico.webp, gracias-fibra.webp,
+privacidad-grid.webp
   Imágenes generadas previamente para este proyecto (no proceden de bancos con
   licencia de terceros; sin restricciones de atribución).
+
+mantenimiento-cuadro-electrico-v2.webp
+  Fuente: Pexels — Licencia Pexels (uso libre, sin atribución obligatoria)
+  https://www.pexels.com/photo/blue-electrical-lines-on-distribution-board-3306057/
+  (Sustituye a mantenimiento-cuadro.webp, una foto cuadrada de 512px que se veía
+  pixelada al ampliarse en tablet/escritorio. Esta es vertical, resolución nativa
+  3192x4819, descargada a 1000x1509.)
 
 Portero/videoportero (Inicio.tsx bento "Porteros y Videoporteros Digitales" y
 Servicios.tsx tarjeta "Socio de Alianza — GOLMAR SYSTEMS")
