@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT } from "../../utils/contact";
 
 export const AvisoLegal: React.FC = () => {
-  const navigate = useNavigate();
-
   usePageMeta(
     "Aviso Legal | DYF Telecomunicaciones",
     "Información legal, titularidad del portal y condiciones de uso de DYF Telecomunicaciones y Servicios, S.L."
@@ -20,7 +18,7 @@ export const AvisoLegal: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="pt-20 overflow-x-hidden min-h-screen pb-32"
     >
-      <main className="max-w-[1920px] mx-auto px-6 md:px-12 py-20">
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 py-20">
         {/* Hero / Header Section */}
         <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-l-4 border-signal-orange pl-8">
           <div className="max-w-2xl">
@@ -29,150 +27,157 @@ export const AvisoLegal: React.FC = () => {
               Aviso<br />Legal
             </h1>
           </div>
-          <div className="font-label text-outline-variant text-xs uppercase tracking-widest text-right">
+          <div className="font-label text-outline text-xs uppercase tracking-widest text-right">
             Última actualización<br />
-            <span className="text-on-surface font-bold">Mayo 2026</span>
+            <span className="text-on-surface font-bold">24 de septiembre de 2026</span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Side Navigation */}
-          <aside className="md:col-span-3 hidden md:block">
+          <nav aria-label="Secciones del aviso legal" className="md:col-span-3 hidden md:block">
             <div className="sticky top-32 space-y-4 border-l border-outline-variant/30 pl-6">
               {[
-                { id: "titularidad", label: "01 Titularidad" },
-                { id: "terminos", label: "02 Términos de Uso" },
-                { id: "propiedad", label: "03 Propiedad Intelectual" },
-                { id: "responsabilidad", label: "04 Responsabilidad" },
-                { id: "enlaces", label: "05 Enlaces Externos" },
-                { id: "ley", label: "06 Ley Aplicable" }
+                { id: "titularidad", label: "01 Datos identificativos" },
+                { id: "objeto", label: "02 Objeto" },
+                { id: "terminos", label: "03 Condiciones de uso" },
+                { id: "propiedad", label: "04 Propiedad intelectual" },
+                { id: "responsabilidad", label: "05 Responsabilidad" },
+                { id: "enlaces", label: "06 Enlaces de terceros" },
+                { id: "datos", label: "07 Protección de datos" },
+                { id: "ley", label: "08 Legislación y jurisdicción" }
               ].map((link) => (
-                <a key={link.id} className="block font-label text-[10px] uppercase tracking-widest text-outline-variant hover:text-signal-orange transition-colors" href={`#${link.id}`}>
+                <a key={link.id} className="block font-label text-[10px] uppercase tracking-widest text-outline hover:text-signal-orange transition-colors" href={`#${link.id}`}>
                   {link.label}
                 </a>
               ))}
             </div>
-          </aside>
+          </nav>
 
           {/* Main Legal Content */}
           <div className="md:col-span-9 space-y-32">
-            {/* 1. Ownership (Titularidad) */}
+            {/* 01. Datos identificativos */}
             <section className="scroll-mt-32" id="titularidad">
               <div className="flex items-start gap-6 mb-12">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">01</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Titularidad del Portal</h2>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Datos identificativos</h2>
               </div>
+              <p className="font-label text-[10px] uppercase text-outline tracking-widest font-bold mb-6">Art. 10 de la Ley 34/2002, LSSI-CE</p>
               <div className="bg-surface-highest/20 p-1 bg-gradient-to-br from-signal-orange/20 to-transparent">
                 <div className="bg-surface-lowest p-8 md:p-12 space-y-8 border border-outline-variant/10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12">
                     {[
-                      { label: "Razón Social", value: "DYF Telecomunicaciones y Servicios, S.L." },
-                      { label: "Identificación Fiscal (CIF)", value: "B85223972" },
-                      { label: "Acreditación Oficial", value: "Empresa Homologada - Registro de Instaladores de Telecomunicación de España (Nº 10265) - Miembro de AMIITEL" },
-                      { label: "Sede Central", value: CONTACT.addressFull },
-                      { label: "Infraestructura Digital", value: CONTACT.email },
-                      { label: "Contacto Directo", value: `${CONTACT.phonePrimary} / ${CONTACT.phoneSecondary}` }
-                    ].map((item, i) => (
-                      <div key={i} className="space-y-1">
-                        <p className="font-label text-[10px] uppercase text-outline-variant tracking-widest font-bold">{item.label}</p>
-                        <p className="font-body text-lg font-bold text-white uppercase">{item.value}</p>
+                      { label: "Titular", value: "DYF Telecomunicaciones y Servicios, S.L." },
+                      { label: "CIF", value: "B85223972" },
+                      { label: "Domicilio social", value: "C. Valdemorillo, 20, 28901 Getafe (Madrid)" },
+                      { label: "Datos registrales", value: "Inscrita en el Registro Mercantil de Madrid. (Datos de inscripción en trámite de actualización.)" },
+                      { label: "Correo electrónico", value: CONTACT.email },
+                      { label: "Teléfonos", value: `${CONTACT.phonePrimary} / ${CONTACT.phoneSecondary}` }
+                    ].map((item) => (
+                      <div key={item.label} className="space-y-1">
+                        <p className="font-label text-[10px] uppercase text-outline tracking-widest font-bold">{item.label}</p>
+                        <p className="font-body text-lg font-bold text-white">{item.value}</p>
                       </div>
                     ))}
-                    <div className="space-y-1">
-                      <p className="font-label text-[10px] uppercase text-outline-variant tracking-widest font-bold">Estado Operativo</p>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-signal-orange animate-pulse"></div>
-                        <p className="font-body text-xs font-bold text-signal-orange uppercase">Validado / Activo</p>
-                      </div>
+                    <div className="space-y-1 md:col-span-2">
+                      <p className="font-label text-[10px] uppercase text-outline tracking-widest font-bold">Habilitación profesional</p>
+                      <p className="font-body text-lg font-bold text-white">Empresa inscrita en el Registro de Empresas Instaladoras de Telecomunicación del Ministerio para la Transformación Digital y de la Función Pública (Secretaría de Estado de Telecomunicaciones e Infraestructuras Digitales) con el nº 10265. Miembro de AMIITEL.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* 2. Terms of Use */}
-            <section className="scroll-mt-32" id="terminos">
+            {/* 02. Objeto */}
+            <section className="scroll-mt-32" id="objeto">
               <div className="flex items-start gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">02</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Condiciones de Uso</h2>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Objeto</h2>
               </div>
-              <div className="max-w-none font-body text-on-surface-variant leading-relaxed space-y-6 text-lg font-light">
-                <p>El acceso y uso de este sitio web atribuye la condición de usuario, implicando la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal.</p>
-                <p>El usuario se compromete a hacer un uso adecuado de los contenidos y servicios de conformidad con la Ley, el presente Aviso Legal, las buenas costumbres y el orden público. Dyf Telecomunicaciones se reserva el derecho de retirar todos aquellos comentarios y aportaciones que vulneren el respeto a la dignidad de la persona o que, a su juicio, no resulten adecuados para su publicación.</p>
-              </div>
+              <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
+                Esta web informa sobre los servicios de instalación y mantenimiento de telecomunicaciones de DYF y permite contactar con la empresa. No se contratan servicios ni se hacen pagos a través de ella.
+              </p>
             </section>
 
-            {/* 3. Intellectual Property */}
-            <section className="scroll-mt-32" id="propiedad">
+            {/* 03. Condiciones de uso */}
+            <section className="scroll-mt-32" id="terminos">
               <div className="flex items-start gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">03</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Propiedad Intelectual</h2>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Condiciones de Uso</h2>
+              </div>
+              <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
+                El usuario se compromete a usar la web y sus formularios conforme a la ley y a la buena fe. En particular, se compromete a no enviar información falsa, datos de terceros sin su autorización ni contenidos ilícitos.
+              </p>
+            </section>
+
+            {/* 04. Propiedad intelectual */}
+            <section className="scroll-mt-32" id="propiedad">
+              <div className="flex items-start gap-6 mb-8">
+                <span className="font-headline text-4xl font-black text-signal-orange leading-none">04</span>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Propiedad Intelectual e Industrial</h2>
               </div>
               <div className="bg-surface-low p-8 border-l-2 border-signal-orange/40">
-                <p className="font-body text-on-surface-variant mb-6 italic text-lg font-light leading-relaxed">DyF Telecomunicaciones es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como de los elementos contenidos en la misma.</p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 font-label text-[11px] uppercase tracking-wider text-white font-bold">
-                  {["Código Fuente & Software", "Estructura de Navegación", "Bases de Datos Propias", "Logotipos e Identidad Visual"].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <span className="w-1.5 h-1.5 bg-signal-orange"></span> {item}
-                    </li>
-                  ))}
-                </ul>
+                <p className="font-body text-on-surface-variant text-lg font-light leading-relaxed">Los textos, el diseño, el código, la marca y el logotipo de DYF son titularidad de DYF Telecomunicaciones y Servicios, S.L. o se usan con licencia. Algunas fotografías proceden de bancos de imágenes de dominio público o con licencia CC0 (ver CREDITOS-IMAGENES.txt), que no confieren derechos exclusivos a DYF. Queda prohibida la reproducción de los elementos protegidos sin autorización.</p>
               </div>
             </section>
 
-            {/* 4. Responsibility */}
+            {/* 05. Responsabilidad */}
             <section className="scroll-mt-32" id="responsabilidad">
               <div className="flex items-start gap-6 mb-8">
-                <span className="font-headline text-4xl font-black text-signal-orange leading-none">04</span>
+                <span className="font-headline text-4xl font-black text-signal-orange leading-none">05</span>
                 <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Responsabilidad</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
-                DyF Telecomunicaciones no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.
+                DYF procura que la información de la web sea exacta y esté actualizada. Sin embargo, tiene carácter orientativo: los precios y condiciones definitivos serán los del presupuesto que se entregue por escrito. DYF no responde de interrupciones del servicio por causas técnicas ajenas a ella.
               </p>
             </section>
 
-            {/* 5. External Links */}
+            {/* 06. Enlaces de terceros */}
             <section className="scroll-mt-32" id="enlaces">
               <div className="flex items-start gap-6 mb-8">
-                <span className="font-headline text-4xl font-black text-signal-orange leading-none">05</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Enlaces Externos</h2>
+                <span className="font-headline text-4xl font-black text-signal-orange leading-none">06</span>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Enlaces y Contenidos de Terceros</h2>
               </div>
-              <p className="font-body text-on-surface-variant leading-relaxed text-lg font-light">
-                En el caso de que en este portal se dispusiesen enlaces o hipervínculos hacía otros sitios de Internet, DyF Telecomunicaciones no ejercerá ningún tipo de control sobre dichos sitios y contenidos. En ningún caso DyF Telecomunicaciones asumirá responsabilidad alguna por los contenidos de algún enlace perteneciente a un sitio web ajeno.
+              <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
+                La web incluye enlaces a Facebook e Instagram y un mapa de Google Maps. DYF no controla esos servicios ni responde de su contenido ni de sus políticas, que se rigen por sus propios términos.
               </p>
             </section>
 
-            {/* 6. Modifications & Law */}
+            {/* 07. Protección de datos */}
+            <section className="scroll-mt-32" id="datos">
+              <div className="flex items-start gap-6 mb-8">
+                <span className="font-headline text-4xl font-black text-signal-orange leading-none">07</span>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Protección de Datos</h2>
+              </div>
+              <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
+                Ver la <Link to="/politica-privacidad" className="text-primary-orange underline underline-offset-4 hover:text-white">Política de Privacidad</Link>.
+              </p>
+            </section>
+
+            {/* 08. Legislación y jurisdicción */}
             <section className="scroll-mt-32" id="ley">
               <div className="flex items-start gap-6 mb-8">
-                <span className="font-headline text-4xl font-black text-signal-orange leading-none">06</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Modificaciones y Ley Aplicable</h2>
+                <span className="font-headline text-4xl font-black text-signal-orange leading-none">08</span>
+                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Legislación y Jurisdicción</h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="p-8 bg-surface-highest/20 border-t border-outline-variant/30">
-                  <h3 className="font-headline font-bold uppercase text-white mb-4 tracking-tighter text-xl">Derecho de Modificación</h3>
-                  <p className="font-body text-sm text-on-surface-variant leading-relaxed">DyF Telecomunicaciones se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal.</p>
-                </div>
-                <div className="p-8 bg-surface-highest/20 border-t border-outline-variant/30">
-                  <h3 className="font-headline font-bold uppercase text-white mb-4 tracking-tighter text-xl">Jurisdicción</h3>
-                  <p className="font-body text-sm text-on-surface-variant leading-relaxed">La relación entre el titular y el usuario se regirá por la normativa española vigente. Cualquier controversia se someterá a los Juzgados y tribunales de la ciudad de Madrid.</p>
-                </div>
-              </div>
+              <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
+                Se aplica la legislación española. Para cualquier controversia, las partes se someten a los Juzgados y Tribunales de Getafe. Si el usuario es consumidor, será competente el juzgado de su domicilio, conforme a la normativa de consumidores.
+              </p>
             </section>
 
             {/* Back Action */}
             <div className="pt-12 flex justify-center md:justify-start">
-              <button 
-                onClick={() => navigate("/")}
+              <Link
+                to="/"
                 className="group flex items-center gap-4 bg-signal-orange text-surface font-headline font-bold uppercase tracking-tighter px-10 py-5 transition-all hover:pr-14 relative overflow-hidden active:scale-95 cursor-pointer"
               >
                 <span className="relative z-10 uppercase font-black">Volver al inicio</span>
                 <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </motion.div>
   );
 };
