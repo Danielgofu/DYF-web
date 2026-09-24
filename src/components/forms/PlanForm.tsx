@@ -105,7 +105,7 @@ export const PlanForm: React.FC = () => {
         <label htmlFor="plan_concept" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Concepto (Comunidad / Empresa)</label>
         <input
           id="plan_concept"
-          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
+          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
           placeholder="Ej: Edificio Central Getafe"
           maxLength={150}
@@ -123,7 +123,7 @@ export const PlanForm: React.FC = () => {
         <label htmlFor="plan_service_type" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Tipo de Servicio Requerido</label>
         <select
           id="plan_service_type"
-          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 appearance-none text-white cursor-pointer"
+          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 appearance-none text-white cursor-pointer"
           value={serviceType}
           onChange={(e) => setServiceType(e.target.value)}
         >
@@ -138,9 +138,9 @@ export const PlanForm: React.FC = () => {
         <label htmlFor="plan_contact_info" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Teléfono o Email de Contacto</label>
         <input
           id="plan_contact_info"
-          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-sm py-4 px-4 transition-all text-white"
+          className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
-          placeholder="Ej: 600 000 000 o admin@finca.com"
+          placeholder="Teléfono o email"
           maxLength={254}
           value={contactInfo}
           onChange={(e) => {

@@ -136,126 +136,136 @@ export const ContactForm: React.FC = () => {
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-        <div className="relative group">
-          <input
-            className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
-            id="full_name"
-            maxLength={100}
-            autoComplete="name"
-            placeholder="Nombre Completo"
-            type="text"
-            value={formData.full_name}
-            onChange={handleChange}
-            aria-invalid={!!errors.full_name}
-            aria-describedby={errors.full_name ? "full_name-error" : undefined}
-          />
-          <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="full_name">Nombre Completo</label>
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+        <div>
+          <div className="relative group">
+            <input
+              className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+              id="full_name"
+              maxLength={100}
+              autoComplete="name"
+              placeholder="Nombre Completo"
+              type="text"
+              value={formData.full_name}
+              onChange={handleChange}
+              aria-invalid={!!errors.full_name}
+              aria-describedby={errors.full_name ? "full_name-error" : undefined}
+            />
+            <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="full_name">Nombre Completo</label>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+          </div>
           {errors.full_name && (
-            <p id="full_name-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-300 font-label uppercase tracking-widest flex items-center gap-1">
-              <AlertCircle className="w-3 h-3" /> {errors.full_name}
+            <p id="full_name-error" role="alert" className="mt-2 text-xs text-red-300 font-label uppercase tracking-widest flex items-start gap-1">
+              <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" /> {errors.full_name}
             </p>
           )}
         </div>
-        <div className="relative group">
-          <input
-            className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
-            id="email"
-            maxLength={254}
-            autoComplete="email"
-            placeholder="Correo Electrónico"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "email-error" : undefined}
-          />
-          <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="email">Correo Electrónico</label>
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+        <div>
+          <div className="relative group">
+            <input
+              className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+              id="email"
+              maxLength={254}
+              autoComplete="email"
+              placeholder="Correo Electrónico"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+            />
+            <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="email">Correo Electrónico</label>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+          </div>
           {errors.email && (
-            <p id="email-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-300 font-label uppercase tracking-widest flex items-center gap-1">
-              <AlertCircle className="w-3 h-3" /> {errors.email}
+            <p id="email-error" role="alert" className="mt-2 text-xs text-red-300 font-label uppercase tracking-widest flex items-start gap-1">
+              <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" /> {errors.email}
             </p>
           )}
         </div>
-        <div className="relative group">
-          <input
-            className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
-            id="phone"
-            maxLength={30}
-            autoComplete="tel"
-            placeholder="Número de Teléfono"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
-          />
-          <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="phone">Teléfono (Opcional)</label>
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+        <div>
+          <div className="relative group">
+            <input
+              className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
+              id="phone"
+              maxLength={30}
+              autoComplete="tel"
+              placeholder="Número de Teléfono"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+            />
+            <label className="absolute left-0 top-0 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="phone">Teléfono (Opcional)</label>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+          </div>
           {errors.phone && (
-            <p id="phone-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-300 font-label uppercase tracking-widest flex items-center gap-1">
-              <AlertCircle className="w-3 h-3" /> {errors.phone}
+            <p id="phone-error" role="alert" className="mt-2 text-xs text-red-300 font-label uppercase tracking-widest flex items-start gap-1">
+              <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" /> {errors.phone}
             </p>
           )}
         </div>
-        <div className="relative group">
-          <label className="absolute left-0 -top-4 text-xs font-label uppercase tracking-widest text-primary-orange" htmlFor="reason">Motivo de Consulta</label>
-          <select
-            className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface appearance-none focus:ring-0 cursor-pointer"
-            id="reason"
-            value={formData.reason}
-            onChange={handleChange}
-            aria-invalid={!!errors.reason}
-            aria-describedby={errors.reason ? "reason-error" : undefined}
-          >
-            <option className="bg-surface text-on-surface-variant" value="">Motivo de Consulta</option>
-            <option className="bg-surface text-on-surface" value="comunidad">Mantenimiento Comunidad</option>
-            <option className="bg-surface text-on-surface" value="antenas">Antenas y TV (TDT/SAT)</option>
-            <option className="bg-surface text-on-surface" value="porteros">Porteros y Videoporteros</option>
-            <option className="bg-surface text-on-surface" value="seguridad">Alarmas, CCTV y Seguridad</option>
-            <option className="bg-surface text-on-surface" value="redes">Redes e Informática</option>
-            <option className="bg-surface text-on-surface" value="electricidad">Electricidad e Iluminación LED</option>
-            <option className="bg-surface text-on-surface" value="presupuesto">Solicitud de Presupuesto</option>
-            <option className="bg-surface text-on-surface" value="otros">Otros Asuntos</option>
-          </select>
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
-          <div className="absolute right-0 top-3 pointer-events-none text-signal-orange">
-            <ArrowRight className="w-4 h-4 rotate-90" />
+        <div>
+          <div className="relative group">
+            <label className="absolute left-0 -top-4 text-xs font-label uppercase tracking-widest text-primary-orange" htmlFor="reason">Motivo de Consulta</label>
+            <select
+              className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface appearance-none focus:ring-0 cursor-pointer"
+              id="reason"
+              value={formData.reason}
+              onChange={handleChange}
+              aria-invalid={!!errors.reason}
+              aria-describedby={errors.reason ? "reason-error" : undefined}
+            >
+              <option className="bg-surface text-on-surface-variant" value="">Motivo de Consulta</option>
+              <option className="bg-surface text-on-surface" value="comunidad">Mantenimiento Comunidad</option>
+              <option className="bg-surface text-on-surface" value="antenas">Antenas y TV (TDT/SAT)</option>
+              <option className="bg-surface text-on-surface" value="porteros">Porteros y Videoporteros</option>
+              <option className="bg-surface text-on-surface" value="seguridad">Alarmas, CCTV y Seguridad</option>
+              <option className="bg-surface text-on-surface" value="redes">Redes e Informática</option>
+              <option className="bg-surface text-on-surface" value="electricidad">Electricidad e Iluminación LED</option>
+              <option className="bg-surface text-on-surface" value="presupuesto">Solicitud de Presupuesto</option>
+              <option className="bg-surface text-on-surface" value="otros">Otros Asuntos</option>
+            </select>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+            <div className="absolute right-0 top-3 pointer-events-none text-signal-orange">
+              <ArrowRight className="w-4 h-4 rotate-90" />
+            </div>
           </div>
           {errors.reason && (
-            <p id="reason-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-300 font-label uppercase tracking-widest flex items-center gap-1">
-              <AlertCircle className="w-3 h-3" /> {errors.reason}
+            <p id="reason-error" role="alert" className="mt-2 text-xs text-red-300 font-label uppercase tracking-widest flex items-start gap-1">
+              <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" /> {errors.reason}
             </p>
           )}
         </div>
       </div>
 
-      <div className="relative group pt-4">
-        <textarea
-          className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer resize-none focus:ring-0 min-h-[120px]"
-          id="message"
-          maxLength={MESSAGE_MAX}
-          placeholder="Su Mensaje"
-          rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          aria-invalid={!!errors.message}
-          aria-describedby={errors.message ? "message-error" : undefined}
-        ></textarea>
-        <label className="absolute left-0 top-4 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-7 peer-focus:-top-1 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="message">Detalles de su Consulta</label>
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+      <div>
+        <div className="relative group pt-4">
+          <textarea
+            className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer resize-none focus:ring-0 min-h-[120px]"
+            id="message"
+            maxLength={MESSAGE_MAX}
+            placeholder="Su Mensaje"
+            rows={4}
+            value={formData.message}
+            onChange={handleChange}
+            aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "message-error" : undefined}
+          ></textarea>
+          <label className="absolute left-0 top-4 text-sm font-label uppercase tracking-widest text-on-surface-variant transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-7 peer-focus:-top-1 peer-focus:text-xs peer-focus:text-primary-orange" htmlFor="message">Detalles de su Consulta</label>
+          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
+          <div className="flex justify-between items-center mt-3">
+            <span className="text-xs font-label uppercase tracking-widest text-on-surface-variant">PROTOCOLO SEGURO SSL</span>
+            <span className={`text-xs font-label uppercase tracking-widest transition-colors ${formData.message.length > 450 ? 'text-primary-orange' : 'text-on-surface-variant'}`}>
+              {formData.message.length} / {MESSAGE_MAX}
+            </span>
+          </div>
+        </div>
         {errors.message && (
-          <p id="message-error" role="alert" className="absolute -bottom-6 left-0 text-[10px] text-red-300 font-label uppercase tracking-widest flex items-center gap-1">
-            <AlertCircle className="w-3 h-3" /> {errors.message}
+          <p id="message-error" role="alert" className="mt-2 text-xs text-red-300 font-label uppercase tracking-widest flex items-start gap-1">
+            <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" /> {errors.message}
           </p>
         )}
-        <div className="flex justify-between items-center mt-3">
-          <span className="text-[9px] font-label uppercase tracking-widest text-on-surface-variant">PROTOCOLO SEGURO SSL</span>
-          <span className={`text-[9px] font-label uppercase tracking-widest transition-colors ${formData.message.length > 450 ? 'text-primary-orange' : 'text-on-surface-variant'}`}>
-            {formData.message.length} / {MESSAGE_MAX}
-          </span>
-        </div>
       </div>
 
       {submitError && (

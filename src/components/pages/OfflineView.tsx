@@ -62,7 +62,7 @@ export const OfflineView: React.FC<OfflineViewProps> = ({ onRetry }) => {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-surface-low p-12 industrial-glow relative border-l-4 border-signal-orange backdrop-blur-xl"
+            className="bg-surface-low p-8 sm:p-12 industrial-glow relative border-l-4 border-signal-orange backdrop-blur-xl"
           >
             <div className="flex flex-col items-center text-center">
               <div className="mb-8 relative" aria-hidden="true">

@@ -80,7 +80,7 @@ export const MapEmbed: React.FC<MapEmbedProps> = ({ src, title, className = "abs
       aria-label={`${title}: mapa de Google Maps no cargado`}
       className={`${className} flex items-center justify-center bg-surface-lowest bg-[linear-gradient(rgba(249,99,4,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(249,99,4,0.06)_1px,transparent_1px)] bg-[size:40px_40px]`}
     >
-      <div className="relative z-30 max-w-md px-6 py-8 text-center flex flex-col items-center gap-5">
+      <div className="relative z-30 max-w-md px-4 py-6 sm:px-6 sm:py-8 text-center flex flex-col items-center gap-4 sm:gap-5">
         <MapPin className="w-10 h-10 text-signal-orange" aria-hidden="true" />
         <p className="font-body text-on-surface-variant text-sm leading-relaxed">
           El mapa de ubicación se muestra mediante Google Maps y no se carga hasta que usted lo solicite.

@@ -79,7 +79,7 @@ export const Inicio: React.FC = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center px-6 md:px-12 overflow-hidden pt-20">
+      <section className="relative min-h-svh flex items-center px-6 md:px-12 overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <img
             alt=""
@@ -188,7 +188,7 @@ export const Inicio: React.FC = () => {
           <div className="h-1 w-24 bg-signal-orange"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[400px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[minmax(400px,auto)]">
           {/* Antennas */}
           <Link
             to="/servicios"
@@ -418,7 +418,7 @@ export const Inicio: React.FC = () => {
 
       {/* FAQ Section */}
       <section className="py-32 bg-surface-lowest px-6 md:px-12 border-y border-outline-variant/10">
-        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-x-12 xl:gap-x-24">
           <div className="lg:col-span-4">
             <span className="font-label text-xs uppercase tracking-[0.4em] text-signal-orange font-black mb-6 block text-left">RESOLUCIÓN DE DUDAS</span>
             <h2 className="font-headline text-4xl sm:text-5xl font-black uppercase tracking-tighter mb-6 leading-tight break-words text-left">PREGUNTAS<br />FRECUENTES</h2>
@@ -472,7 +472,7 @@ export const Inicio: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram de DYF Telecomunicaciones (se abre en una pestaña nueva)"
-                className="text-on-surface-variant hover:text-signal-orange transition-all"
+                className="p-3 -m-3 text-on-surface-variant hover:text-signal-orange transition-all"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -481,7 +481,7 @@ export const Inicio: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook de DYF Telecomunicaciones (se abre en una pestaña nueva)"
-                className="text-on-surface-variant hover:text-signal-orange transition-all"
+                className="p-3 -m-3 text-on-surface-variant hover:text-signal-orange transition-all"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -489,7 +489,7 @@ export const Inicio: React.FC = () => {
           </div>
         </div>
         
-        <div className="relative group p-8">
+        <div className="relative group p-4 sm:p-8">
           {/* Advanced Asymmetrical Technical Frame */}
           <div className="absolute top-0 left-0 w-32 h-2 bg-signal-orange z-10 transition-all group-hover:w-48"></div>
           <div className="absolute top-0 left-0 w-2 h-40 border-l-2 border-signal-orange z-10"></div>

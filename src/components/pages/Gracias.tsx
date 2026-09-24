@@ -65,12 +65,12 @@ export const Gracias: React.FC = () => {
         <div className="absolute bottom-10 right-10 text-[10px] font-label uppercase tracking-[0.4em] text-outline font-bold">Lat: 40.3061 / Long: -3.7341</div>
       </div>
 
-      <Link to="/" className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex items-center gap-4 hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange">
+      <Link to="/" aria-label="DYF Telecomunicaciones: ir al inicio" className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex items-center gap-4 hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange">
         <img src="/DyfLogo.webp" alt="" className="h-10 w-auto opacity-70" />
-        <span className="font-headline font-bold text-xl tracking-tighter text-on-surface uppercase font-black">DYF <span className="text-signal-orange">TELECOMUNICACIONES</span></span>
+        <span className="hidden sm:inline font-headline font-bold text-xl tracking-tighter text-on-surface uppercase font-black">DYF <span className="text-signal-orange">TELECOMUNICACIONES</span></span>
       </Link>
 
-      <div className="relative z-10 w-full max-w-2xl bg-surface-highest/60 backdrop-blur-3xl p-12 md:p-20 shadow-2xl border-l-2 border-signal-orange">
+      <div className="relative z-10 w-full max-w-2xl bg-surface-highest/60 backdrop-blur-3xl p-8 sm:p-12 md:p-20 shadow-2xl border-l-2 border-signal-orange">
         <div className="flex flex-col items-start gap-12">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 flex items-center justify-center border border-signal-orange/30 bg-signal-orange/10">
@@ -97,7 +97,7 @@ export const Gracias: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setAutoRedirect(false)}
-                className="font-label text-[10px] uppercase tracking-[0.2em] text-primary-orange font-bold underline underline-offset-4 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
+                className="inline-block py-3 font-label text-xs uppercase tracking-[0.2em] text-primary-orange font-bold underline underline-offset-4 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
               >
                 Quedarme en esta página
               </button>
@@ -116,7 +116,7 @@ export const Gracias: React.FC = () => {
               <span className="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold">Síguenos:</span>
               <div className="flex items-center gap-4">
                 <a
-                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
                   href={SOCIAL_LINKS.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -127,7 +127,7 @@ export const Gracias: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2 cursor-pointer relative focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2.5 cursor-pointer relative focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
                   aria-label={copied ? "Enlace copiado" : "Compartir web"}
                   title="Compartir"
                 >

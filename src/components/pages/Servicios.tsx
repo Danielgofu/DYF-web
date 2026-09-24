@@ -42,7 +42,7 @@ export const Servicios: React.FC = () => {
               <span className="w-12 h-[1px] bg-signal-orange"></span>
               <span className="font-label text-xs uppercase tracking-[0.3em] font-bold">Mantenimiento de Infraestructuras</span>
             </div>
-            <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl font-bold leading-[0.9] text-on-surface mb-8 tracking-tighter uppercase">
+            <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-[0.9] text-on-surface mb-8 tracking-tighter uppercase">
               LA <span className="text-signal-orange italic">POTENCIA</span> DE LA CONECTIVIDAD.
             </h1>
             <p className="font-body text-lg text-on-surface-variant max-w-xl font-light leading-relaxed mb-10">
@@ -288,7 +288,7 @@ export const Servicios: React.FC = () => {
                 {React.cloneElement(item.icon as React.ReactElement<{ className?: string }>, { className: "w-10 h-10" })}
               </div>
               <h3 className="font-headline text-lg font-bold uppercase tracking-tight text-white transition-colors group-hover:text-signal-orange">{item.label}</h3>
-              <p className="text-[10px] text-on-surface-variant font-body uppercase tracking-widest leading-relaxed px-4 transition-opacity group-hover:opacity-100 opacity-60">{item.desc}</p>
+              <p className="text-[10px] text-on-surface-variant font-body uppercase tracking-widest leading-relaxed px-4 transition-opacity opacity-100 md:opacity-60 md:group-hover:opacity-100">{item.desc}</p>
             </div>
           ))}
         </div>

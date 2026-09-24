@@ -58,9 +58,9 @@ export const AvisoLegal: React.FC = () => {
           <div className="md:col-span-9 space-y-32">
             {/* 01. Datos identificativos */}
             <section className="scroll-mt-32" id="titularidad">
-              <div className="flex items-start gap-6 mb-12">
+              <div className="flex items-start gap-4 sm:gap-6 mb-12">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">01</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Datos identificativos</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Datos identificativos</h2>
               </div>
               <p className="font-label text-[10px] uppercase text-outline tracking-widest font-bold mb-6">Art. 10 de la Ley 34/2002, LSSI-CE</p>
               <div className="bg-surface-highest/20 p-1 bg-gradient-to-br from-signal-orange/20 to-transparent">
@@ -90,9 +90,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 02. Objeto */}
             <section className="scroll-mt-32" id="objeto">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">02</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Objeto</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Objeto</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 Esta web informa sobre los servicios de instalación y mantenimiento de telecomunicaciones de DYF y permite contactar con la empresa. No se contratan servicios ni se hacen pagos a través de ella.
@@ -101,9 +101,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 03. Condiciones de uso */}
             <section className="scroll-mt-32" id="terminos">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">03</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Condiciones de Uso</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Condiciones de Uso</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 El usuario se compromete a usar la web y sus formularios conforme a la ley y a la buena fe. En particular, se compromete a no enviar información falsa, datos de terceros sin su autorización ni contenidos ilícitos.
@@ -112,9 +112,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 04. Propiedad intelectual */}
             <section className="scroll-mt-32" id="propiedad">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">04</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Propiedad Intelectual e Industrial</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Propiedad Intelectual e Industrial</h2>
               </div>
               <div className="bg-surface-low p-8 border-l-2 border-signal-orange/40">
                 <p className="font-body text-on-surface-variant text-lg font-light leading-relaxed">Los textos, el diseño, el código, la marca y el logotipo de DYF son titularidad de DYF Telecomunicaciones y Servicios, S.L. o se usan con licencia. Algunas fotografías proceden de bancos de imágenes de dominio público o con licencia CC0 (ver CREDITOS-IMAGENES.txt), que no confieren derechos exclusivos a DYF. Queda prohibida la reproducción de los elementos protegidos sin autorización.</p>
@@ -123,9 +123,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 05. Responsabilidad */}
             <section className="scroll-mt-32" id="responsabilidad">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">05</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Responsabilidad</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Responsabilidad</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 DYF procura que la información de la web sea exacta y esté actualizada. Sin embargo, tiene carácter orientativo: los precios y condiciones definitivos serán los del presupuesto que se entregue por escrito. DYF no responde de interrupciones del servicio por causas técnicas ajenas a ella.
@@ -134,9 +134,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 06. Enlaces de terceros */}
             <section className="scroll-mt-32" id="enlaces">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">06</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Enlaces y Contenidos de Terceros</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Enlaces y Contenidos de Terceros</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 La web incluye enlaces a Facebook e Instagram y un mapa de Google Maps. DYF no controla esos servicios ni responde de su contenido ni de sus políticas, que se rigen por sus propios términos.
@@ -145,9 +145,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 07. Protección de datos */}
             <section className="scroll-mt-32" id="datos">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">07</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Protección de Datos</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Protección de Datos</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 Ver la <Link to="/politica-privacidad" className="text-primary-orange underline underline-offset-4 hover:text-white">Política de Privacidad</Link>.
@@ -156,9 +156,9 @@ export const AvisoLegal: React.FC = () => {
 
             {/* 08. Legislación y jurisdicción */}
             <section className="scroll-mt-32" id="ley">
-              <div className="flex items-start gap-6 mb-8">
+              <div className="flex items-start gap-4 sm:gap-6 mb-8">
                 <span className="font-headline text-4xl font-black text-signal-orange leading-none">08</span>
-                <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white">Legislación y Jurisdicción</h2>
+                <h2 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tighter text-white">Legislación y Jurisdicción</h2>
               </div>
               <p className="max-w-none font-body text-on-surface-variant leading-relaxed text-lg font-light">
                 Se aplica la legislación española. Para cualquier controversia, las partes se someten a los Juzgados y Tribunales de Getafe. Si el usuario es consumidor, será competente el juzgado de su domicilio, conforme a la normativa de consumidores.

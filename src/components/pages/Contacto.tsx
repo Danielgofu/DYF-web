@@ -67,7 +67,7 @@ export const Contacto: React.FC = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Inquiry Form */}
           <div className="lg:col-span-7 bg-surface-low p-1 shadow-[40px_40px_80px_rgba(224,122,0,0.03)] border-l border-signal-orange/20">
-            <div className="bg-surface-highest p-10 md:p-16 h-full flex flex-col justify-center">
+            <div className="bg-surface-highest p-6 sm:p-10 md:p-16 h-full flex flex-col justify-center">
               <h2 className="font-headline text-3xl font-bold uppercase mb-12 tracking-tight flex items-center gap-4">
                 <span className="w-2 h-8 bg-signal-orange"></span>
                 Protocolo de Consulta

@@ -36,7 +36,7 @@ export const Mantenimiento: React.FC = () => {
       className="pt-20 overflow-x-hidden min-h-screen"
     >
       {/* Hero Section */}
-      <section className="relative min-h-[800px] flex items-center overflow-hidden bg-surface-lowest">
+      <section className="relative md:min-h-[800px] flex items-center overflow-hidden bg-surface-lowest">
         <div className="max-w-[1920px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 w-full">
           <div className="md:col-span-7 z-10 py-20">
             <div className="mb-6 flex items-center gap-4">
@@ -91,7 +91,7 @@ export const Mantenimiento: React.FC = () => {
               <Building2 className="w-5 h-5" />
               <span className="font-label text-[10px] uppercase tracking-widest font-bold">Partner Oficial</span>
             </div>
-            <h2 className="font-headline text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-tight">
+            <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-tight">
               Expertise en <br />Comunidades de Vecinos
             </h2>
             <p className="text-on-surface-variant font-light leading-relaxed mb-10 text-lg max-w-xl">
@@ -206,7 +206,7 @@ export const Mantenimiento: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className="bg-surface-highest/80 backdrop-blur-xl p-10 md:p-16 border-t-4 border-signal-orange">
+          <div className="bg-surface-highest/80 backdrop-blur-xl p-6 sm:p-10 md:p-16 border-t-4 border-signal-orange">
             <h3 className="font-headline font-black uppercase text-2xl mb-8">Solicitar Plan a Medida</h3>
             <PlanForm />
           </div>
@@ -215,7 +215,7 @@ export const Mantenimiento: React.FC = () => {
 
       {/* Quick Answers Section */}
       <section className="py-32 bg-surface-lowest px-6 md:px-12">
-        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-x-12 xl:gap-x-24">
           <div className="lg:col-span-4">
             <h2 className="font-headline text-5xl font-black uppercase tracking-tighter mb-6">Respuestas <br />Rápidas</h2>
             <p className="text-on-surface-variant font-light text-sm uppercase tracking-[0.3em]">Centro de información para consultas técnicas</p>

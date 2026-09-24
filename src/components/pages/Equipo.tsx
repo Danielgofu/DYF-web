@@ -62,41 +62,41 @@ export const Equipo: React.FC = () => {
         <h2 id="valores-title" className="sr-only">Nuestros valores</h2>
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-outline-variant/10">
           {/* Experience */}
-          <div className="p-10 md:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+          <div className="p-10 md:p-16 lg:p-10 xl:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="mb-12 transition-transform duration-500 group-hover:scale-110">
               <History className="w-12 h-12 text-signal-orange" />
             </div>
-            <h3 className="font-headline text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Experiencia</h3>
+            <h3 className="font-headline text-3xl lg:text-2xl xl:text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Experiencia</h3>
             <p className="font-body text-on-surface-variant font-light leading-relaxed">
               Más de 10 años liderando el sector nos permiten anticipar desafíos y entregar resultados sin errores desde el primer día.
             </p>
           </div>
           {/* Innovation */}
-          <div className="p-10 md:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+          <div className="p-10 md:p-16 lg:p-10 xl:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="mb-12 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
               <Cpu className="w-12 h-12 text-signal-orange" />
             </div>
-            <h3 className="font-headline text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Innovación</h3>
+            <h3 className="font-headline text-3xl lg:text-2xl xl:text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Innovación</h3>
             <p className="font-body text-on-surface-variant font-light leading-relaxed">
               Desafiamos los límites tecnológicos para implementar soluciones que definen el estándar de la industria mañana.
             </p>
           </div>
           {/* Commitment */}
-          <div className="p-10 md:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+          <div className="p-10 md:p-16 lg:p-10 xl:p-16 border-outline-variant/20 group hover:bg-surface-low transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="mb-12 transition-transform duration-500 group-hover:scale-110">
               <CheckCircle2 className="w-12 h-12 text-signal-orange" />
             </div>
-            <h3 className="font-headline text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Compromiso</h3>
+            <h3 className="font-headline text-3xl lg:text-2xl xl:text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Compromiso</h3>
             <p className="font-body text-on-surface-variant font-light leading-relaxed">
               Fiabilidad inquebrantable en cada infraestructura. Construimos redes que sostienen el progreso de sociedades enteras.
             </p>
           </div>
           {/* Sustainability */}
-          <div className="p-10 md:p-16 transition-all duration-300 group hover:bg-surface-low hover:-translate-y-1 hover:shadow-2xl">
+          <div className="p-10 md:p-16 lg:p-10 xl:p-16 transition-all duration-300 group hover:bg-surface-low hover:-translate-y-1 hover:shadow-2xl">
             <div className="mb-12 transition-transform duration-500 group-hover:scale-110 text-green-500/80 group-hover:text-green-500">
               <Leaf className="w-12 h-12" />
             </div>
-            <h3 className="font-headline text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Sostenibilidad</h3>
+            <h3 className="font-headline text-3xl lg:text-2xl xl:text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Sostenibilidad</h3>
             <p className="font-body text-on-surface-variant font-light leading-relaxed">
               Arquitectura eficiente. Minimizamos el impacto ambiental mientras maximizamos la potencia de la conectividad global.
             </p>
@@ -151,7 +151,7 @@ export const Equipo: React.FC = () => {
       <section className="py-40 bg-surface px-6 md:px-12">
         <div className="max-w-[1920px] mx-auto">
           <div className="bg-surface-highest p-1 border border-outline-variant/10">
-            <div className="bg-surface p-16 md:p-24 border border-outline-variant/10 text-center relative overflow-hidden group">
+            <div className="bg-surface p-8 sm:p-16 md:p-24 border border-outline-variant/10 text-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-signal-orange/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
               <h2 className="font-headline text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-8 max-w-4xl mx-auto relative z-10 uppercase">
                 ¿TE GUSTARÍA FORMAR PARTE DE NUESTRO EQUIPO?

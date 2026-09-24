@@ -76,6 +76,14 @@ export const Navigation: React.FC = () => {
     }
     document.body.style.overflow = "hidden";
 
+    // Mientras el menú está abierto, el contenido de la página y el pie quedan
+    // inertes: ni el teclado ni los lectores de pantalla llegan a lo que hay detrás.
+    const background = [
+      document.getElementById("main-content"),
+      document.querySelector("#main-content ~ footer"),
+    ];
+    background.forEach((el) => el?.setAttribute("inert", ""));
+
     // Foco atrapado dentro de [botón de cerrar + menú] y cierre con Escape.
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -102,6 +110,7 @@ export const Navigation: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
+      background.forEach((el) => el?.removeAttribute("inert"));
     };
   }, [isMenuOpen]);
 
@@ -150,7 +159,7 @@ export const Navigation: React.FC = () => {
             <button
               ref={toggleRef}
               type="button"
-              className="lg:hidden text-on-surface p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:bg-white/5 rounded-full transition-colors cursor-pointer"
+              className="lg:hidden text-on-surface p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:bg-white/5 rounded-full transition-colors cursor-pointer"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={isMenuOpen}
@@ -168,13 +177,16 @@ export const Navigation: React.FC = () => {
           <motion.div
             ref={menuRef}
             id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú"
             initial="closed"
             animate="opened"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 top-[56px] md:top-[64px] bg-[#131313] z-[45] lg:hidden flex flex-col overflow-y-auto overflow-x-hidden overscroll-contain"
+            className="fixed inset-0 top-[65px] bg-[#131313] z-[45] lg:hidden flex flex-col overflow-y-auto overflow-x-hidden overscroll-contain"
           >
-            <div className="flex flex-col p-8 gap-8 font-headline">
+            <div className="flex flex-col p-8 gap-8 [@media(max-height:500px)]:p-5 [@media(max-height:500px)]:gap-3 font-headline">
               {NAV_ITEMS.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
@@ -182,7 +194,7 @@ export const Navigation: React.FC = () => {
                     <Link
                       to={item.path}
                       aria-current={isActive ? "page" : undefined}
-                      className={`block text-3xl font-bold uppercase tracking-tighter text-left focus:outline-none focus-visible:underline focus-visible:underline-offset-8 transition-all duration-300 hover:pl-6 group ${
+                      className={`block text-3xl [@media(max-height:500px)]:text-xl font-bold uppercase tracking-tighter text-left focus:outline-none focus-visible:underline focus-visible:underline-offset-8 transition-all duration-300 hover:pl-6 group ${
                         isActive ? "text-signal-orange" : "text-on-surface hover:text-signal-orange focus-visible:text-signal-orange"
                       }`}
                     >
@@ -239,8 +251,8 @@ export const Navigation: React.FC = () => {
                 Horario de Atención: {CONTACT.hours}
               </p>
               <div className="space-y-2 text-xs font-light leading-relaxed">
-                <p>Teléfonos: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.phonePrimary}</a> / <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.phoneSecondary}</a></p>
-                <p>Email: <a href={`mailto:${CONTACT.email}`} className="text-white hover:text-signal-orange font-medium">{CONTACT.email}</a></p>
+                <p>Teléfonos: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="inline-block py-2 text-white hover:text-signal-orange font-medium">{CONTACT.phonePrimary}</a> / <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="inline-block py-2 text-white hover:text-signal-orange font-medium">{CONTACT.phoneSecondary}</a></p>
+                <p>Email: <a href={`mailto:${CONTACT.email}`} className="inline-block py-2 text-white hover:text-signal-orange font-medium">{CONTACT.email}</a></p>
               </div>
             </motion.div>
           </motion.div>

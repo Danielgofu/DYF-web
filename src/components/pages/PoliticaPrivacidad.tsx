@@ -160,7 +160,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           </section>
 
           {/* 05. Transferencias internacionales */}
-          <section className="md:col-span-5 bg-surface-container-highest p-8 md:p-12 border border-outline-variant/10">
+          <section className="md:col-span-12 lg:col-span-5 bg-surface-container-highest p-8 md:p-12 border border-outline-variant/10">
             <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-signal-orange mb-8">05. Transferencias internacionales</h2>
             <div className="space-y-6 text-on-surface-variant leading-relaxed font-light text-sm">
               <p>Los datos de los formularios pasan por los servidores de FormSubmit en Estados Unidos. No se ha podido confirmar que FormSubmit esté adherido al Marco de Privacidad de Datos UE-EE. UU. ni que ofrezca cláusulas contractuales tipo. Por ello, esta transferencia se realiza al amparo del artículo 49.1.b del RGPD, al ser necesaria para atender la solicitud realizada voluntariamente por el propio interesado a través del formulario, informándole expresamente de que no existe garantía adecuada confirmada respecto a dicho destinatario.</p>
@@ -169,7 +169,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           </section>
 
           {/* 06. Plazos de conservación */}
-          <section className="md:col-span-7 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
+          <section className="md:col-span-12 lg:col-span-7 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
             <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-signal-orange mb-8">06. Plazos de conservación</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
@@ -186,7 +186,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           </section>
 
           {/* 07. Sus derechos */}
-          <section className="md:col-span-7 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
+          <section className="md:col-span-12 lg:col-span-7 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
             <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-signal-orange mb-8">07. Sus derechos</h2>
             <p className="text-on-surface-variant mb-10 font-light text-lg">Puede ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad. Si el tratamiento se basa en su consentimiento, también puede retirarlo en cualquier momento, sin que eso afecte a lo tratado antes.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -199,25 +199,25 @@ export const PoliticaPrivacidad: React.FC = () => {
           </section>
 
           {/* Exercise of Rights CTA */}
-          <section className="md:col-span-5 bg-signal-orange p-10 md:p-12 flex flex-col justify-between border border-outline-variant/10">
+          <section className="md:col-span-12 lg:col-span-5 bg-signal-orange p-10 md:p-12 flex flex-col justify-between border border-outline-variant/10">
             <div>
               <h2 className="font-headline text-2xl font-bold uppercase tracking-tight text-surface mb-6">Cómo ejercerlos</h2>
               <p className="text-surface font-medium mb-6 leading-relaxed">Escriba a {CONTACT.email} o por correo postal a la dirección indicada, con el asunto "Protección de datos". Adjunte un medio que permita identificarle.</p>
               <p className="text-surface font-medium mb-10 leading-relaxed">Si considera que no hemos atendido correctamente su solicitud, puede presentar una reclamación ante la Agencia Española de Protección de Datos (<a className="underline font-bold" href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>, C/ Jorge Juan, 6, 28001 Madrid).</p>
             </div>
-            <a className="bg-surface text-signal-orange px-8 py-5 font-headline font-black uppercase tracking-widest text-center hover:bg-surface-highest transition-all" href={`mailto:${CONTACT.email}?subject=Protecci%C3%B3n%20de%20datos`}>
+            <a className="bg-surface text-signal-orange px-6 py-5 font-headline font-black uppercase tracking-wider text-sm text-center [overflow-wrap:anywhere] hover:bg-surface-highest transition-all" href={`mailto:${CONTACT.email}?subject=Protecci%C3%B3n%20de%20datos`}>
               Escribir a {CONTACT.email}
             </a>
           </section>
 
           {/* 08. Cookies y almacenamiento local */}
           <section className="md:col-span-12 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
-            <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="flex flex-col xl:flex-row gap-16 items-center">
               <div className="lg:w-1/3">
                 <h2 className="font-headline text-3xl font-bold uppercase tracking-tight text-signal-orange mb-6">08. Cookies y almacenamiento local</h2>
                 <p className="text-on-surface-variant text-sm leading-relaxed font-light">La web no instala cookies propias.</p>
               </div>
-              <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
+              <div className="xl:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
                 {[
                   { icon: <Shield />, title: "Almacenamiento propio", desc: "Solo usa sessionStorage del navegador de forma técnica para recordar, durante la visita, si usted ya aceptó cargar el mapa de Google, y para evitar recargas en bucle si falla la carga de una página. Se borra al cerrar la pestaña y no identifica al usuario. Es un uso exento de consentimiento (art. 22.2 LSSI)." },
                   { icon: <MapPin />, title: "Cookies de Google Maps", desc: "El mapa solo se carga si usted lo activa pulsando el botón correspondiente. Al hacerlo, Google puede instalar sus propias cookies (terceros)." },

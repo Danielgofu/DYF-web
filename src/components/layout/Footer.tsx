@@ -17,12 +17,12 @@ const LEGAL_LINKS = [
 ];
 
 const linkClass =
-  "self-start text-[10px] uppercase tracking-widest text-outline hover:text-white transition-colors focus:outline-none focus-visible:text-white focus-visible:underline focus-visible:underline-offset-4";
+  "self-start inline-flex min-h-11 items-center text-xs uppercase tracking-widest text-outline hover:text-white transition-colors focus:outline-none focus-visible:text-white focus-visible:underline focus-visible:underline-offset-4";
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-surface-lowest w-full border-t border-outline-variant/10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-6 md:px-12 py-16 max-w-[1920px] mx-auto">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 px-6 md:px-12 py-16 max-w-[1920px] mx-auto">
         <div className="flex flex-col justify-between gap-12">
           <div>
             <div className="text-lg font-black text-white font-headline uppercase mb-4">DYF TELECOMUNICACIONES Y SERVICIOS, S.L.</div>
@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-outline hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+              className="p-3 -m-3 text-outline hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               aria-label="Instagram de DYF Telecomunicaciones (se abre en una pestaña nueva)"
             >
               <Instagram className="w-5 h-5" />
@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
               href={SOCIAL_LINKS.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-outline hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+              className="p-3 -m-3 text-outline hover:text-signal-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               aria-label="Facebook de DYF Telecomunicaciones (se abre en una pestaña nueva)"
             >
               <Facebook className="w-5 h-5" />
@@ -57,10 +57,10 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           <div className="flex flex-col gap-6">
             <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange font-bold">Enlaces</span>
-            <nav aria-label="Enlaces rápidos" className="flex flex-col gap-3">
+            <nav aria-label="Enlaces rápidos" className="flex flex-col gap-0">
               {FOOTER_LINKS.map((link) => (
                 <Link key={link.path} to={link.path} className={linkClass}>
                   {link.label}
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
                 <p>
                   Tfno1: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="hover:text-white focus-visible:text-white focus-visible:underline">{CONTACT.phonePrimary}</a><br />
                   Tfno2: <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="hover:text-white focus-visible:text-white focus-visible:underline">{CONTACT.phoneSecondary}</a><br />
-                  Email: <a href={`mailto:${CONTACT.email}`} className="hover:text-white focus-visible:text-white focus-visible:underline">{CONTACT.email}</a><br />
+                  Email: <a href={`mailto:${CONTACT.email}`} className="break-all hover:text-white focus-visible:text-white focus-visible:underline">{CONTACT.email}</a><br />
                   {CONTACT.addressShort}
                 </p>
                 <div>
@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex flex-col gap-6">
             <span className="font-label text-[10px] uppercase tracking-widest text-signal-orange font-bold">Legal</span>
-            <nav aria-label="Información legal" className="flex flex-col gap-3">
+            <nav aria-label="Información legal" className="flex flex-col gap-0">
               {LEGAL_LINKS.map((link) => (
                 <Link key={link.path} to={link.path} className={linkClass}>
                   {link.label}
