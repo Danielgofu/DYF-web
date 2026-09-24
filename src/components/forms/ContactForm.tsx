@@ -135,7 +135,7 @@ export const ContactForm: React.FC = () => {
           onChange={(e) => setHoney(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-10">
         <div>
           <div className="relative group">
             <input
