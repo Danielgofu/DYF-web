@@ -70,7 +70,7 @@ export const AvisoLegal: React.FC = () => {
                       { label: "Titular", value: "DYF Telecomunicaciones y Servicios, S.L." },
                       { label: "CIF", value: "B85223972" },
                       { label: "Domicilio social", value: "C. Valdemorillo, 20, 28901 Getafe (Madrid)" },
-                      { label: "Datos registrales", value: "Inscrita en el Registro Mercantil de Madrid. (Datos de inscripción en trámite de actualización.)" },
+                      { label: "Datos registrales", value: "Inscrita en el Registro Mercantil de Madrid, Tomo 24918, Libro 0, Folio 126, Sección 8ª, Inscripción 1ª." },
                       { label: "Correo electrónico", value: CONTACT.email },
                       { label: "Teléfonos", value: `${CONTACT.phonePrimary} / ${CONTACT.phoneSecondary}` }
                     ].map((item) => (
@@ -81,7 +81,7 @@ export const AvisoLegal: React.FC = () => {
                     ))}
                     <div className="space-y-1 md:col-span-2">
                       <p className="font-label text-[10px] uppercase text-outline tracking-widest font-bold">Habilitación profesional</p>
-                      <p className="font-body text-lg font-bold text-white">Empresa inscrita en el Registro de Empresas Instaladoras de Telecomunicación del Ministerio para la Transformación Digital y de la Función Pública (Secretaría de Estado de Telecomunicaciones e Infraestructuras Digitales) con el nº 10265. Miembro de AMIITEL.</p>
+                      <p className="font-body text-lg font-bold text-white">Empresa inscrita en el Registro de Empresas Instaladoras de Telecomunicación del Ministerio para la Transformación Digital y de la Función Pública (Secretaría de Estado de Telecomunicaciones e Infraestructuras Digitales) con el nº 10265. Miembro de AMIITEL. Instalador eléctrico autorizado con el nº 205023.</p>
                     </div>
                   </div>
                 </div>
