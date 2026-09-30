@@ -34,6 +34,13 @@
 }
 
 @layer base {
+  /* La barra de navegación es fija (65-69 px de alto). Sin este margen, al navegar
+     con Mayús+Tab el navegador alinea el elemento enfocado con el borde superior y
+     queda tapado por la barra (WCAG 2.4.11). También afecta a los anclas (#...). */
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
   body {
     @apply bg-surface text-on-surface font-body overflow-x-hidden;
   }

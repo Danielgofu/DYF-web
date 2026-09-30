@@ -192,7 +192,6 @@ export const Inicio: React.FC = () => {
           {/* Antennas */}
           <Link
             to="/servicios"
-            aria-label="Antenas Colectivas & Parabólicas: ver servicios"
             className="md:col-span-4 bg-surface-low p-8 md:p-10 flex flex-col justify-between group hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
           >
             <Antenna className="text-signal-orange w-12 h-12 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
@@ -207,7 +206,6 @@ export const Inicio: React.FC = () => {
           {/* Intercoms */}
           <Link
             to="/servicios"
-            aria-label="Porteros y Videoporteros Digitales: ver servicios"
             className="md:col-span-8 relative group overflow-hidden bg-surface-low hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[350px] md:min-h-0"
           >
             <VideoIntercomGraphic decorative className="absolute -right-8 -bottom-10 h-[420px] w-auto text-white opacity-[0.07] group-hover:scale-110 group-hover:opacity-[0.14] transition-all duration-700 pointer-events-none" />
@@ -228,7 +226,6 @@ export const Inicio: React.FC = () => {
           {/* CCTV */}
           <Link
             to="/servicios"
-            aria-label="Seguridad CCTV, Alarmas & Redes de Datos: ver servicios"
             className="md:col-span-7 bg-surface-low p-8 md:p-10 flex flex-col justify-between group hover:bg-surface-high transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:shadow-2xl hover:-translate-y-1 min-h-[300px] md:min-h-0"
           >
             <div className="flex justify-between items-center">
@@ -248,7 +245,6 @@ export const Inicio: React.FC = () => {
           {/* Electricidad */}
           <Link
             to="/servicios"
-            aria-label="Electricidad Comunitaria & LED: ver servicios"
             className="md:col-span-5 bg-signal-orange p-8 md:p-10 flex flex-col justify-between text-surface group border border-transparent active:scale-[0.98] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[300px] md:min-h-0"
           >
             <Network className="w-12 h-12" />

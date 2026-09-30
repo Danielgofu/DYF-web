@@ -213,7 +213,7 @@ export const PoliticaPrivacidad: React.FC = () => {
           {/* 08. Cookies y almacenamiento local */}
           <section className="md:col-span-12 bg-surface-container-low p-8 md:p-12 border border-outline-variant/10">
             <div className="flex flex-col xl:flex-row gap-16 items-center">
-              <div className="lg:w-1/3">
+              <div className="xl:w-1/3">
                 <h2 className="font-headline text-3xl font-bold uppercase tracking-tight text-signal-orange mb-6">08. Cookies y almacenamiento local</h2>
                 <p className="text-on-surface-variant text-sm leading-relaxed font-light">La web no instala cookies propias.</p>
               </div>
@@ -223,7 +223,7 @@ export const PoliticaPrivacidad: React.FC = () => {
                   { icon: <MapPin />, title: "Cookies de Google Maps", desc: "El mapa solo se carga si usted lo activa pulsando el botón correspondiente. Al hacerlo, Google puede instalar sus propias cookies (terceros)." },
                   { icon: <MousePointerClick />, title: "Análisis y publicidad", desc: "No utilizamos cookies de análisis ni de publicidad.", disabled: true }
                 ].map((cookie) => (
-                  <div key={cookie.title} className={`p-8 bg-surface-lowest border border-outline-variant/10 ${cookie.disabled ? 'opacity-40 grayscale' : ''}`}>
+                  <div key={cookie.title} className={`p-8 bg-surface-lowest border border-outline-variant/10 ${cookie.disabled ? 'opacity-60 grayscale' : ''}`}>
                     <div className="text-signal-orange mb-6" aria-hidden="true">
                     {React.cloneElement(cookie.icon as React.ReactElement<{ className?: string }>, { className: "w-8 h-8" })}
                     </div>

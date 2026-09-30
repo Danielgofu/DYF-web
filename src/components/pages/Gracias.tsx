@@ -97,7 +97,7 @@ export const Gracias: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setAutoRedirect(false)}
-                className="inline-block py-3 font-label text-xs uppercase tracking-[0.2em] text-primary-orange font-bold underline underline-offset-4 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
+                className="inline-flex items-center min-h-11 font-label text-xs uppercase tracking-[0.2em] text-primary-orange font-bold underline underline-offset-4 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange cursor-pointer"
               >
                 Quedarme en esta página
               </button>
@@ -116,7 +116,7 @@ export const Gracias: React.FC = () => {
               <span className="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold">Síguenos:</span>
               <div className="flex items-center gap-4">
                 <a
-                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
                   href={SOCIAL_LINKS.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -127,7 +127,7 @@ export const Gracias: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-2.5 cursor-pointer relative focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
+                  className="text-on-surface-variant hover:text-signal-orange transition-colors p-3 cursor-pointer relative focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
                   aria-label={copied ? "Enlace copiado" : "Compartir web"}
                   title="Compartir"
                 >

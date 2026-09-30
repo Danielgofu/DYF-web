@@ -105,6 +105,7 @@ export const PlanForm: React.FC = () => {
         <label htmlFor="plan_concept" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Concepto (Comunidad / Empresa)</label>
         <input
           id="plan_concept"
+          aria-required="true"
           className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
           placeholder="Ej: Edificio Central Getafe"
@@ -138,6 +139,7 @@ export const PlanForm: React.FC = () => {
         <label htmlFor="plan_contact_info" className="block text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Teléfono o Email de Contacto</label>
         <input
           id="plan_contact_info"
+          aria-required="true"
           className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
           placeholder="Teléfono o email"

@@ -141,6 +141,7 @@ export const ContactForm: React.FC = () => {
             <input
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
               id="full_name"
+              aria-required="true"
               maxLength={100}
               autoComplete="name"
               placeholder="Nombre Completo"
@@ -164,6 +165,7 @@ export const ContactForm: React.FC = () => {
             <input
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
               id="email"
+              aria-required="true"
               maxLength={254}
               autoComplete="email"
               placeholder="Correo Electrónico"
@@ -211,6 +213,7 @@ export const ContactForm: React.FC = () => {
             <select
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface appearance-none focus:ring-0 cursor-pointer"
               id="reason"
+              aria-required="true"
               value={formData.reason}
               onChange={handleChange}
               aria-invalid={!!errors.reason}
@@ -244,6 +247,7 @@ export const ContactForm: React.FC = () => {
           <textarea
             className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer resize-none focus:ring-0 min-h-[120px]"
             id="message"
+            aria-required="true"
             maxLength={MESSAGE_MAX}
             placeholder="Su Mensaje"
             rows={4}

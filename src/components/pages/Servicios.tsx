@@ -255,7 +255,6 @@ export const Servicios: React.FC = () => {
             
             <Link
               to="/contacto"
-              aria-label="HD Audio, especificación técnica: solicitar información"
               className="bg-signal-orange p-10 flex flex-col justify-between group text-left transition-all active:scale-[0.98] hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <span className="font-label text-[10px] uppercase tracking-widest text-surface font-bold">Especificación Técnica</span>

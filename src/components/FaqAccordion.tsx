@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { Plus } from "lucide-react";
 
 export interface FaqItem {
@@ -14,6 +14,7 @@ export interface FaqItem {
  */
 export const FaqAccordion: React.FC<{ items: FaqItem[] }> = ({ items }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const baseId = useId();
 
   const toggleFaq = (index: number) => {
     setOpenFaq((prev) => (prev === index ? null : index));
@@ -23,17 +24,25 @@ export const FaqAccordion: React.FC<{ items: FaqItem[] }> = ({ items }) => {
     <div className="space-y-4">
       {items.map((item, i) => {
         const isFaqOpen = openFaq === i;
+        const panelId = `${baseId}-faq-${i}`;
         return (
           <div key={i} className="group">
             <button
+              type="button"
               onClick={() => toggleFaq(i)}
               className="w-full bg-surface-low p-8 flex justify-between items-center cursor-pointer hover:bg-surface-highest transition-all border-l-2 border-transparent hover:border-signal-orange text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
               aria-expanded={isFaqOpen}
+              aria-controls={panelId}
             >
               <span className="font-headline font-bold uppercase text-sm tracking-widest leading-relaxed pr-8">{item.q}</span>
               <Plus className={`text-signal-orange shrink-0 transition-transform duration-300 ${isFaqOpen ? 'rotate-45' : ''}`} />
             </button>
+            {/* Cerrada, la respuesta queda fuera del árbol de accesibilidad (aria-hidden)
+                e inerte: antes el lector de pantalla la leía aunque estuviera oculta. */}
             <div
+              id={panelId}
+              aria-hidden={!isFaqOpen}
+              inert={!isFaqOpen}
               className={`overflow-hidden transition-all duration-300 ${isFaqOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
             >
               <div className="p-8 bg-surface-highest/50 border-t border-outline-variant/10 text-sm text-on-surface-variant leading-relaxed font-light">
