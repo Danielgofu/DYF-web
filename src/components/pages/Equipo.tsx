@@ -13,10 +13,7 @@ import {
 import { usePageMeta } from "../../utils/seo";
 
 export const Equipo: React.FC = () => {
-  usePageMeta(
-    "Quiénes Somos | DYF Telecomunicaciones en Getafe",
-    "Empresa instaladora de telecomunicaciones en Getafe desde 2008: conozca al equipo técnico de DYF y los valores con los que trabajamos en la Comunidad de Madrid."
-  );
+  usePageMeta("/equipo");
 
   return (
     <motion.div

@@ -23,10 +23,7 @@ const QUICK_FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const Mantenimiento: React.FC = () => {
-  usePageMeta(
-    "Mantenimiento para Comunidades en Madrid | DYF Telecomunicaciones",
-    "Mantenimiento preventivo y correctivo para comunidades de propietarios en Getafe y Madrid: antenas, porteros y electricidad. Atención en 24 h laborables."
-  );
+  usePageMeta("/mantenimiento");
 
   return (
     <motion.div

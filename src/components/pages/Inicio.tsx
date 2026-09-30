@@ -72,10 +72,7 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const Inicio: React.FC = () => {
-  usePageMeta(
-    "DYF Telecomunicaciones | Instaladores en Getafe y Madrid",
-    "Instalación y mantenimiento de antenas colectivas, porteros y videoporteros, CCTV, alarmas y electricidad para comunidades en Getafe y la Comunidad de Madrid."
-  );
+  usePageMeta("/");
 
   return (
     <>

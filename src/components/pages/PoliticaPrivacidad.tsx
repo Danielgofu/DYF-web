@@ -15,10 +15,7 @@ import { usePageMeta } from "../../utils/seo";
 import { CONTACT } from "../../utils/contact";
 
 export const PoliticaPrivacidad: React.FC = () => {
-  usePageMeta(
-    "Política de Privacidad y Protección de Datos | DYF Telecomunicaciones",
-    "Información sobre el tratamiento de datos y política de privacidad de DYF Telecomunicaciones de acuerdo con el RGPD y la LOPD-GDD."
-  );
+  usePageMeta("/politica-privacidad");
 
   return (
     <motion.div

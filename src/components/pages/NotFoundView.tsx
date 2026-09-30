@@ -6,11 +6,7 @@ import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
 
 export const NotFoundView: React.FC = () => {
-  usePageMeta(
-    "Página no encontrada - 404 | DYF Telecomunicaciones",
-    "La página que está buscando no existe o ha sido trasladada. DYF Telecomunicaciones y Servicios.",
-    { noindex: true }
-  );
+  usePageMeta("*");
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-surface overflow-hidden p-6">

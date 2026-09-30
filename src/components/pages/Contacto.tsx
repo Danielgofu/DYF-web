@@ -14,10 +14,7 @@ import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 import { MapEmbed } from "../MapEmbed";
 
 export const Contacto: React.FC = () => {
-  usePageMeta(
-    "Contacto y Presupuestos en Getafe | DYF Telecomunicaciones",
-    "Solicite presupuesto para su comunidad, empresa o vivienda en Getafe y Madrid. Llámenos al 916 01 84 94 o escríbanos: respondemos en 24 h laborables."
-  );
+  usePageMeta("/contacto");
 
   return (
     <motion.div

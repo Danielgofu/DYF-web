@@ -21,10 +21,7 @@ import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { usePageMeta } from "../../utils/seo";
 
 export const Servicios: React.FC = () => {
-  usePageMeta(
-    "Antenas, Porteros, CCTV y Electricidad | DYF Telecomunicaciones",
-    "Antenas TDT y satélite, porteros y videoporteros, CCTV, alarmas y electricidad comunitaria en Getafe y Madrid. Empresa instaladora homologada nº 10265."
-  );
+  usePageMeta("/servicios");
 
   return (
     <motion.div

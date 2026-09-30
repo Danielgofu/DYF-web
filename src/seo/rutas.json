@@ -1,0 +1,56 @@
+[
+  {
+    "path": "/",
+    "title": "DYF Telecomunicaciones | Instaladores en Getafe y Madrid",
+    "description": "Instalación y mantenimiento de antenas colectivas, porteros y videoporteros, CCTV, alarmas y electricidad para comunidades en Getafe y la Comunidad de Madrid.",
+    "noindex": false
+  },
+  {
+    "path": "/equipo",
+    "title": "Quiénes Somos | DYF Telecomunicaciones en Getafe",
+    "description": "Empresa instaladora de telecomunicaciones en Getafe desde 2008: conozca al equipo técnico de DYF y los valores con los que trabajamos en la Comunidad de Madrid.",
+    "noindex": false
+  },
+  {
+    "path": "/servicios",
+    "title": "Antenas, Porteros, CCTV y Electricidad | DYF Telecomunicaciones",
+    "description": "Antenas TDT y satélite, porteros y videoporteros, CCTV, alarmas y electricidad comunitaria en Getafe y Madrid. Empresa instaladora homologada nº 10265.",
+    "noindex": false
+  },
+  {
+    "path": "/contacto",
+    "title": "Contacto y Presupuestos en Getafe | DYF Telecomunicaciones",
+    "description": "Solicite presupuesto para su comunidad, empresa o vivienda en Getafe y Madrid. Llámenos al 916 01 84 94 o escríbanos: respondemos en 24 h laborables.",
+    "noindex": false
+  },
+  {
+    "path": "/mantenimiento",
+    "title": "Mantenimiento para Comunidades en Madrid | DYF Telecomunicaciones",
+    "description": "Mantenimiento preventivo y correctivo para comunidades de propietarios en Getafe y Madrid: antenas, porteros y electricidad. Atención en 24 h laborables.",
+    "noindex": false
+  },
+  {
+    "path": "/gracias",
+    "title": "Mensaje Recibido | DYF Telecomunicaciones",
+    "description": "Gracias por contactar con DYF Telecomunicaciones. Hemos recibido su consulta y nuestro equipo técnico le responderá a la mayor brevedad.",
+    "noindex": true
+  },
+  {
+    "path": "/aviso-legal",
+    "title": "Aviso Legal | DYF Telecomunicaciones",
+    "description": "Información legal, titularidad del portal y condiciones de uso de DYF Telecomunicaciones y Servicios, S.L.",
+    "noindex": false
+  },
+  {
+    "path": "/politica-privacidad",
+    "title": "Política de Privacidad y Protección de Datos | DYF Telecomunicaciones",
+    "description": "Información sobre el tratamiento de datos y política de privacidad de DYF Telecomunicaciones de acuerdo con el RGPD y la LOPD-GDD.",
+    "noindex": false
+  },
+  {
+    "path": "*",
+    "title": "Página no encontrada - 404 | DYF Telecomunicaciones",
+    "description": "La página que está buscando no existe o ha sido trasladada. DYF Telecomunicaciones y Servicios.",
+    "noindex": true
+  }
+]

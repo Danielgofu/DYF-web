@@ -12,11 +12,7 @@ export const Gracias: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [autoRedirect, setAutoRedirect] = useState(true);
 
-  usePageMeta(
-    "Mensaje Recibido | DYF Telecomunicaciones",
-    "Gracias por contactar con DYF Telecomunicaciones. Hemos recibido su consulta y nuestro equipo técnico le responderá a la mayor brevedad.",
-    { noindex: true }
-  );
+  usePageMeta("/gracias");
 
   useEffect(() => {
     if (!autoRedirect) return;

@@ -1,64 +1,76 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import rutas from "../seo/rutas.json";
 
 const SITE_ORIGIN = "https://www.dyfservicios.com";
 
-export function usePageMeta(title: string, description: string, options: { noindex?: boolean } = {}) {
-  const location = useLocation();
-  const { noindex = false } = options;
+export interface RutaSeo {
+  path: string;
+  title: string;
+  description: string;
+  noindex: boolean;
+}
 
-  useEffect(() => {
-    let robots = document.querySelector('meta[name="robots"]');
-    if (noindex) {
-      if (!robots) {
-        robots = document.createElement("meta");
-        robots.setAttribute("name", "robots");
-        document.head.appendChild(robots);
-      }
-      robots.setAttribute("content", "noindex");
-    } else if (robots) {
-      robots.remove();
-    }
-  }, [noindex]);
+// Fuente única de title/description/noindex: src/seo/rutas.json. La usan estas páginas en el
+// navegador y scripts/generar-cabeceras.mjs para escribir el HTML estático de cada ruta.
+const RUTAS = rutas as RutaSeo[];
+
+function rutaSeo(path: string): RutaSeo {
+  const ruta = RUTAS.find((r) => r.path === path);
+  if (!ruta) throw new Error(`usePageMeta: la ruta "${path}" no está en src/seo/rutas.json`);
+  return ruta;
+}
+
+/** Crea (si falta) o actualiza una etiqueta <meta>/<link> del head; con valor null la elimina. */
+function setHeadTag(selector: string, create: () => HTMLElement, attr: string, value: string | null) {
+  let el = document.head.querySelector(selector);
+  if (value === null) {
+    el?.remove();
+    return;
+  }
+  if (!el) {
+    el = create();
+    document.head.appendChild(el);
+  }
+  el.setAttribute(attr, value);
+}
+
+const meta = (key: "name" | "property", name: string) => () => {
+  const el = document.createElement("meta");
+  el.setAttribute(key, name);
+  return el;
+};
+
+/**
+ * Aplica en el navegador el head de la ruta indicada ("*" para la página 404).
+ * El HTML inicial de cada ruta ya lo trae generado desde el build; esto lo mantiene
+ * correcto al navegar entre páginas sin recargar.
+ */
+export function usePageMeta(path: string) {
+  const location = useLocation();
+  const { title, description, noindex } = rutaSeo(path);
 
   useEffect(() => {
     document.title = title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", description);
-    } else {
-      const meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
+    setHeadTag('meta[name="description"]', meta("name", "description"), "content", description);
+    setHeadTag('meta[name="robots"]', meta("name", "robots"), "content", noindex ? "noindex" : null);
 
-    // Canonical: index.html no lo trae (se sirve igual para todas las rutas), así que se
-    // crea aquí con la URL propia de cada ruta. Las páginas noindex (/gracias, 404) no
-    // llevan canonical: no deben proponerse como URL de referencia de nada.
-    const canonicalUrl = `${SITE_ORIGIN}${location.pathname === "/" ? "/" : location.pathname.replace(/\/$/, "")}`;
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (noindex) {
-      canonicalLink?.remove();
-    } else {
-      if (!canonicalLink) {
-        canonicalLink = document.createElement("link");
-        canonicalLink.setAttribute("rel", "canonical");
-        document.head.appendChild(canonicalLink);
-      }
-      canonicalLink.setAttribute("href", canonicalUrl);
-    }
+    // Canonical y og:url en minúsculas y sin barra final (React Router no distingue
+    // mayúsculas, así que /SERVICIOS muestra la misma página que /servicios). Las páginas
+    // noindex (/gracias, 404) no llevan ninguno de los dos.
+    const pathname = location.pathname.toLowerCase();
+    const canonicalUrl = `${SITE_ORIGIN}${pathname === "/" ? "/" : pathname.replace(/\/+$/, "")}`;
+    const linkCanonical = () => {
+      const el = document.createElement("link");
+      el.setAttribute("rel", "canonical");
+      return el;
+    };
+    setHeadTag('link[rel="canonical"]', linkCanonical, "href", noindex ? null : canonicalUrl);
+    setHeadTag('meta[property="og:url"]', meta("property", "og:url"), "content", noindex ? null : canonicalUrl);
 
-    // Open Graph / Twitter: solo lo ven herramientas que ejecutan JavaScript; las
-    // previsualizaciones de WhatsApp, Facebook o LinkedIn leen los valores de index.html.
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", title);
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", description);
-
-    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twitterTitle) twitterTitle.setAttribute("content", title);
-    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twitterDesc) twitterDesc.setAttribute("content", description);
-  }, [title, description, location.pathname, noindex]);
+    setHeadTag('meta[property="og:title"]', meta("property", "og:title"), "content", title);
+    setHeadTag('meta[property="og:description"]', meta("property", "og:description"), "content", description);
+    setHeadTag('meta[name="twitter:title"]', meta("name", "twitter:title"), "content", title);
+    setHeadTag('meta[name="twitter:description"]', meta("name", "twitter:description"), "content", description);
+  }, [title, description, noindex, location.pathname]);
 }

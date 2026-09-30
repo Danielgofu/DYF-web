@@ -6,10 +6,7 @@ import { usePageMeta } from "../../utils/seo";
 import { CONTACT } from "../../utils/contact";
 
 export const AvisoLegal: React.FC = () => {
-  usePageMeta(
-    "Aviso Legal | DYF Telecomunicaciones",
-    "Información legal, titularidad del portal y condiciones de uso de DYF Telecomunicaciones y Servicios, S.L."
-  );
+  usePageMeta("/aviso-legal");
 
   return (
     <motion.div
