@@ -15,8 +15,8 @@ import { MapEmbed } from "../MapEmbed";
 
 export const Contacto: React.FC = () => {
   usePageMeta(
-    "Contacto Directo y Presupuestos | DYF Telecomunicaciones",
-    "Solicite presupuesto o auditoría técnica para su comunidad o empresa en Madrid. Atención telefónica 916 01 84 94 y respuesta en menos de 24h laborables."
+    "Contacto y Presupuestos en Getafe | DYF Telecomunicaciones",
+    "Solicite presupuesto para su comunidad, empresa o vivienda en Getafe y Madrid. Llámenos al 916 01 84 94 o escríbanos: respondemos en 24 h laborables."
   );
 
   return (

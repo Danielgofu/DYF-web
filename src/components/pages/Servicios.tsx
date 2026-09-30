@@ -22,8 +22,8 @@ import { usePageMeta } from "../../utils/seo";
 
 export const Servicios: React.FC = () => {
   usePageMeta(
-    "Servicios Técnicos Especializados | DYF Telecomunicaciones",
-    "Servicios de antenas colectivas TDT/satélite, videoporteros digitales, electricidad comunitaria y seguridad CCTV en Madrid. Instaladores homologados Nº 10265."
+    "Antenas, Porteros, CCTV y Electricidad | DYF Telecomunicaciones",
+    "Antenas TDT y satélite, porteros y videoporteros, CCTV, alarmas y electricidad comunitaria en Getafe y Madrid. Empresa instaladora homologada nº 10265."
   );
 
   return (

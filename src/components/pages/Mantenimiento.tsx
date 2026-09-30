@@ -24,8 +24,8 @@ const QUICK_FAQ_ITEMS: FaqItem[] = [
 
 export const Mantenimiento: React.FC = () => {
   usePageMeta(
-    "Servicios de Mantenimiento | DYF Telecomunicaciones",
-    "Mantenimiento preventivo y correctivo para comunidades de propietarios e instalaciones críticas en Madrid. Respuesta garantizada en 24h laborables."
+    "Mantenimiento para Comunidades en Madrid | DYF Telecomunicaciones",
+    "Mantenimiento preventivo y correctivo para comunidades de propietarios en Getafe y Madrid: antenas, porteros y electricidad. Atención en 24 h laborables."
   );
 
   return (

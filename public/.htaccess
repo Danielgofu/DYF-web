@@ -4,6 +4,25 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # 0. Redirecciones 301 de la web antigua (HTML estático, indexada por Google con y sin "www"
+  #    y solo por http). Van ANTES de las reglas de HTTPS y www para que cada URL antigua
+  #    llegue a su destino final en UN solo salto (http://dyfservicios.com/servicios.html ->
+  #    https://www.dyfservicios.com/servicios), sin encadenar tres redirecciones.
+  #    En .htaccess el patrón se compara con la ruta SIN la barra inicial ("servicios.html").
+  #    [NC] = sin distinguir mayúsculas; la query string (?fbclid=...) se conserva sola.
+  #
+  #    index.html necesita la condición THE_REQUEST: la regla final de la SPA reescribe
+  #    internamente cualquier ruta a "index.html" y mod_dir hace lo mismo con "/", y mod_rewrite
+  #    vuelve a evaluar este archivo con esa ruta interna. Sin la condición, la propia portada
+  #    se redirigiría a sí misma en bucle. THE_REQUEST es la línea original que envió el
+  #    navegador ("GET /index.html HTTP/1.1") y no cambia con las reescrituras internas.
+  RewriteCond %{THE_REQUEST} \s/index\.html?[\s?] [NC]
+  RewriteRule ^index\.html?$ https://www.dyfservicios.com/ [R=301,L,NC]
+  RewriteRule ^nosotros\.html?$ https://www.dyfservicios.com/equipo [R=301,L,NC]
+  RewriteRule ^servicios\.html?$ https://www.dyfservicios.com/servicios [R=301,L,NC]
+  RewriteRule ^comunidades\.html?$ https://www.dyfservicios.com/mantenimiento [R=301,L,NC]
+  RewriteRule ^contacto\.html?$ https://www.dyfservicios.com/contacto [R=301,L,NC]
+
   # 1. Forzar HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

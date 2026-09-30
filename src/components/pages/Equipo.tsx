@@ -14,8 +14,8 @@ import { usePageMeta } from "../../utils/seo";
 
 export const Equipo: React.FC = () => {
   usePageMeta(
-    "Equipo y Valores | DYF Telecomunicaciones",
-    "Conozca el equipo técnico y los valores de precisión que definen a DYF Telecomunicaciones. Excelencia operativa y compromiso en cada proyecto."
+    "Quiénes Somos | DYF Telecomunicaciones en Getafe",
+    "Empresa instaladora de telecomunicaciones en Getafe desde 2008: conozca al equipo técnico de DYF y los valores con los que trabajamos en la Comunidad de Madrid."
   );
 
   return (
