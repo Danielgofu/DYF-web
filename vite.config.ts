@@ -19,6 +19,27 @@ function cabeceraPortada(): Plugin {
   };
 }
 
+// Precarga la fuente del texto principal (Manrope, subconjunto latino): sin ella el
+// navegador no la pide hasta tener el CSS y el DOM. Medido: FCP y LCP ~0,15 s antes en
+// móvil. Solo Manrope: precargar también Space Grotesk e Inter empeoraba FCP y LCP.
+function precargaFuentePrincipal(): Plugin {
+  return {
+    name: 'dyf-precarga-fuente',
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        const fuente = Object.keys(ctx.bundle ?? {}).find((f) => /\/manrope-latin-wght-normal-[\w-]+\.woff2$/.test(f));
+        if (!fuente) throw new Error('No se encuentra la fuente manrope-latin-wght-normal en el bundle');
+        return [{tag: 'link', attrs: {rel: 'preload', href: `/${fuente}`, as: 'font', type: 'font/woff2', crossorigin: ''}, injectTo: 'head-prepend'}];
+      },
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), cabeceraPortada()],
+  plugins: [react(), tailwindcss(), cabeceraPortada(), precargaFuentePrincipal()],
+  // El manifiesto lo usa scripts/generar-cabeceras.mjs para precargar el chunk de cada
+  // página en su .html; el propio script lo borra de dist/ después.
+  build: {manifest: true},
 });

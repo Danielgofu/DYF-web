@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { 
   History, 
   Cpu, 
@@ -16,7 +16,7 @@ export const Equipo: React.FC = () => {
   usePageMeta("/equipo");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -41,8 +41,12 @@ export const Equipo: React.FC = () => {
             <div className="aspect-square bg-surface-highest overflow-hidden border border-outline-variant/10 relative group">
               <img 
                 className="w-full h-full object-cover brightness-75" 
-                alt="Equipo de DYF Telecomunicaciones frente a la oficina de Getafe" 
+                alt="Equipo de DYF Telecomunicaciones frente a la oficina de Getafe"
                 src="/Dyf-equipo.webp"
+                srcSet="/Dyf-equipo-640.webp 640w, /Dyf-equipo.webp 1048w"
+                sizes="(min-width: 1024px) 44vw, calc(100vw - 50px)"
+                width={1048}
+                height={1109}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
               <div className="absolute bottom-8 left-8">
@@ -167,6 +171,6 @@ export const Equipo: React.FC = () => {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 };

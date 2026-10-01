@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { 
   Radio, 
   Zap, 
@@ -24,7 +24,7 @@ export const Servicios: React.FC = () => {
   usePageMeta("/servicios");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -52,6 +52,11 @@ export const Servicios: React.FC = () => {
                 className="w-full h-full object-cover grayscale brightness-50"
                 alt="Torre de telecomunicaciones en campo abierto"
                 src="/images/servicios-torre.webp"
+                srcSet="/images/servicios-torre-640.webp 640w, /images/servicios-torre-900.webp 900w, /images/servicios-torre.webp 1200w"
+                // Móvil: caja 4:3 con foto 16:9 (object-cover), se necesita ~1,34 veces el ancho
+                sizes="(min-width: 1024px) 44vw, (min-width: 640px) 100vw, calc((100vw - 50px) * 1.34)"
+                width={1200}
+                height={675}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
               <div className="absolute bottom-6 right-6 p-4 sm:p-6 bg-surface-low border border-outline-variant/20 max-w-xs">
@@ -74,6 +79,11 @@ export const Servicios: React.FC = () => {
                 className="w-full h-full object-cover grayscale contrast-125"
                 alt="Antena parabólica instalada en el tejado de una vivienda"
                 src="/images/servicios-parabolicas.webp"
+                srcSet="/images/servicios-parabolicas-860.webp 860w, /images/servicios-parabolicas.webp 1200w"
+                // Caja cuadrada con foto 4:3 (object-cover): se necesita ~1,34 veces el ancho
+                sizes="(min-width: 1024px) calc(44vw * 1.34), calc((100vw - 48px) * 1.34)"
+                width={1200}
+                height={900}
                 loading="lazy"
                 decoding="async"
               />
@@ -152,7 +162,7 @@ export const Servicios: React.FC = () => {
                   <span className="text-primary-orange font-bold">{card.status}</span>
                 </div>
                 <div className="h-0.5 w-full bg-surface-low overflow-hidden">
-                  <motion.div 
+                  <m.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: `${card.progress}%` }}
                     viewport={{ once: true }}
@@ -193,6 +203,10 @@ export const Servicios: React.FC = () => {
           <div className="bg-surface-highest aspect-video overflow-hidden border border-outline-variant/10 relative group">
             <img 
               src="/images/servicios-cuadro-electrico.webp"
+              srcSet="/images/servicios-cuadro-electrico-640.webp 640w, /images/servicios-cuadro-electrico.webp 1300w"
+              sizes="(min-width: 1024px) 44vw, calc(100vw - 50px)"
+              width={1300}
+              height={731}
               alt="Terminales y cableado organizados en un cuadro eléctrico"
               className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-700"
               loading="lazy"
@@ -294,6 +308,10 @@ export const Servicios: React.FC = () => {
             className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
             alt=""
             src="/images/servicios-cableado.webp"
+            srcSet="/images/servicios-cableado-640.webp 640w, /images/servicios-cableado.webp 1500w"
+            sizes="(min-width: 768px) calc(100vw - 96px), calc(100vw - 48px)"
+            width={1500}
+            height={643}
             loading="lazy"
             decoding="async"
           />
@@ -339,6 +357,6 @@ export const Servicios: React.FC = () => {
           </div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 };

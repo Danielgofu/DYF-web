@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import {
   Building2,
   BarChart3,
@@ -26,7 +26,7 @@ export const Mantenimiento: React.FC = () => {
   usePageMeta("/mantenimiento");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -58,11 +58,19 @@ export const Mantenimiento: React.FC = () => {
           </div>
           <div className="md:col-span-5 relative hidden md:block">
             <div className="absolute inset-0 bg-surface-highest opacity-5"></div>
-            <img 
-              className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20"
-              alt="Cuadro eléctrico industrial con cableado"
-              src="/images/mantenimiento-cuadro-electrico-v2.webp"
-            />
+            {/* Esta columna está oculta en móvil (hidden md:block), pero un <img> oculto se
+                descarga igual (62 KB). Por debajo de 768 px el <source> apunta a un GIF vacío
+                de 1×1 en línea y la foto no se pide. */}
+            <picture>
+              <source media="(max-width: 767px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+              <img
+                className="w-full h-full object-cover grayscale brightness-50 contrast-125 border-l border-signal-orange/20"
+                alt="Cuadro eléctrico industrial con cableado"
+                src="/images/mantenimiento-cuadro-electrico-v2.webp"
+                width={1000}
+                height={1509}
+              />
+            </picture>
             <div className="absolute bottom-10 right-10 bg-signal-orange text-surface p-6 font-headline font-black text-4xl uppercase leading-none shadow-2xl">
               24h<br /><span className="text-sm font-bold tracking-widest">Laborables</span>
             </div>
@@ -78,6 +86,8 @@ export const Mantenimiento: React.FC = () => {
               className="w-full aspect-[4/5] object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-75"
               alt="Fachada de un edificio de viviendas"
               src="/images/mantenimiento-fachada.webp"
+              width={512}
+              height={512}
               loading="lazy"
               decoding="async"
             />
@@ -175,6 +185,8 @@ export const Mantenimiento: React.FC = () => {
             loading="lazy"
             decoding="async"
             src="/images/mantenimiento-tecnico.webp"
+            width={512}
+            height={512}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface opacity-90"></div>
         </div>
@@ -223,6 +235,6 @@ export const Mantenimiento: React.FC = () => {
           </div>
         </div>
       </section>
-    </motion.div>
+    </m.div>
   );
 };

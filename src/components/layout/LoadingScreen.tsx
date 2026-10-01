@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 
 interface LoadingScreenProps {
   isLoading: boolean;
@@ -39,7 +39,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
   return (
     <AnimatePresence>
       {isLoading && (
-        <motion.div
+        <m.div
           id="loading-screen"
           role="status"
           aria-label="Cargando la web"
@@ -56,7 +56,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
           </div>
 
           <div className="relative z-10 flex flex-col items-center max-w-md w-full" aria-hidden="true">
-            <motion.div
+            <m.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ 
@@ -71,15 +71,17 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
               <div className="absolute inset-0 bg-signal-orange/20 blur-3xl rounded-full scale-150"></div>
               
               <img 
-                src="/DyfLogo.webp" 
+                src="/DyfLogo.webp"
+                width={410}
+                height={230}
                 alt="Logo DYF" 
                 className="h-24 md:h-32 w-auto object-contain relative z-10"
               />
-            </motion.div>
+            </m.div>
 
             {/* Technical Loading Bar */}
             <div className="w-full h-1 bg-outline-variant/20 rounded-full mb-4 overflow-hidden relative">
-              <motion.div 
+              <m.div 
                 className="absolute top-0 left-0 h-full bg-signal-orange shadow-[0_0_10px_#ff6600]"
                 initial={{ width: "0%" }}
                 animate={{ width: `${progress}%` }}
@@ -88,21 +90,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             </div>
 
             <div className="flex justify-between w-full mb-8 font-mono text-[10px] tracking-widest uppercase">
-              <motion.span 
+              <m.span 
                 key={status}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-on-surface-variant font-bold"
               >
                 {status}
-              </motion.span>
+              </m.span>
               <span className="text-signal-orange font-bold">{Math.round(progress)}%</span>
             </div>
 
             {/* Matrix-like decorative elements */}
             <div className="flex gap-4">
               {[1, 2, 3, 4].map((i) => (
-                <motion.div
+                <m.div
                   key={i}
                   animate={{ 
                     height: [2, 10, 2],
@@ -124,7 +126,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
           <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-signal-orange/30"></div>
           <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-signal-orange/30"></div>
           <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-signal-orange/30"></div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

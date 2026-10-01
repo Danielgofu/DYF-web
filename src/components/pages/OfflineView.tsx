@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { PowerOff, RefreshCcw } from "lucide-react";
 
 interface OfflineViewProps {
@@ -37,7 +37,7 @@ export const OfflineView: React.FC<OfflineViewProps> = ({ onRetry }) => {
       {/* Top Navigation Shell */}
       <header className="bg-surface-lowest border-b border-outline-variant/10 flex items-center px-8 h-20 w-full shrink-0">
         <div className="flex items-center gap-3">
-          <img src="/DyfLogo.webp" alt="DYF TELECOMUNICACIONES" className="h-10 md:h-12 w-auto" />
+          <img src="/DyfLogo.webp" srcSet="/DyfLogo-240.webp 240w, /DyfLogo.webp 410w" sizes="(min-width: 768px) 86px, 72px" width={410} height={230} alt="DYF TELECOMUNICACIONES" className="h-10 md:h-12 w-auto" />
           <span className="text-xl font-bold tracking-tighter text-signal-orange font-headline uppercase hidden sm:block">
             DYF TELECOMUNICACIONES
           </span>
@@ -59,7 +59,7 @@ export const OfflineView: React.FC<OfflineViewProps> = ({ onRetry }) => {
           {/* Ghost Border Decoration */}
           <div className="absolute -inset-4 border border-outline-variant/10 pointer-events-none"></div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="bg-surface-low p-8 sm:p-12 industrial-glow relative border-l-4 border-signal-orange backdrop-blur-xl"
@@ -105,7 +105,7 @@ export const OfflineView: React.FC<OfflineViewProps> = ({ onRetry }) => {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Decorative Coordinate Tags */}
           <div className="absolute -bottom-8 -right-4 font-label text-[9px] text-outline-variant/40 space-y-1 text-right" aria-hidden="true">

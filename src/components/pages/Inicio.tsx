@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useMotionValue, useTransform, animate, useInView, useReducedMotion } from "motion/react";
+import { m, useMotionValue, useTransform, animate, useInView, useReducedMotion } from "motion/react";
 import {
   Antenna,
   Smartphone,
@@ -41,7 +41,7 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
 
   return (
     <span ref={ref}>
-      <motion.span>{rounded}</motion.span>
+      <m.span>{rounded}</m.span>
       {suffix}
     </span>
   );
@@ -78,19 +78,29 @@ export const Inicio: React.FC = () => {
     <>
       <section className="relative min-h-svh flex items-center px-6 md:px-12 overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <img
-            alt=""
-            className="w-full h-full object-cover grayscale brightness-[0.2] contrast-125"
-            src="/images/hero-antena-tejado.webp"
-            fetchPriority="high"
-          />
+          {/* En pantallas verticales la foto (object-cover) se ajusta por la altura y solo
+              se ve su franja central: se sirve ese recorte central (600×881, mismos píxeles y
+              misma escala) en vez de la foto completa. 64 KB en lugar de 140 KB.
+              Sin fetchpriority="high": el elemento LCP de la portada es el texto, no esta
+              foto (oscurecida al 20 %), y con prioridad alta competía con el JS: medido,
+              LCP ~0,1 s antes sin ella. */}
+          <picture>
+            <source media="(max-aspect-ratio: 2/3)" srcSet="/images/hero-antena-tejado-movil.webp" width={600} height={881} />
+            <img
+              alt=""
+              className="w-full h-full object-cover grayscale brightness-[0.2] contrast-125"
+              src="/images/hero-antena-tejado.webp"
+              width={1400}
+              height={881}
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent"></div>
         </div>
         {/* Después de la imagen en el DOM: con el mismo z-0, antes quedaba tapado por ella. */}
         <NeuralNetworkBackground opacity={0.3} />
 
         <div className="relative z-10 w-full max-w-[1920px] mx-auto">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -100,9 +110,9 @@ export const Inicio: React.FC = () => {
             <span className="font-label uppercase tracking-[0.3em] text-[10px] md:text-xs text-signal-orange font-bold">
               Sistemas de Telecomunicación Homologados
             </span>
-          </motion.div>
+          </m.div>
 
-          <motion.h1 
+          <m.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
@@ -110,18 +120,18 @@ export const Inicio: React.FC = () => {
           >
             <span className="block text-[clamp(4rem,15vw,12rem)]">DYF</span>
             <span className="text-outline-light block text-[clamp(1.75rem,7.5vw,9rem)] whitespace-nowrap">TELECOMUNICACIONES</span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p 
+          <m.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="font-body text-lg md:text-xl font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed"
           >
             Líderes en instalación, mantenimiento y optimización de redes críticas. Desde 2008 garantizando la continuidad operativa en la Comunidad de Madrid con estándares de ingeniería de máxima exigencia.
-          </motion.p>
+          </m.p>
           
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -164,7 +174,7 @@ export const Inicio: React.FC = () => {
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         <div className="absolute bottom-12 right-6 md:right-12 hidden lg:block">
@@ -335,7 +345,7 @@ export const Inicio: React.FC = () => {
               { value: 250, label: "Antenas Instaladas", suffix: "+" },
               { value: 15000, label: "Metros de Cableado", suffix: "+" }
             ].map((stat, i) => (
-              <motion.div 
+              <m.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -358,7 +368,7 @@ export const Inicio: React.FC = () => {
                 }`}>
                   {stat.label}
                 </span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
@@ -373,14 +383,14 @@ export const Inicio: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { name: "Fermax", src: "/logos/fermax.png" },
-                { name: "Televes", src: "/logos/televes.svg" },
-                { name: "Alcad", src: "/logos/alcad.jpg" },
-                { name: "Legrand", src: "/logos/legrand.png" },
-                { name: "Tegui", src: "/logos/tegui.webp" },
-                { name: "Golmar", src: "/logos/golmar.png" }
+                { name: "Fermax", src: "/logos/fermax.png", w: 361, h: 139 },
+                { name: "Televes", src: "/logos/televes.svg", w: 2500, h: 1406 },
+                { name: "Alcad", src: "/logos/alcad.jpg", w: 713, h: 374 },
+                { name: "Legrand", src: "/logos/legrand.png", w: 3840, h: 2400 },
+                { name: "Tegui", src: "/logos/tegui.webp", w: 1000, h: 350 },
+                { name: "Golmar", src: "/logos/golmar.png", w: 768, h: 253 }
               ].map((partner, i) => (
-                <motion.div
+                <m.div
                   key={partner.name}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -397,12 +407,14 @@ export const Inicio: React.FC = () => {
                       alt={`Logo ${partner.name}`}
                       className="h-10 md:h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500"
                       src={partner.src}
+                      width={partner.w}
+                      height={partner.h}
                       loading="lazy"
                       decoding="async"
                     />
                     <div className="h-[2px] w-4 bg-signal-orange group-hover:w-12 transition-all duration-500"></div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

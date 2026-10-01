@@ -5,7 +5,7 @@
 
 import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig, domAnimation } from "motion/react";
 import { Navigation } from "./components/layout/Navigation";
 import { Footer } from "./components/layout/Footer";
 import { OfflineView } from "./components/pages/OfflineView";
@@ -83,6 +83,10 @@ export default function App() {
   // Sin conexión, la web NO se desmonta: el aviso se superpone y la app queda
   // "inert" debajo, de modo que lo escrito en los formularios se conserva.
   return (
+    // LazyMotion + m.* (en vez de motion.*): solo se incluyen las funciones de animación
+    // que usa la web (animaciones, exit, variants, whileInView, hover/tap/focus), sin el
+    // código de drag ni de animaciones de layout. "strict" avisa si se usa motion.* por error.
+    <LazyMotion features={domAnimation} strict>
     <MotionConfig reducedMotion="user">
       {!isOnline && <OfflineView onRetry={retryConnection} />}
       <div
@@ -99,7 +103,10 @@ export default function App() {
         <Navigation />
         <main id="main-content" tabIndex={-1} className="outline-none">
           <RouteErrorBoundary resetKey={location.pathname}>
-            <Suspense fallback={null}>
+            {/* Mientras llega el chunk de una ruta lazy, el fallback ocupa lo mismo que
+                cualquier página (todas son min-h-screen): con fallback={null} el footer
+                se pintaba arriba y bajaba al cargar la página (CLS 1,0 en móvil). */}
+            <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
               <Routes>
                 <Route path="/" element={<Inicio />} />
                 <Route path="/equipo" element={<Equipo />} />
@@ -117,5 +124,6 @@ export default function App() {
         <Footer />
       </div>
     </MotionConfig>
+    </LazyMotion>
   );
 }

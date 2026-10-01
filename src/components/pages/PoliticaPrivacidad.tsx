@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { 
   ShieldCheck, 
   ShieldAlert, 
@@ -18,7 +18,7 @@ export const PoliticaPrivacidad: React.FC = () => {
   usePageMeta("/politica-privacidad");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -250,6 +250,8 @@ export const PoliticaPrivacidad: React.FC = () => {
             alt=""
             className="w-full h-full object-cover grayscale contrast-125 brightness-[0.3]"
             src="/images/privacidad-grid.webp"
+            width={512}
+            height={512}
             loading="lazy"
             decoding="async"
           />
@@ -269,6 +271,6 @@ export const PoliticaPrivacidad: React.FC = () => {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "../../utils/seo";
 import { CONTACT } from "../../utils/contact";
@@ -9,7 +9,7 @@ export const AvisoLegal: React.FC = () => {
   usePageMeta("/aviso-legal");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -175,6 +175,6 @@ export const AvisoLegal: React.FC = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };

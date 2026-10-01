@@ -8,7 +8,7 @@
 //    description, canonical/og:url o robots noindex, og:*, twitter:*): servicios.html,
 //    gracias.html, 404.html... y reescribe la de la portada en index.html.
 // 3. Verifica los archivos generados.
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { aplicarBloque, archivoDeRuta, leerRutas, urlCanonica } from "./seo-cabecera.mjs";
 
@@ -129,18 +129,53 @@ if (errores.length) terminar();
 // 2. Generación de los .html por ruta
 // ---------------------------------------------------------------------------------------------
 const plantilla = leer("dist/index.html");
+
+// Rendimiento: las páginas lazy (React.lazy en App.tsx) solo se piden cuando el bundle
+// principal ya se ha ejecutado. Cada .html declara con <link rel="modulepreload"> el chunk
+// de su página y sus dependencias, para que se descarguen en paralelo con el bundle
+// principal. Los nombres con hash salen del manifiesto de Vite (build.manifest en
+// vite.config.ts), que se borra al terminar para no publicarlo.
+const manifiesto = JSON.parse(leer("dist/.vite/manifest.json"));
+const lazyModulos = Object.fromEntries(
+  [...app.matchAll(/const (\w+) = lazy\(\(\) => import\("\.\/([^"]+)"\)/g)].map((m) => [m[1], `src/${m[2]}.tsx`]),
+);
+const componenteDeRuta = Object.fromEntries(
+  [...app.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)\s*\/>\}/g)].map((m) => [m[1], m[2]]),
+);
+const yaEnPlantilla = new Set([...plantilla.matchAll(/(?:src|href)="\/([^"]+\.js)"/g)].map((m) => m[1]));
+function chunksDe(clave, vistos = new Set()) {
+  const entrada = manifiesto[clave];
+  if (!entrada || vistos.has(clave)) return [];
+  vistos.add(clave);
+  return [entrada.file, ...(entrada.imports ?? []).flatMap((c) => chunksDe(c, vistos))];
+}
+function precargas(ruta) {
+  const modulo = lazyModulos[componenteDeRuta[ruta.path]];
+  if (!modulo) return []; // la portada (Inicio) va en el bundle principal
+  if (!manifiesto[modulo]) {
+    fallar(`dist/.vite/manifest.json no tiene ${modulo} (ruta ${ruta.path})`);
+    return [];
+  }
+  return [...new Set(chunksDe(modulo))].filter((f) => !yaEnPlantilla.has(f));
+}
+
 const generados = [];
 for (const ruta of rutas) {
   const archivo = archivoDeRuta(ruta.path);
-  writeFileSync(raiz(`dist/${archivo}`), aplicarBloque(plantilla, ruta));
-  generados.push({ ruta, archivo });
+  const chunks = precargas(ruta);
+  const enlaces = chunks.map((f) => `<link rel="modulepreload" crossorigin href="/${f}">`).join("\n    ");
+  let html = aplicarBloque(plantilla, ruta);
+  if (enlaces) html = html.replace("</head>", `  ${enlaces}\n  </head>`);
+  writeFileSync(raiz(`dist/${archivo}`), html);
+  generados.push({ ruta, archivo, chunks });
 }
+rmSync(raiz("dist/.vite"), { recursive: true, force: true });
 
 // ---------------------------------------------------------------------------------------------
 // 3. Verificación de lo generado
 // ---------------------------------------------------------------------------------------------
 const contar = (html, re) => (html.match(re) ?? []).length;
-for (const { ruta, archivo } of generados) {
+for (const { ruta, archivo, chunks } of generados) {
   const html = leer(`dist/${archivo}`);
   const titulos = [...html.matchAll(/<title>([^<]*)<\/title>/g)];
   if (titulos.length !== 1) fallar(`dist/${archivo}: debe tener un solo <title> (tiene ${titulos.length})`);
@@ -169,6 +204,9 @@ for (const { ruta, archivo } of generados) {
     if (robots) fallar(`dist/${archivo}: no debe llevar noindex`);
   }
   if (!html.includes('<script type="module"')) fallar(`dist/${archivo}: falta el script de la aplicación`);
+  for (const f of chunks) {
+    if (!existsSync(raiz(`dist/${f}`))) fallar(`dist/${archivo}: precarga /${f}, que no existe`);
+  }
 }
 
 terminar();
@@ -181,8 +219,8 @@ function terminar() {
     process.exit(1);
   }
   console.log(`\n✓ generar-cabeceras: rutas coherentes en App.tsx, rutas.json, .htaccess y sitemap.xml`);
-  for (const { ruta, archivo } of generados) {
-    console.log(`  dist/${archivo.padEnd(26)} ${ruta.noindex ? "noindex" : urlCanonica(ruta.path)}`);
+  for (const { ruta, archivo, chunks = [] } of generados) {
+    console.log(`  dist/${archivo.padEnd(26)} ${(ruta.noindex ? "noindex" : urlCanonica(ruta.path)).padEnd(50)} ${chunks.length ? `precarga ${chunks.length} chunk(s)` : ""}`);
   }
   process.exit(0);
 }

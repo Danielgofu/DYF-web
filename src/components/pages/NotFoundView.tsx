@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
 import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { usePageMeta } from "../../utils/seo";
@@ -13,50 +13,50 @@ export const NotFoundView: React.FC = () => {
       <NeuralNetworkBackground opacity={0.15} />
 
       <div className="relative z-10 max-w-2xl w-full text-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           className="mb-12 inline-flex items-center justify-center p-6 bg-signal-orange/10 border border-signal-orange/20 rounded-full"
         >
           <AlertTriangle className="w-16 h-16 text-signal-orange" />
-        </motion.div>
+        </m.div>
 
-        <motion.h1
+        <m.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-headline text-7xl md:text-9xl font-black uppercase tracking-tighter mb-4 text-white"
         >
           404
-        </motion.h1>
+        </m.h1>
 
-        <motion.div
+        <m.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="h-1 w-24 bg-signal-orange mx-auto mb-8"
-        ></motion.div>
+        ></m.div>
 
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="font-headline text-2xl md:text-4xl font-bold uppercase tracking-tight mb-6 text-on-surface"
         >
           Infraestructura no Encontrada
-        </motion.h2>
+        </m.h2>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
           className="font-body text-on-surface-variant text-lg mb-12 max-w-lg mx-auto leading-relaxed"
         >
           La ruta que intenta alcanzar ha sido desconectada o no existe en nuestra base de datos técnica.
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
@@ -78,7 +78,7 @@ export const NotFoundView: React.FC = () => {
             <ArrowLeft className="w-4 h-4" />
             Regresar
           </button>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Technical coordinate markings */}

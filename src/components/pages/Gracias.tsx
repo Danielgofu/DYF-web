@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { CheckCircle2, ArrowRight, Facebook, Share2, Check } from "lucide-react";
 import { usePageMeta } from "../../utils/seo";
 import { SOCIAL_LINKS } from "../../utils/contact";
@@ -50,7 +50,7 @@ export const Gracias: React.FC = () => {
   };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="min-h-screen flex flex-col items-center justify-center relative px-6 pt-40 pb-20"
@@ -62,7 +62,7 @@ export const Gracias: React.FC = () => {
       </div>
 
       <Link to="/" aria-label="DYF Telecomunicaciones: ir al inicio" className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex items-center gap-4 hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange">
-        <img src="/DyfLogo.webp" alt="" className="h-10 w-auto opacity-70" />
+        <img src="/DyfLogo.webp" srcSet="/DyfLogo-240.webp 240w, /DyfLogo.webp 410w" sizes="72px" width={410} height={230} alt="" className="h-10 w-auto opacity-70" />
         <span className="hidden sm:inline font-headline font-bold text-xl tracking-tighter text-on-surface uppercase font-black">DYF <span className="text-signal-orange">TELECOMUNICACIONES</span></span>
       </Link>
 
@@ -145,8 +145,10 @@ export const Gracias: React.FC = () => {
           alt=""
           className="w-full h-full object-cover grayscale"
           src="/images/gracias-fibra.webp"
+          width={512}
+          height={512}
         />
       </div>
-    </motion.div>
+    </m.div>
   );
 };

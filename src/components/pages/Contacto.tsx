@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import {
   Smartphone,
   Mail,
@@ -17,7 +17,7 @@ export const Contacto: React.FC = () => {
   usePageMeta("/contacto");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -46,6 +46,11 @@ export const Contacto: React.FC = () => {
                 className="w-full h-full object-cover grayscale brightness-75"
                 alt="Racks de red con paneles de parcheo y cableado estructurado"
                 src="/images/contacto-sala-servidores.webp"
+                srcSet="/images/contacto-sala-servidores-860.webp 860w, /images/contacto-sala-servidores.webp 1024w"
+                // Caja cuadrada con foto 4:3 (object-cover): se necesita ~1,34 veces el ancho
+                sizes="(min-width: 1024px) calc(42vw * 1.34), calc((100vw - 50px) * 1.34)"
+                width={1024}
+                height={768}
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
               <div className="absolute bottom-8 left-8 flex items-center gap-4">
@@ -155,6 +160,6 @@ export const Contacto: React.FC = () => {
         <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-surface to-transparent pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-surface to-transparent pointer-events-none"></div>
       </section>
-    </motion.div>
+    </m.div>
   );
 };

@@ -67,6 +67,22 @@ ErrorDocument 404 /404.html
   RewriteRule ^politica-privacidad$ politica-privacidad.html [L,NC]
 </IfModule>
 
+# Compresión de los archivos de texto. Si el servidor tiene mod_brotli, los navegadores que
+# lo aceptan reciben brotli; el resto, gzip (mod_deflate). Ninguno de los dos vuelve a comprimir
+# una respuesta que ya lleva Content-Encoding, así que pueden convivir. AddOutputFilterByType es
+# de mod_filter en Apache 2.4: sin ese <IfModule>, si faltara el módulo la web daría error 500.
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+</IfModule>
+<IfModule mod_filter.c>
+  <IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml application/xml text/xml text/plain
+  </IfModule>
+  <IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml application/xml text/xml text/plain
+  </IfModule>
+</IfModule>
+
 # Cabeceras de seguridad (equivalentes a vercel.json)
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
@@ -81,6 +97,17 @@ ErrorDocument 404 /404.html
   # Solo js/css/woff2: las imágenes de /public no llevan hash y no deben cachearse como inmutables.
   <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imágenes e iconos de /public: no llevan hash en el nombre, así que no pueden ser
+  # "immutable"; 7 días. Si se sustituye una imagen conviene cambiarle el nombre.
+  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+
+  # Manifiesto de la web app: 1 día.
+  <FilesMatch "\.webmanifest$">
+    Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 
   # Todos los HTML (index.html, servicios.html, 404.html...) se revalidan siempre: así, tras

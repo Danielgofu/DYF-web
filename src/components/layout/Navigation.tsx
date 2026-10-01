@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Instagram, Facebook } from "lucide-react";
-import { motion, AnimatePresence, type Variants } from "motion/react";
+import { m, AnimatePresence, type Variants } from "motion/react";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
 
 interface NavItem {
@@ -152,7 +152,7 @@ export const Navigation: React.FC = () => {
             aria-label="Ir a la página de inicio"
             className="flex items-center justify-center hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
           >
-            <img src="/DyfLogo.webp" alt="Logotipo DYF TELECOMUNICACIONES" className="h-8 md:h-10 w-auto object-contain" />
+            <img src="/DyfLogo.webp" srcSet="/DyfLogo-240.webp 240w, /DyfLogo.webp 410w" sizes="(min-width: 768px) 72px, 57px" width={410} height={230} alt="Logotipo DYF TELECOMUNICACIONES" className="h-8 md:h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -207,7 +207,7 @@ export const Navigation: React.FC = () => {
           /* El diálogo envuelve el botón de cerrar y el panel. La capa es transparente
              y no captura clics fuera de ellos; el botón de cerrar ocupa exactamente la
              posición del botón de abrir de la barra (mismo padding y alineación). */
-          <motion.div
+          <m.div
             ref={menuRef}
             id="mobile-menu"
             role="dialog"
@@ -220,7 +220,7 @@ export const Navigation: React.FC = () => {
             className="fixed inset-0 z-[55] lg:hidden pointer-events-none"
           >
             <div className="flex justify-end items-center px-6 md:px-12 py-3">
-              <motion.button
+              <m.button
                 ref={closeRef}
                 type="button"
                 variants={closeButtonVariants}
@@ -229,9 +229,9 @@ export const Navigation: React.FC = () => {
                 className="pointer-events-auto text-on-surface p-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange hover:bg-white/5 rounded-full transition-colors cursor-pointer"
               >
                 <X className="w-6 h-6" />
-              </motion.button>
+              </m.button>
             </div>
-            <motion.div
+            <m.div
               variants={menuVariants}
               className="pointer-events-auto fixed inset-0 top-[69px] bg-[#131313] flex flex-col overflow-y-auto overflow-x-hidden overscroll-contain"
             >
@@ -239,7 +239,7 @@ export const Navigation: React.FC = () => {
                 {NAV_ITEMS.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
-                    <motion.div key={item.path} variants={itemVariants}>
+                    <m.div key={item.path} variants={itemVariants}>
                       <Link
                         to={item.path}
                         onClick={() => setIsMenuOpen(false)}
@@ -253,10 +253,10 @@ export const Navigation: React.FC = () => {
                           {item.label}
                         </span>
                       </Link>
-                    </motion.div>
+                    </m.div>
                   );
                 })}
-                <motion.div variants={itemVariants}>
+                <m.div variants={itemVariants}>
                   <Link
                     to="/contacto"
                     onClick={() => setIsMenuOpen(false)}
@@ -264,9 +264,9 @@ export const Navigation: React.FC = () => {
                   >
                     Contacto Directo
                   </Link>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   variants={itemVariants}
                   className="flex gap-8 items-center pt-8 border-t border-outline-variant/10"
                 >
@@ -291,10 +291,10 @@ export const Navigation: React.FC = () => {
                       <Facebook className="w-6 h-6" />
                     </a>
                   </div>
-                </motion.div>
+                </m.div>
               </div>
 
-              <motion.div
+              <m.div
                 variants={itemVariants}
                 className="mt-auto p-8 text-outline"
               >
@@ -305,9 +305,9 @@ export const Navigation: React.FC = () => {
                   <p>Teléfonos: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="inline-flex items-center min-h-11 text-white hover:text-signal-orange font-medium">{CONTACT.phonePrimary}</a> / <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="inline-flex items-center min-h-11 text-white hover:text-signal-orange font-medium">{CONTACT.phoneSecondary}</a></p>
                   <p>Email: <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center min-h-11 text-white hover:text-signal-orange font-medium">{CONTACT.email}</a></p>
                 </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </m.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>
