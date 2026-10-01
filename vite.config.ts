@@ -41,5 +41,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), cabeceraPortada(), precargaFuentePrincipal()],
   // El manifiesto lo usa scripts/generar-cabeceras.mjs para precargar el chunk de cada
   // página en su .html; el propio script lo borra de dist/ después.
-  build: {manifest: true},
+  build: {
+    manifest: true,
+    // Las fuentes nunca se incrustan en el CSS como data: (Vite lo hace con los archivos de
+    // menos de 4 KB, p. ej. el subconjunto cirílico de Manrope). Chrome carga las fuentes data:
+    // aunque la página no use esos caracteres, y la CSP (font-src 'self') las bloquearía.
+    assetsInlineLimit: (file) => (file.endsWith('.woff2') ? false : undefined),
+  },
 });

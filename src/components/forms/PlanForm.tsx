@@ -5,6 +5,21 @@ import { CONTACT } from "../../utils/contact";
 import { PrivacyNotice } from "./PrivacyNotice";
 import { EMAIL_PATTERN, isSubmissionAccepted, isValidPhone } from "../../utils/formsubmit";
 
+// Longitudes máximas: las usan el atributo maxLength y también la validación al enviar
+// (maxLength solo limita lo que se teclea; no impide un valor manipulado desde el DOM).
+const MAX = { concept: 150, contact: 254 } as const;
+
+const SERVICE_TYPES = [
+  "Mantenimiento Integral",
+  "Antenas y Datos",
+  "Porteros y Videoporteros",
+  "Electricidad y LED",
+  "Seguridad CCTV",
+] as const;
+
+/** Para el asunto del correo: sin saltos de línea ni caracteres de control. */
+const singleLine = (value: string) => value.replace(/[\u0000-\u001f\u007f]+/g, " ").trim();
+
 /**
  * El estado del formulario vive aquí, aislado del resto de Mantenimiento.tsx:
  * así cada pulsación de tecla solo vuelve a renderizar este formulario, no la
@@ -13,7 +28,7 @@ import { EMAIL_PATTERN, isSubmissionAccepted, isValidPhone } from "../../utils/f
 export const PlanForm: React.FC = () => {
   const navigate = useNavigate();
   const [concept, setConcept] = useState("");
-  const [serviceType, setServiceType] = useState("Mantenimiento Integral");
+  const [serviceType, setServiceType] = useState<string>(SERVICE_TYPES[0]);
   const [contactInfo, setContactInfo] = useState("");
   // Honeypot antispam: invisible para personas; los bots que rellenan todo lo completan.
   const [honey, setHoney] = useState("");
@@ -36,11 +51,19 @@ export const PlanForm: React.FC = () => {
       fail("plan_concept", "Por favor, especifique el nombre de la comunidad o empresa.");
       return;
     }
+    if (concept.length > MAX.concept) {
+      fail("plan_concept", `El nombre admite como máximo ${MAX.concept} caracteres.`);
+      return;
+    }
+    if (!(SERVICE_TYPES as readonly string[]).includes(serviceType)) {
+      fail(null, "Seleccione un tipo de servicio de la lista.");
+      return;
+    }
     if (!contact) {
       fail("plan_contact_info", "Por favor, indique un teléfono o correo electrónico de contacto.");
       return;
     }
-    if (!EMAIL_PATTERN.test(contact) && !isValidPhone(contact)) {
+    if (contact.length > MAX.contact || (!EMAIL_PATTERN.test(contact) && !isValidPhone(contact))) {
       fail("plan_contact_info", "Indique un correo electrónico o un teléfono válido para poder contactarle.");
       return;
     }
@@ -62,7 +85,7 @@ export const PlanForm: React.FC = () => {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          _subject: `Solicitud de Plan a Medida: ${concept.trim()} - ${serviceType}`,
+          _subject: `Solicitud de Plan a Medida: ${singleLine(concept)} - ${serviceType}`,
           concepto_o_comunidad: concept.trim(),
           tipo_de_servicio: serviceType,
           datos_contacto: contact,
@@ -109,7 +132,7 @@ export const PlanForm: React.FC = () => {
           className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
           placeholder="Ej: Edificio Central Getafe"
-          maxLength={150}
+          maxLength={MAX.concept}
           value={concept}
           onChange={(e) => {
             setConcept(e.target.value);
@@ -128,11 +151,9 @@ export const PlanForm: React.FC = () => {
           value={serviceType}
           onChange={(e) => setServiceType(e.target.value)}
         >
-          <option value="Mantenimiento Integral">Mantenimiento Integral</option>
-          <option value="Antenas y Datos">Antenas y Datos</option>
-          <option value="Porteros y Videoporteros">Porteros y Videoporteros</option>
-          <option value="Electricidad y LED">Electricidad y LED</option>
-          <option value="Seguridad CCTV">Seguridad CCTV</option>
+          {SERVICE_TYPES.map((type) => (
+            <option key={type} value={type}>{type}</option>
+          ))}
         </select>
       </div>
       <div>
@@ -143,7 +164,7 @@ export const PlanForm: React.FC = () => {
           className="w-full bg-surface-low border-0 border-l-4 border-transparent focus:border-signal-orange focus:ring-0 text-base sm:text-sm py-4 px-4 transition-all text-white"
           type="text"
           placeholder="Teléfono o email"
-          maxLength={254}
+          maxLength={MAX.contact}
           value={contactInfo}
           onChange={(e) => {
             setContactInfo(e.target.value);

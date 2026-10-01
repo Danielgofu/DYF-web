@@ -5,8 +5,25 @@ import { CONTACT } from "../../utils/contact";
 import { PrivacyNotice } from "./PrivacyNotice";
 import { EMAIL_PATTERN, isSubmissionAccepted, isValidPhone } from "../../utils/formsubmit";
 
-const MESSAGE_MAX = 500;
+// Longitudes máximas: las usan el atributo maxLength y también la validación al enviar
+// (maxLength solo limita lo que se teclea; no impide un valor manipulado desde el DOM).
+const MAX = { full_name: 100, email: 254, phone: 30, message: 500 } as const;
+const MESSAGE_MAX = MAX.message;
 const FIELD_ORDER = ["full_name", "email", "phone", "reason", "message"] as const;
+
+const REASONS = [
+  { value: "comunidad", label: "Mantenimiento Comunidad" },
+  { value: "antenas", label: "Antenas y TV (TDT/SAT)" },
+  { value: "porteros", label: "Porteros y Videoporteros" },
+  { value: "seguridad", label: "Alarmas, CCTV y Seguridad" },
+  { value: "redes", label: "Redes e Informática" },
+  { value: "electricidad", label: "Electricidad e Iluminación LED" },
+  { value: "presupuesto", label: "Solicitud de Presupuesto" },
+  { value: "otros", label: "Otros Asuntos" },
+] as const;
+
+/** Para el asunto del correo: sin saltos de línea ni caracteres de control. */
+const singleLine = (value: string) => value.replace(/[\u0000-\u001f\u007f]+/g, " ").trim();
 
 /**
  * El estado del formulario (formData/errors/isSubmitting) vive aquí, aislado
@@ -35,19 +52,21 @@ export const ContactForm: React.FC = () => {
 
     if (!formData.full_name.trim()) {
       newErrors.full_name = "El nombre es obligatorio.";
+    } else if (formData.full_name.length > MAX.full_name) {
+      newErrors.full_name = `Máximo ${MAX.full_name} caracteres.`;
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "El correo electrónico es obligatorio.";
-    } else if (!EMAIL_PATTERN.test(formData.email.trim())) {
+    } else if (formData.email.length > MAX.email || !EMAIL_PATTERN.test(formData.email.trim())) {
       newErrors.email = "El formato del correo electrónico no es válido.";
     }
 
-    if (formData.phone.trim() && !isValidPhone(formData.phone.trim())) {
+    if (formData.phone.length > MAX.phone || (formData.phone.trim() && !isValidPhone(formData.phone.trim()))) {
       newErrors.phone = "Formato no válido.";
     }
 
-    if (!formData.reason) {
+    if (!REASONS.some((r) => r.value === formData.reason)) {
       newErrors.reason = "Seleccione un motivo.";
     }
 
@@ -55,6 +74,8 @@ export const ContactForm: React.FC = () => {
       newErrors.message = "El mensaje es obligatorio.";
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Mensaje demasiado corto.";
+    } else if (formData.message.length > MAX.message) {
+      newErrors.message = `Máximo ${MAX.message} caracteres.`;
     }
 
     setErrors(newErrors);
@@ -84,7 +105,7 @@ export const ContactForm: React.FC = () => {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          _subject: `Nueva consulta Web de: ${formData.full_name.trim()} - ${formData.reason}`,
+          _subject: `Nueva consulta Web de: ${singleLine(formData.full_name)} - ${formData.reason}`,
           nombre: formData.full_name.trim(),
           email: formData.email.trim(),
           telefono: formData.phone.trim() || "No indicado",
@@ -142,7 +163,7 @@ export const ContactForm: React.FC = () => {
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
               id="full_name"
               aria-required="true"
-              maxLength={100}
+              maxLength={MAX.full_name}
               autoComplete="name"
               placeholder="Nombre Completo"
               type="text"
@@ -166,7 +187,7 @@ export const ContactForm: React.FC = () => {
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
               id="email"
               aria-required="true"
-              maxLength={254}
+              maxLength={MAX.email}
               autoComplete="email"
               placeholder="Correo Electrónico"
               type="email"
@@ -189,7 +210,7 @@ export const ContactForm: React.FC = () => {
             <input
               className="w-full bg-transparent border-none px-0 py-3 font-body text-on-surface placeholder-transparent peer focus:ring-0"
               id="phone"
-              maxLength={30}
+              maxLength={MAX.phone}
               autoComplete="tel"
               placeholder="Número de Teléfono"
               type="tel"
@@ -220,14 +241,9 @@ export const ContactForm: React.FC = () => {
               aria-describedby={errors.reason ? "reason-error" : undefined}
             >
               <option className="bg-surface text-on-surface-variant" value="">Motivo de Consulta</option>
-              <option className="bg-surface text-on-surface" value="comunidad">Mantenimiento Comunidad</option>
-              <option className="bg-surface text-on-surface" value="antenas">Antenas y TV (TDT/SAT)</option>
-              <option className="bg-surface text-on-surface" value="porteros">Porteros y Videoporteros</option>
-              <option className="bg-surface text-on-surface" value="seguridad">Alarmas, CCTV y Seguridad</option>
-              <option className="bg-surface text-on-surface" value="redes">Redes e Informática</option>
-              <option className="bg-surface text-on-surface" value="electricidad">Electricidad e Iluminación LED</option>
-              <option className="bg-surface text-on-surface" value="presupuesto">Solicitud de Presupuesto</option>
-              <option className="bg-surface text-on-surface" value="otros">Otros Asuntos</option>
+              {REASONS.map((r) => (
+                <option key={r.value} className="bg-surface text-on-surface" value={r.value}>{r.label}</option>
+              ))}
             </select>
             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-outline-variant/30 group-focus-within:h-[2px] group-focus-within:bg-signal-orange transition-all"></div>
             <div className="absolute right-0 top-3 pointer-events-none text-signal-orange">
