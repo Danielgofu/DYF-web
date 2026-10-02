@@ -74,6 +74,7 @@ const htaccess = leer("public/.htaccess");
 const lineasHt = htaccess.split(/\r?\n/).map((l) => l.trim());
 const reescrituras = [];
 const barras = [];
+const reglasHtml = {};
 for (const [i, linea] of lineasHt.entries()) {
   let m = linea.match(/^RewriteRule\s+\^([a-z0-9-]+)\$\s+(\S+)\s+\[L,NC\]$/);
   if (m) {
@@ -90,13 +91,32 @@ for (const [i, linea] of lineasHt.entries()) {
   }
   // Las 301 de URLs antiguas (patrón ^algo\.html?$) deben ir precedidas de la condición
   // THE_REQUEST sobre la misma URL; si no, atraparían las reescrituras internas -> bucle.
-  m = linea.match(/^RewriteRule\s+\^([a-z0-9-]+)\\\.html\?\$\s/);
+  m = linea.match(/^RewriteRule\s+\^([a-z0-9-]+)\\\.html\?\$\s+(\S+)\s+\[([^\]]+)\]$/);
   if (m) {
     const previa = lineasHt[i - 1] ?? "";
     const esperada = `RewriteCond %{THE_REQUEST} \\s/${m[1]}\\.html?[\\s?] [NC]`;
     if (previa !== esperada) {
-      fallar(`public/.htaccess: la 301 de ${m[1]}.html debe ir precedida de\n     ${esperada}`);
+      fallar(`public/.htaccess: la regla de ${m[1]}.html debe ir precedida de\n     ${esperada}`);
     }
+    reglasHtml[m[1]] = { destino: m[2], flags: m[3], antes: lineasHt[i - 2] ?? "" };
+  }
+}
+
+// Los .html generados no deben ser accesibles con su nombre: cada ruta redirige (301) de
+// /ruta.html a su URL limpia, y /404.html pedido directamente da un 404 real. La regla del
+// 404 necesita además REDIRECT_STATUS vacío: el ErrorDocument sirve /404.html con una
+// redirección interna en la que THE_REQUEST sigue siendo "/404.html".
+for (const ruta of rutas) {
+  if (ruta.path === "/") continue;
+  const nombre = archivoDeRuta(ruta.path).replace(/\.html$/, "");
+  const regla = reglasHtml[nombre];
+  if (ruta.path === "*") {
+    if (!regla || regla.destino !== "-" || !/^R=404,L/.test(regla.flags) || regla.antes !== "RewriteCond %{ENV:REDIRECT_STATUS} ^$") {
+      fallar("public/.htaccess: falta la regla que da 404 a /404.html pedido directamente:\n" +
+        "     RewriteCond %{ENV:REDIRECT_STATUS} ^$\n     RewriteCond %{THE_REQUEST} \\s/404\\.html?[\\s?] [NC]\n     RewriteRule ^404\\.html?$ - [R=404,L,NC]");
+    }
+  } else if (!regla || regla.destino !== urlCanonica(ruta.path) || !/^R=301,L/.test(regla.flags)) {
+    fallar(`public/.htaccess: /${nombre}.html debe redirigir con 301 a ${urlCanonica(ruta.path)}`);
   }
 }
 if (/RewriteRule\s+\.\s+\/?index\.html/.test(htaccess) || /!-f/.test(htaccess)) {

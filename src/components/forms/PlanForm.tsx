@@ -89,6 +89,8 @@ export const PlanForm: React.FC = () => {
           concepto_o_comunidad: concept.trim(),
           tipo_de_servicio: serviceType,
           datos_contacto: contact,
+          // Si el contacto es un email, FormSubmit lo usa como "Responder a" del correo.
+          ...(EMAIL_PATTERN.test(contact) ? { _replyto: contact } : {}),
           _honey: honey,
           _template: "table"
         })

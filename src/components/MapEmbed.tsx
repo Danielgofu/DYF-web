@@ -67,7 +67,8 @@ export const MapEmbed: React.FC<MapEmbedProps> = ({ src, title, className = "abs
           style={{ border: 0 }}
           allowFullScreen={true}
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
+          // Google solo recibe el origen (https://www.dyfservicios.com), no la ruta de la página.
+          referrerPolicy="strict-origin-when-cross-origin"
           title={title}
         ></iframe>
       </div>

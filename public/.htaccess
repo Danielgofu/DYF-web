@@ -37,6 +37,22 @@ ErrorDocument 404 /404.html
   RewriteCond %{THE_REQUEST} \s/contacto\.html?[\s?] [NC]
   RewriteRule ^contacto\.html?$ https://www.dyfservicios.com/contacto [R=301,L,NC]
 
+  # 0b. Los .html que genera el build, pedidos directamente por el navegador (/equipo.html...),
+  #     redirigen a su URL limpia para no tener dos URLs con el mismo contenido. Llevan la misma
+  #     condición THE_REQUEST: la sección 4 reescribe /equipo -> equipo.html por dentro y, sin
+  #     ella, esta regla redirigiría /equipo a sí misma en bucle. (servicios.html y
+  #     contacto.html ya los cubren las reglas de la web antigua de arriba.)
+  RewriteCond %{THE_REQUEST} \s/equipo\.html?[\s?] [NC]
+  RewriteRule ^equipo\.html?$ https://www.dyfservicios.com/equipo [R=301,L,NC]
+  RewriteCond %{THE_REQUEST} \s/mantenimiento\.html?[\s?] [NC]
+  RewriteRule ^mantenimiento\.html?$ https://www.dyfservicios.com/mantenimiento [R=301,L,NC]
+  RewriteCond %{THE_REQUEST} \s/gracias\.html?[\s?] [NC]
+  RewriteRule ^gracias\.html?$ https://www.dyfservicios.com/gracias [R=301,L,NC]
+  RewriteCond %{THE_REQUEST} \s/aviso-legal\.html?[\s?] [NC]
+  RewriteRule ^aviso-legal\.html?$ https://www.dyfservicios.com/aviso-legal [R=301,L,NC]
+  RewriteCond %{THE_REQUEST} \s/politica-privacidad\.html?[\s?] [NC]
+  RewriteRule ^politica-privacidad\.html?$ https://www.dyfservicios.com/politica-privacidad [R=301,L,NC]
+
   # 1. Forzar HTTPS, directamente al dominio con www (un solo salto desde http://sin-www)
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://www.dyfservicios.com%{REQUEST_URI} [L,R=301]
@@ -44,6 +60,14 @@ ErrorDocument 404 /404.html
   # 2. Forzar "www" cuando ya se llega por https sin www
   RewriteCond %{HTTP_HOST} !^www\. [NC]
   RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2b. /404.html pedido directamente: 404 real (no 200). R=404 hace que Apache sirva el
+  #     ErrorDocument, que es este mismo archivo mediante una redirección interna en la que
+  #     THE_REQUEST sigue siendo "/404.html"; REDIRECT_STATUS vacío (solo lo está en la
+  #     petición original del navegador) evita que la regla vuelva a dispararse ahí.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{THE_REQUEST} \s/404\.html?[\s?] [NC]
+  RewriteRule ^404\.html?$ - [R=404,L,NC]
 
   # 3. Rutas conocidas con barra final -> 301 a la URL canónica (sin barra y en minúsculas).
   RewriteRule ^equipo/$ https://www.dyfservicios.com/equipo [R=301,L,NC]
