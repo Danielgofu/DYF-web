@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Instagram, Facebook } from "lucide-react";
 import { m, AnimatePresence, type Variants } from "motion/react";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
+import { HorarioTramos } from "../HorarioTramos";
 
 interface NavItem {
   label: string;
@@ -299,7 +300,8 @@ export const Navigation: React.FC = () => {
                 className="mt-auto p-8 text-outline"
               >
                 <p className="text-[10px] uppercase tracking-[0.3em] font-black border-b border-outline-variant/10 pb-4 mb-4 text-signal-orange">
-                  Horario de Atención: {CONTACT.hours}
+                  Horario de Atención: <span className="whitespace-nowrap">{CONTACT.days}:</span>
+                  <HorarioTramos />
                 </p>
                 <div className="space-y-2 text-xs font-light leading-relaxed">
                   <p>Teléfonos: <a href={`tel:${CONTACT.phonePrimaryTel}`} className="inline-flex items-center min-h-11 text-white hover:text-signal-orange font-medium">{CONTACT.phonePrimary}</a> / <a href={`tel:${CONTACT.phoneSecondaryTel}`} className="inline-flex items-center min-h-11 text-white hover:text-signal-orange font-medium">{CONTACT.phoneSecondary}</a></p>

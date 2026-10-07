@@ -1,5 +1,6 @@
 import React from "react";
 import { m } from "motion/react";
+import { FOUNDING_YEAR } from "../../utils/contact";
 import { 
   Radio, 
   Zap, 
@@ -43,7 +44,7 @@ export const Servicios: React.FC = () => {
               LA <span className="text-signal-orange italic">POTENCIA</span> DE LA CONECTIVIDAD.
             </h1>
             <p className="font-body text-lg text-on-surface-variant max-w-xl font-light leading-relaxed mb-10">
-              Desplegamos soluciones de infraestructura homologadas y certificadas. Desde 2008 liderando la evolución tecnológica en la Comunidad de Madrid, fusionando experiencia con protocolos de seguridad de última generación.
+              Desplegamos soluciones de infraestructura homologadas y certificadas. Desde {FOUNDING_YEAR} liderando la evolución tecnológica en la Comunidad de Madrid, fusionando experiencia con protocolos de seguridad de última generación.
             </p>
           </div>
           <div className="lg:w-1/2 relative group">
@@ -348,7 +349,7 @@ export const Servicios: React.FC = () => {
         {[
           { label: "Garantía", text: "Empresa Homologada" },
           { label: "Soporte", text: "Atención Urgencias" },
-          { label: "Experiencia", text: "Desde 2008" },
+          { label: "Experiencia", text: `Desde ${FOUNDING_YEAR}` },
           { label: "Cobertura", text: "Comunidad de Madrid" }
         ].map((stat, i) => (
           <div key={i} className="flex flex-col gap-1">

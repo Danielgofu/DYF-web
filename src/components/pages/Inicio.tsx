@@ -20,7 +20,7 @@ import { NeuralNetworkBackground } from "../NeuralNetworkBackground";
 import { VideoIntercomGraphic } from "../VideoIntercomGraphic";
 import { FaqAccordion, FaqItem } from "../FaqAccordion";
 import { usePageMeta } from "../../utils/seo";
-import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
+import { CONTACT, FOUNDING_YEAR, SOCIAL_LINKS, yearsInBusiness } from "../../utils/contact";
 import { MapEmbed } from "../MapEmbed";
 
 const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
@@ -128,7 +128,7 @@ export const Inicio: React.FC = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="font-body text-lg md:text-xl font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed"
           >
-            Líderes en instalación, mantenimiento y optimización de redes críticas. Desde 2008 garantizando la continuidad operativa en la Comunidad de Madrid con estándares de ingeniería de máxima exigencia.
+            Líderes en instalación, mantenimiento y optimización de redes críticas. Desde {FOUNDING_YEAR} garantizando la continuidad operativa en la Comunidad de Madrid con estándares de ingeniería de máxima exigencia.
           </m.p>
           
           <m.div 
@@ -341,7 +341,7 @@ export const Inicio: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 mb-24 md:mb-32">
             {[
-              { value: 15, label: "Años de Trayectoria", suffix: "+" },
+              { value: yearsInBusiness(), label: "Años de Trayectoria", suffix: "+" },
               { value: 250, label: "Antenas Instaladas", suffix: "+" },
               { value: 15000, label: "Metros de Cableado", suffix: "+" }
             ].map((stat, i) => (

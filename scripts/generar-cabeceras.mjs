@@ -8,6 +8,8 @@
 //    description, canonical/og:url o robots noindex, og:*, twitter:*): servicios.html,
 //    gracias.html, 404.html... y reescribe la de la portada en index.html.
 // 3. Verifica los archivos generados.
+// Además (1b) comprueba que el año de fundación y el horario del JSON-LD coinciden con
+// src/utils/empresa.json.
 import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { aplicarBloque, archivoDeRuta, leerRutas, urlCanonica } from "./seo-cabecera.mjs";
@@ -142,6 +144,49 @@ compararConjuntos("src/App.tsx", deApp, "src/seo/rutas.json", deJson);
 compararConjuntos("src/seo/rutas.json", deJson, "public/.htaccess (reescrituras)", deHtReescritura);
 compararConjuntos("src/seo/rutas.json", deJson, "public/.htaccess (301 de barra final)", deHtBarra);
 compararConjuntos("src/seo/rutas.json (indexables)", indexables, "public/sitemap.xml", deSitemap);
+
+// ---------------------------------------------------------------------------------------------
+// 1b. Datos de empresa: el año de fundación y el horario del JSON-LD de index.html (y los años
+//     que aparezcan en las descripciones de rutas.json como "desde AAAA") deben coincidir con
+//     src/utils/empresa.json, que es lo que usa la web (src/utils/contact.ts).
+// ---------------------------------------------------------------------------------------------
+const empresa = JSON.parse(leer("src/utils/empresa.json"));
+const jsonLdTexto = (leer("index.html").match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/) || [])[1];
+let jsonLd = null;
+try {
+  jsonLd = JSON.parse(jsonLdTexto);
+} catch {
+  fallar("index.html: el bloque JSON-LD falta o no es JSON válido");
+}
+if (jsonLd) {
+  if (jsonLd.foundingDate !== String(empresa.foundingYear)) {
+    fallar(`index.html (JSON-LD): foundingDate es ${JSON.stringify(jsonLd.foundingDate)} y en src/utils/empresa.json el año es ${empresa.foundingYear}`);
+  }
+  const esperado = empresa.openingHours.slots.map((s) => ({
+    dias: empresa.openingHours.dayOfWeek.map((d) => `https://schema.org/${d}`).join(","),
+    opens: s.opens,
+    closes: s.closes,
+  }));
+  const actual = (jsonLd.openingHoursSpecification ?? []).map((o) => ({
+    dias: (o.dayOfWeek ?? []).join(","),
+    opens: o.opens,
+    closes: o.closes,
+  }));
+  if (JSON.stringify(actual) !== JSON.stringify(esperado)) {
+    fallar(
+      "index.html (JSON-LD): openingHoursSpecification no coincide con src/utils/empresa.json" +
+        `\n     JSON-LD:      ${actual.map((a) => `${a.opens}-${a.closes}`).join(", ") || "(vacío)"}` +
+        `\n     empresa.json: ${esperado.map((a) => `${a.opens}-${a.closes}`).join(", ")} (${empresa.openingHours.dayOfWeek.join(", ")})`,
+    );
+  }
+}
+for (const r of rutas) {
+  for (const m of `${r.title} ${r.description}`.matchAll(/desde (\d{4})/gi)) {
+    if (+m[1] !== empresa.foundingYear) {
+      fallar(`src/seo/rutas.json (${r.path}): dice "${m[0]}" y el año de fundación es ${empresa.foundingYear}`);
+    }
+  }
+}
 
 if (errores.length) terminar();
 

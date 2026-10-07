@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
 import { CONTACT, SOCIAL_LINKS } from "../../utils/contact";
+import { HorarioTramos } from "../HorarioTramos";
 
 const FOOTER_LINKS = [
   { label: "Inicio", path: "/" },
@@ -81,7 +82,8 @@ export const Footer: React.FC = () => {
                 </p>
                 <div>
                   <span className="text-signal-orange font-bold block mb-1">Horario de Oficina</span>
-                  {CONTACT.hours}
+                  {CONTACT.days}:
+                  <HorarioTramos />
                 </div>
               </div>
             </div>

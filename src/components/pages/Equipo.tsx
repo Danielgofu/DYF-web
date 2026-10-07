@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { m } from "motion/react";
+import { FOUNDING_YEAR } from "../../utils/contact";
 import { 
   History, 
   Cpu, 
@@ -50,7 +51,7 @@ export const Equipo: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
               <div className="absolute bottom-8 left-8">
-                <p className="font-headline text-4xl font-bold uppercase tracking-tighter text-white">Desde 2008</p>
+                <p className="font-headline text-4xl font-bold uppercase tracking-tighter text-white">Desde {FOUNDING_YEAR}</p>
                 <p className="font-label text-[10px] uppercase tracking-widest text-[#fb8d48] font-bold">Liderazgo Técnico</p>
               </div>
             </div>

@@ -1,0 +1,11 @@
+{
+  "foundingYear": 2006,
+  "openingHours": {
+    "daysLabel": "Lunes a Viernes",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "slots": [
+      { "opens": "09:00", "closes": "14:00" },
+      { "opens": "16:00", "closes": "19:00" }
+    ]
+  }
+}

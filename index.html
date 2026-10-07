@@ -43,6 +43,7 @@
       "name": "DYF Telecomunicaciones",
       "legalName": "DYF Telecomunicaciones y Servicios, S.L.",
       "taxID": "B85223972",
+      "foundingDate": "2006",
       "url": "https://www.dyfservicios.com/",
       "logo": "https://www.dyfservicios.com/icon-512.png",
       "image": "https://www.dyfservicios.com/og-image.jpg",
@@ -72,6 +73,18 @@
           ],
           "opens": "09:00",
           "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "19:00"
         }
       ],
       "areaServed": { "@type": "AdministrativeArea", "name": "Comunidad de Madrid" },
@@ -83,6 +96,16 @@
     </script>
   </head>
   <body>
+    <!-- Sin JavaScript la web no se muestra: aviso con los datos de contacto. Solo clases de la
+    hoja de estilos (la CSP no permite style="..." ni <style> en línea). -->
+    <noscript>
+      <div class="max-w-2xl mx-auto px-6 py-16 font-body text-on-surface leading-relaxed">
+        <p class="font-headline text-2xl font-bold uppercase tracking-tighter text-signal-orange mb-4">DYF Telecomunicaciones</p>
+        <p class="mb-4">Esta web necesita JavaScript para funcionar. Active JavaScript en su navegador o contacte con nosotros:</p>
+        <p>Teléfono: <a class="text-signal-orange underline" href="tel:+34916018494">916 01 84 94</a></p>
+        <p>Email: <a class="text-signal-orange underline" href="mailto:info@dyfservicios.com">info@dyfservicios.com</a></p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
