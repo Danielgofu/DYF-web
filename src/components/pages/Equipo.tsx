@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { m } from "motion/react";
-import { FOUNDING_YEAR } from "../../utils/contact";
+import { FOUNDING_YEAR, yearsInBusiness } from "../../utils/contact";
 import { 
   History, 
   Cpu, 
@@ -70,7 +70,7 @@ export const Equipo: React.FC = () => {
             </div>
             <h3 className="font-headline text-3xl lg:text-2xl xl:text-3xl font-bold mb-6 uppercase tracking-tighter transition-colors group-hover:text-signal-orange">Experiencia</h3>
             <p className="font-body text-on-surface-variant font-light leading-relaxed">
-              Más de 10 años liderando el sector nos permiten anticipar desafíos y entregar resultados sin errores desde el primer día.
+              Más de {yearsInBusiness()} años liderando el sector nos permiten anticipar desafíos y entregar resultados sin errores desde el primer día.
             </p>
           </div>
           {/* Innovation */}
